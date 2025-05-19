@@ -481,6 +481,13 @@
           ]
         },
         {
+          "file": "src/components/QuanTriVien/RoleFilter.tsx",
+          "hash": "7046656600897764932",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "src/components/QuanTriVien/SidebarNavItem.tsx",
           "hash": "1113363407271002044",
           "deps": [
@@ -495,8 +502,29 @@
           ]
         },
         {
+          "file": "src/components/QuanTriVien/TimeFilter.tsx",
+          "hash": "11535788343518794059",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/QuanTriVien/UserInteractionChart.tsx",
+          "hash": "333260196519798546",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "src/components/QuanTriVien/UserList.tsx",
           "hash": "13671392353787360918",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/QuanTriVien/UserPerformanceChart.tsx",
+          "hash": "3701925403606227163",
           "deps": [
             "npm:react"
           ]
@@ -655,6 +683,13 @@
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
           "hash": "14025503491089268025",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/pages/DashboardQuanTriVien2.tsx",
+          "hash": "16359712046613373371",
           "deps": [
             "npm:react"
           ]
