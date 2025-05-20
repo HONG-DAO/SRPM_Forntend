@@ -28,6 +28,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div className="w-screen min-h-screen bg-[#fcfcf6]">
+      {/* Các Route hoặc nội dung trang */}
+    </div>
     </>
   )
 }

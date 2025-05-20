@@ -1,6 +1,6 @@
 {
   "version": "6.0",
-  "nxVersion": "20.8.1",
+  "nxVersion": "20.8.2",
   "pathMappings": {
     "@cnpm/*": [
       "src/*"
@@ -66,7 +66,7 @@
           "hash": "2368834901205880777",
           "deps": [
             "npm:@eslint/js",
-            "npm:@types/react@19.1.4",
+            "npm:@types/react",
             "npm:@types/react-dom",
             "npm:@vitejs/plugin-react",
             "npm:autoprefixer",
@@ -77,7 +77,7 @@
             "npm:tailwindcss",
             "npm:typescript",
             "npm:typescript-eslint",
-            "npm:vite@6.3.5",
+            "npm:vite",
             "npm:react",
             "npm:react-dom"
           ]
@@ -141,7 +141,7 @@
           "file": "my-tailwind-app/vite.config.ts",
           "hash": "16225914092815047172",
           "deps": [
-            "npm:vite@6.3.5",
+            "npm:vite",
             "npm:@vitejs/plugin-react"
           ]
         }
@@ -176,7 +176,7 @@
         },
         {
           "file": "index.html",
-          "hash": "16396337419710630064"
+          "hash": "11808866594407685837"
         },
         {
           "file": "nx.json",
@@ -184,11 +184,11 @@
         },
         {
           "file": "package-lock.json",
-          "hash": "8482760670478283007"
+          "hash": "10183891502406790200"
         },
         {
           "file": "package.json",
-          "hash": "4310790133304956550",
+          "hash": "10771396944004560252",
           "deps": [
             "npm:@eslint/js",
             "npm:@nx/devkit",
@@ -339,7 +339,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "2560483395268915946",
+          "hash": "10060166003739022782",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -432,18 +432,12 @@
           ]
         },
         {
-          "file": "src/components/IconButton.tsx",
-          "hash": "4833713936912347103",
-          "deps": [
-            "npm:react"
-          ]
+          "file": "src/components/Icons/GoogleIcon.tsx",
+          "hash": "10511001869440559926"
         },
         {
-          "file": "src/components/NavigationBar.tsx",
-          "hash": "818088364614548692",
-          "deps": [
-            "npm:react"
-          ]
+          "file": "src/components/Icons/UserIcon.tsx",
+          "hash": "17374983800139100890"
         },
         {
           "file": "src/components/Protect/AuthLayout.tsx",
@@ -461,7 +455,7 @@
         },
         {
           "file": "src/components/QuanTriVien/MainContent.tsx",
-          "hash": "3256001511751130439",
+          "hash": "8612161610635363994",
           "deps": [
             "npm:react"
           ]
@@ -545,12 +539,9 @@
         },
         {
           "file": "src/components/Sign In/LoginForm.tsx",
-          "hash": "3789748321573031783",
+          "hash": "4042319549623190340",
           "deps": [
-            "npm:react",
-            "npm:formik",
-            "npm:yup",
-            "npm:axios"
+            "npm:react"
           ]
         },
         {
@@ -583,7 +574,7 @@
         },
         {
           "file": "src/components/Sign Up/GoogleForm.tsx",
-          "hash": "5397404212509075213",
+          "hash": "14700983068203407608",
           "deps": [
             "npm:react",
             "npm:formik",
@@ -661,50 +652,49 @@
         },
         {
           "file": "src/pages/AdminDashboard.tsx",
-          "hash": "4948624914836105596",
+          "hash": "7613681544069198554",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardHoiOngThamInh.tsx",
-          "hash": "16062327850096756379",
+          "hash": "16879186991862795078",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien.tsx",
-          "hash": "9267082178779724426",
+          "hash": "6611872213868020527",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "14025503491089268025",
+          "hash": "9365260284310841344",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien2.tsx",
-          "hash": "16359712046613373371",
+          "hash": "12207361147789282419",
           "deps": [
             "npm:react"
           ]
         },
         {
-          "file": "src/pages/SignInPage.tsx",
-          "hash": "12813774949251393127",
+          "file": "src/pages/LoginPage.tsx",
+          "hash": "14579641864317785074",
           "deps": [
-            "npm:react",
-            "npm:react-router-dom"
+            "npm:react"
           ]
         },
         {
           "file": "src/pages/SignUpPage.tsx",
-          "hash": "15658988377797397123",
+          "hash": "12552819982983510045",
           "deps": [
             "npm:react",
             "npm:formik",
@@ -729,11 +719,11 @@
         },
         {
           "file": "src/styles.css",
-          "hash": "10103544627402899306"
+          "hash": "15181488264411780895"
         },
         {
           "file": "tailwind.config.js",
-          "hash": "2346798718762947195",
+          "hash": "7841738320396045976",
           "deps": [
             "npm:tailwindcss-animate"
           ]
@@ -761,7 +751,7 @@
         },
         {
           "file": "yarn.lock",
-          "hash": "17228034649141893575"
+          "hash": "7519312751077167333"
         }
       ]
     }
