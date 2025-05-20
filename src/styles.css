@@ -399,3 +399,12 @@ input[type="password"]::-webkit-text-security {
     transform: translateY(0);
   }
 }
+
+.main-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}

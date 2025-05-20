@@ -123,8 +123,6 @@ const GoogleSignUpForm: React.FC<GoogleSignUpFormProps> = ({
                 name="name"
                 type="text"
                 placeholder="Your name"
-                preventSpecialChars={true}
-                allowNumbers={false}
                 className="w-full h-12 px-4 rounded-md border border-gray-200 focus:border-[#1569CB]"
               />
               {errors.name && touched.name && (
@@ -137,7 +135,6 @@ const GoogleSignUpForm: React.FC<GoogleSignUpFormProps> = ({
                 name="address"
                 type="text"
                 placeholder="Your address"
-                preventSpecialChars={true}
                 className="w-full h-12 px-4 rounded-md border border-gray-200 focus:border-[#1569CB]"
               />
               {errors.address && touched.address && (

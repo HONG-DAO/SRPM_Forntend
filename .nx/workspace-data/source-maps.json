@@ -335,8 +335,8 @@
   },
   "my-tailwind-app": {
     "root": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
+      "my-tailwind-app/vite.config.ts",
+      "@nx/vite/plugin"
     ],
     "projectType": [
       "my-tailwind-app/vite.config.ts",
@@ -577,66 +577,6 @@
     "targets.typecheck.metadata.help.example": [
       "my-tailwind-app/vite.config.ts",
       "@nx/vite/plugin"
-    ],
-    "targets.lint": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.cache": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.options": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.inputs": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.outputs": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.executor": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.options.cwd": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.options.command": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata.technologies": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata.technologies.0": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata.description": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata.help": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata.help.command": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
-    ],
-    "targets.lint.metadata.help.example": [
-      "my-tailwind-app/eslint.config.js",
-      "@nx/eslint/plugin"
     ]
   }
 }

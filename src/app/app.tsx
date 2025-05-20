@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { AuthProvider } from '@cnpm/context/AuthContext';
-import SignInPage from '@cnpm/pages/SignInPage';
+import SignInPage from '@cnpm/pages/LoginPage';
 import SignUpPage from '@cnpm/pages/SignUpPage';
 import AuthLayout from '@cnpm/components/Protect/AuthLayout';
 import DashboardHoiOngThamInh from '@cnpm/pages/DashboardHoiOngThamInh';
@@ -15,6 +15,7 @@ export function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   return (
+    <div className="w-screen min-h-screen bg-[#fcfcf6]">
     <GoogleOAuthProvider clientId={googleClientId}>
       <AuthProvider>
         <Router>
@@ -32,6 +33,7 @@ export function App() {
         </Router>
       </AuthProvider>
     </GoogleOAuthProvider>
+    </div>
   );
 }
 
