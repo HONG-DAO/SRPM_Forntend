@@ -34,118 +34,6 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
-      "my-tailwind-app": [
-        {
-          "file": "my-tailwind-app/.gitignore",
-          "hash": "13046175384202504187"
-        },
-        {
-          "file": "my-tailwind-app/README.md",
-          "hash": "13160460843517416105"
-        },
-        {
-          "file": "my-tailwind-app/eslint.config.js",
-          "hash": "16145672096969245511",
-          "deps": [
-            "npm:@eslint/js",
-            "npm:globals",
-            "npm:eslint-plugin-react-hooks",
-            "npm:typescript-eslint"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/index.html",
-          "hash": "4025202329384162906"
-        },
-        {
-          "file": "my-tailwind-app/package-lock.json",
-          "hash": "10479334102634539113"
-        },
-        {
-          "file": "my-tailwind-app/package.json",
-          "hash": "2368834901205880777",
-          "deps": [
-            "npm:@eslint/js",
-            "npm:@types/react",
-            "npm:@types/react-dom",
-            "npm:@vitejs/plugin-react",
-            "npm:autoprefixer",
-            "npm:eslint",
-            "npm:eslint-plugin-react-hooks",
-            "npm:globals",
-            "npm:postcss",
-            "npm:tailwindcss",
-            "npm:typescript",
-            "npm:typescript-eslint",
-            "npm:vite",
-            "npm:react",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/postcss.config.js",
-          "hash": "1121830044826443979"
-        },
-        {
-          "file": "my-tailwind-app/public/vite.svg",
-          "hash": "16046085400642193116"
-        },
-        {
-          "file": "my-tailwind-app/src/App.css",
-          "hash": "3739391659270974612"
-        },
-        {
-          "file": "my-tailwind-app/src/App.tsx",
-          "hash": "9561001225065465909",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/src/assets/react.svg",
-          "hash": "16069471864800376455"
-        },
-        {
-          "file": "my-tailwind-app/src/index.css",
-          "hash": "13504153635654440336"
-        },
-        {
-          "file": "my-tailwind-app/src/main.tsx",
-          "hash": "11038211546439381838",
-          "deps": [
-            "npm:react",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/src/vite-env.d.ts",
-          "hash": "12946363841406869089"
-        },
-        {
-          "file": "my-tailwind-app/tailwind.config.js",
-          "hash": "1620497832093742526"
-        },
-        {
-          "file": "my-tailwind-app/tsconfig.app.json",
-          "hash": "3992348939299782212"
-        },
-        {
-          "file": "my-tailwind-app/tsconfig.json",
-          "hash": "2365188958523842680"
-        },
-        {
-          "file": "my-tailwind-app/tsconfig.node.json",
-          "hash": "3588689360788834997"
-        },
-        {
-          "file": "my-tailwind-app/vite.config.ts",
-          "hash": "16225914092815047172",
-          "deps": [
-            "npm:vite",
-            "npm:@vitejs/plugin-react"
-          ]
-        }
-      ],
       "cnpm": [
         {
           "file": ".gitignore",
@@ -184,11 +72,11 @@
         },
         {
           "file": "package-lock.json",
-          "hash": "10183891502406790200"
+          "hash": "9952900550459174692"
         },
         {
           "file": "package.json",
-          "hash": "10771396944004560252",
+          "hash": "12988106625815515325",
           "deps": [
             "npm:@eslint/js",
             "npm:@nx/devkit",
@@ -224,6 +112,7 @@
             "npm:eslint-plugin-playwright",
             "npm:eslint-plugin-react",
             "npm:eslint-plugin-react-hooks",
+            "npm:eslint-plugin-react-refresh",
             "npm:jsdom",
             "npm:nx",
             "npm:postcss",
@@ -339,7 +228,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "10060166003739022782",
+          "hash": "18440129019495822994",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -438,6 +327,25 @@
         {
           "file": "src/components/Icons/UserIcon.tsx",
           "hash": "17374983800139100890"
+        },
+        {
+          "file": "src/components/Log In Error/ErrorMessage.tsx",
+          "hash": "6918125165922176854"
+        },
+        {
+          "file": "src/components/Log In Error/FormInput.tsx",
+          "hash": "1542227349496807842"
+        },
+        {
+          "file": "src/components/Log In Error/Icons.tsx",
+          "hash": "6925858403893277148"
+        },
+        {
+          "file": "src/components/Log In Error/LoginFormError.tsx",
+          "hash": "8174559386781622989",
+          "deps": [
+            "npm:react"
+          ]
         },
         {
           "file": "src/components/Protect/AuthLayout.tsx",
@@ -539,7 +447,7 @@
         },
         {
           "file": "src/components/Sign In/LoginForm.tsx",
-          "hash": "4042319549623190340",
+          "hash": "13712254122929362318",
           "deps": [
             "npm:react"
           ]
@@ -625,6 +533,13 @@
           ]
         },
         {
+          "file": "src/layouts/MainLayout.tsx",
+          "hash": "14028835702855839308",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "src/lib/utils.ts",
           "hash": "6483145186850064023",
           "deps": [
@@ -652,42 +567,49 @@
         },
         {
           "file": "src/pages/AdminDashboard.tsx",
-          "hash": "7613681544069198554",
+          "hash": "902590413822428588",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardHoiOngThamInh.tsx",
-          "hash": "16879186991862795078",
+          "hash": "12728972097967722632",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien.tsx",
-          "hash": "6611872213868020527",
+          "hash": "1636776396463921597",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "9365260284310841344",
+          "hash": "14642264652893785362",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien2.tsx",
-          "hash": "12207361147789282419",
+          "hash": "16955646552853785250",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/pages/LoginError.tsx",
+          "hash": "11004249100888943368",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/LoginPage.tsx",
-          "hash": "14579641864317785074",
+          "hash": "4463562937061738661",
           "deps": [
             "npm:react"
           ]
@@ -751,7 +673,119 @@
         },
         {
           "file": "yarn.lock",
-          "hash": "7519312751077167333"
+          "hash": "2288038161052201161"
+        }
+      ],
+      "my-tailwind-app": [
+        {
+          "file": "my-tailwind-app/.gitignore",
+          "hash": "13046175384202504187"
+        },
+        {
+          "file": "my-tailwind-app/README.md",
+          "hash": "13160460843517416105"
+        },
+        {
+          "file": "my-tailwind-app/eslint.config.js",
+          "hash": "16145672096969245511",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:globals",
+            "npm:eslint-plugin-react-hooks",
+            "npm:typescript-eslint"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/index.html",
+          "hash": "4025202329384162906"
+        },
+        {
+          "file": "my-tailwind-app/package-lock.json",
+          "hash": "10479334102634539113"
+        },
+        {
+          "file": "my-tailwind-app/package.json",
+          "hash": "2368834901205880777",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:@vitejs/plugin-react",
+            "npm:autoprefixer",
+            "npm:eslint",
+            "npm:eslint-plugin-react-hooks",
+            "npm:globals",
+            "npm:postcss",
+            "npm:tailwindcss",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:vite",
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/postcss.config.js",
+          "hash": "1121830044826443979"
+        },
+        {
+          "file": "my-tailwind-app/public/vite.svg",
+          "hash": "16046085400642193116"
+        },
+        {
+          "file": "my-tailwind-app/src/App.css",
+          "hash": "3739391659270974612"
+        },
+        {
+          "file": "my-tailwind-app/src/App.tsx",
+          "hash": "11448401833549720588",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/src/assets/react.svg",
+          "hash": "16069471864800376455"
+        },
+        {
+          "file": "my-tailwind-app/src/index.css",
+          "hash": "13504153635654440336"
+        },
+        {
+          "file": "my-tailwind-app/src/main.tsx",
+          "hash": "11038211546439381838",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/src/vite-env.d.ts",
+          "hash": "12946363841406869089"
+        },
+        {
+          "file": "my-tailwind-app/tailwind.config.js",
+          "hash": "1620497832093742526"
+        },
+        {
+          "file": "my-tailwind-app/tsconfig.app.json",
+          "hash": "3992348939299782212"
+        },
+        {
+          "file": "my-tailwind-app/tsconfig.json",
+          "hash": "2365188958523842680"
+        },
+        {
+          "file": "my-tailwind-app/tsconfig.node.json",
+          "hash": "3588689360788834997"
+        },
+        {
+          "file": "my-tailwind-app/vite.config.ts",
+          "hash": "16225914092815047172",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react"
+          ]
         }
       ]
     }
