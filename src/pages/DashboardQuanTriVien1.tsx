@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import MainLayout from "../layouts/MainLayout";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import { MainContent } from "../components/QuanTriVien/MainContent";
