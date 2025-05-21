@@ -1,12 +1,9 @@
-interface ErrorMessageProps {
-  message: string;
-}
+import React from "react";
 
-export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => (
-  <div
-    role="alert"
-    className="p-3.5 mb-6 text-base font-bold text-center text-red-900 bg-rose-200 rounded-lg"
-  >
-    {message}
-  </div>
-);
+export function ErrorMessage({ message }: { message: string }) {
+  return (
+    <div className="w-full mb-4 px-4 py-3 rounded-lg bg-red-100 text-red-700 text-center font-semibold border border-red-200">
+      {message}
+    </div>
+  );
+}
