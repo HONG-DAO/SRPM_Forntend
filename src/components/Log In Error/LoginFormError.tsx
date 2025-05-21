@@ -1,94 +1,107 @@
 "use client";
-import React, { useState } from "react";
-import { ErrorMessage } from "./ErrorMessage";
-import { FormInput } from "./FormInput";
-import { UserIcon, GoogleIcon } from "./Icons";
+import * as React from "react";
+import { UserIcon } from "../Icons/UserIcon";
+import { GoogleIcon } from "../Icons/GoogleIcon";
+import { ErrorMessage } from "../Log In Error/ErrorMessage"; 
 
-export const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(true);
-  const [showError, setShowError] = useState(true);
+export function LoginFormError() {
+  const [rememberMe, setRememberMe] = React.useState(true);
+  const [showError, setShowError] = React.useState(false); 
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+
+    if (!email || !password) {
+      setShowError(true);
+    } else {
+      setShowError(false);
+      // Xử lý đăng nhập ở đây
+      console.log("Đăng nhập với:", { email, password, rememberMe });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="px-8 py-8 bg-white rounded-xl shadow-[0_4px_6px_rgba(0,0,0,0.1),0_10px_15px_rgba(0,0,0,0.1)] w-[448px] max-md:w-full max-md:max-w-md max-sm:p-5">
-      <div className="flex flex-col gap-5 items-center mb-6 max-sm:gap-4">
+    <article className="w-full max-w-md">
+      <div className="flex flex-col items-center mb-6">
         <div className="flex justify-center items-center w-12 h-12">
           <UserIcon />
         </div>
-        <h1 className="text-3xl font-bold text-gray-700 max-sm:text-2xl">
-          XIN CHÀO !
-        </h1>
+        <h1 className="mt-4 text-3xl font-bold text-gray-700">XIN CHÀO !</h1>
       </div>
-
       {showError && (
-        <ErrorMessage message="Đăng nhập không hợp lệ, vui lòng thử l���i" />
+        <ErrorMessage message="Đăng nhập không hợp lệ, vui lòng thử lại" />
       )}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email" className="text-sm font-semibold text-gray-700">
+            Email:
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="fe@ut.edu.vn"
+            className="px-4 py-3 text-base rounded-lg border border-gray-300 h-[48px]"
+          />
+        </div>
 
-      <div className="flex flex-col gap-6">
-        <FormInput
-          label="Email"
-          type="email"
-          placeholder="fe@ut.edu.vn"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="flex flex-col gap-1">
+          <label htmlFor="password" className="text-sm font-semibold text-gray-700">
+            Mật Khẩu:
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Nhập Mật Khẩu"
+            className="px-4 py-3 text-base rounded-lg border border-gray-300 h-[48px]"
+          />
+        </div>
 
-        <FormInput
-          label="Mật Khẩu"
-          type="password"
-          placeholder="Nhập Mật Khẩu"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <div className="flex justify-between items-center mt-2">
-          <div className="flex gap-2 items-center text-sm text-gray-700">
+        <div className="flex justify-between items-center">
+          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
             <input
               type="checkbox"
               id="remember"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
+              className="cursor-pointer"
             />
-            <label htmlFor="remember">Ghi nhớ</label>
-          </div>
-          <button type="button" className="text-sm font-semibold text-teal-700 cursor-pointer">
+            Ghi nhớ
+          </label>
+          <a
+            href="#"
+            className="text-sm font-semibold text-teal-700 hover:underline"
+          >
             Quên mật khẩu
-          </button>
+          </a>
         </div>
-      </div>
 
-      <div className="flex flex-col gap-3 mt-6 max-sm:gap-2">
         <button
           type="submit"
-          className="p-3.5 w-full text-base font-bold text-white bg-teal-500 rounded-lg cursor-pointer border-[none]"
+          className="mt-2 w-full h-[48px] text-base font-bold text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-colors"
         >
           Đăng nhập
         </button>
 
         <button
           type="button"
-          className="flex gap-2 justify-center items-center p-3.5 text-base font-bold text-gray-700 bg-white rounded-lg border border-gray-300 border-solid cursor-pointer max-sm:text-sm"
+          className="flex items-center justify-center gap-2 w-full h-[48px] text-base font-bold text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
         >
           <GoogleIcon />
           <span>Tiếp tục với Google</span>
         </button>
-      </div>
+      </form>
 
-      <div className="flex flex-col gap-2 items-center pt-4 mt-8 border-t border-solid">
-        <p className="text-sm text-gray-600">Bạn có tài khoản chưa ?</p>
-        <button
-          type="button"
-          className="p-3.5 w-full text-base font-bold text-teal-700 rounded-lg border border-teal-500 border-solid cursor-pointer max-sm:text-sm"
-        >
+      <div className="mt-8 pt-4 text-center border-t border-gray-200">
+        <p className="mb-2 text-sm text-gray-700">Bạn có tài khoản chưa?</p>
+        <button className="w-full h-[48px] text-base font-bold text-teal-700 border border-teal-500 rounded-lg hover:bg-teal-50 transition-colors">
           Tạo tài khoản
         </button>
       </div>
-    </form>
+    </article>
   );
-};
+}
