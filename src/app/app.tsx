@@ -11,7 +11,7 @@ import DashboardHoiOngThamInh from '@cnpm/pages/DashboardHoiOngThamInh';
 import DashboardQuanTriVien from '@cnpm/pages/DashboardQuanTriVien';
 import DashboardQuanTriVien1 from '@cnpm/pages/DashboardQuanTriVien1';
 import DashboardQuanTriVien2 from '@cnpm/pages/DashboardQuanTriVien2';
-import { AdminDashboard } from '@cnpm/pages/AdminDashboard';
+import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
 
 

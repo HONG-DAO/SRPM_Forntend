@@ -1,30 +1,38 @@
 "use client";
 import * as React from "react";
 import MainLayout from "../layouts/MainLayout";
-import { LoginForm } from "../components/Log In Error/LoginFormError";
+import { LoginFormError } from "../components/Log In Error/LoginFormError";
 
 export default function LoginPage() {
   return (
     <MainLayout>
-      <main className="flex flex-col items-center w-full min-h-screen bg-gray-50">
-        <header className="mt-20 mb-7">
+      {/* Logo */}
+      <div className="w-full flex justify-center mt-8 mb-6">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/68061d1f8c1bc27abf08860af7de53ebd548d464"
+          alt="UTH Logo"
+          className="h-[45px] object-contain"
+        />
+      </div>
+
+      {/* Khung chính */}
+      <div className="flex max-w-5xl w-full min-h-[440px] rounded-2xl shadow-lg bg-white overflow-hidden">
+        {/* Bên trái: Hình ảnh */}
+        <div className="w-1/2 bg-white">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e7eade11a486dd7ef55e3dcec2ac4a35f5e26e6"
-            className="h-[62px] w-[357px] max-sm:w-4/5 max-sm:h-auto"
-            alt="Logo"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/453e0ca17db5de0e06bb80753c9fe9f400687d8e"
+            alt="UTH"
+            className="w-full h-full object-cover rounded-l-2xl"
           />
-        </header>
-        <section className="flex gap-10 justify-between items-center px-24 py-0 max-md:flex-col max-md:px-5 max-md:py-0">
-          <div>
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/453e0ca17db5de0e06bb80753c9fe9f400687d8e"
-              className="object-cover rounded-lg h-[694px] w-[925px] max-md:w-full max-md:h-auto"
-              alt="Login background"
-            />
+        </div>
+
+        {/* Bên phải: Form đăng nhập */}
+        <div className="w-1/2 flex items-center justify-center bg-white p-8">
+          <div className="w-full max-w-xs">
+            <LoginFormError />
           </div>
-          <LoginForm />
-        </section>
-      </main>
+        </div>
+      </div>
     </MainLayout>
   );
 }

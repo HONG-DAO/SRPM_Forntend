@@ -228,7 +228,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "18440129019495822994",
+          "hash": "3374733738614198703",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -244,53 +244,29 @@
           "hash": "16069471864800376455"
         },
         {
-          "file": "src/components/Admin/CustomButton.tsx",
-          "hash": "3521404081748235230",
+          "file": "src/components/Admin/AddUserForm.tsx",
+          "hash": "3117616409403137317",
           "deps": [
             "npm:react"
           ]
         },
         {
-          "file": "src/components/Admin/IconButton.tsx",
-          "hash": "15128431799090170291",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Admin/NavigationBar.tsx",
-          "hash": "10148344563190665926",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Admin/SearchInput.tsx",
-          "hash": "8660767821716451022",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Admin/TransactionApproval.tsx",
-          "hash": "3178314170334282775",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Admin/UserForm.tsx",
-          "hash": "2290060316023032371",
+          "file": "src/components/Admin/ApprovalSection.tsx",
+          "hash": "6248222495581945588",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/Admin/UserTable.tsx",
-          "hash": "10087830331239379902",
+          "hash": "16398273684229505535",
           "deps": [
             "npm:react"
           ]
+        },
+        {
+          "file": "src/components/Admin/types.ts",
+          "hash": "7298806207843946438"
         },
         {
           "file": "src/components/Header.tsx",
@@ -342,7 +318,7 @@
         },
         {
           "file": "src/components/Log In Error/LoginFormError.tsx",
-          "hash": "8174559386781622989",
+          "hash": "15589335844866364084",
           "deps": [
             "npm:react"
           ]
@@ -567,7 +543,7 @@
         },
         {
           "file": "src/pages/AdminDashboard.tsx",
-          "hash": "902590413822428588",
+          "hash": "13889735174598021943",
           "deps": [
             "npm:react"
           ]
@@ -602,7 +578,7 @@
         },
         {
           "file": "src/pages/LoginError.tsx",
-          "hash": "11004249100888943368",
+          "hash": "14277956673633728683",
           "deps": [
             "npm:react"
           ]

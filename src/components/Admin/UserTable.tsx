@@ -1,59 +1,72 @@
 import React from "react";
-import { CustomButton } from "./CustomButton";
+import { User } from "./types";
 
-interface UserData {
-  name: string;
-  email: string;
-  phone: string;
-  role: string;
-  status: string;
+interface UserTableProps {
+  users: User[];
 }
 
-const userData: UserData[] = [
-  {
-    name: "Nguyễn Văn A",
-    email: "fe@ut.edu.vn",
-    phone: "0000000001",
-    role: "Sinh viên",
-    status: "Hoạt động",
-  },
-  // Thêm dữ liệu khác nếu muốn
-];
-
-export const UserTable: React.FC = () => {
+export const UserTable: React.FC<UserTableProps> = ({ users }) => {
   return (
-    <div className="bg-white rounded-lg shadow p-4 overflow-auto">
-      <h2 className="text-xl font-bold mb-4">Bảng danh sách người dùng</h2>
-      <div className="min-w-[800px]">
-        {/* Header row */}
-        <div className="flex bg-gray-100 p-3 font-medium">
-          <div className="w-40">Họ tên</div>
-          <div className="w-40">Email</div>
-          <div className="w-32">Số điện thoại</div>
-          <div className="w-32">Vai trò</div>
-          <div className="w-32">Trạng thái</div>
-          <div className="w-32">Hành động</div>
-        </div>
-
-        {/* User rows */}
-        <div className="max-h-96 overflow-y-auto">
-          {userData.map((user, index) => (
-            <div
-              key={index}
-              className="flex border-b border-gray-200 p-3 items-center"
-            >
-              <div className="w-40">{user.name}</div>
-              <div className="w-40">{user.email}</div>
-              <div className="w-32">{user.phone}</div>
-              <div className="w-32">{user.role}</div>
-              <div className="w-32">{user.status}</div>
-              <div className="w-32 flex space-x-2">
-                <CustomButton title="Sửa" variant="secondary" />
-                <CustomButton title="Xoá" variant="danger" />
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="bg-white rounded-xl border border-solid border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+      <div className="p-6 text-lg font-semibold border-b border-solid bg-slate-50 border-b-slate-200">
+        Bảng danh sách người dùng
+      </div>
+      <div className="p-6 bg-slate-50">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 text-base font-medium text-left border-b border-solid border-b-slate-200 text-slate-500">
+                Họ tên
+              </th>
+              <th className="px-4 py-2 text-base font-medium text-left border-b border-solid border-b-slate-200 text-slate-500">
+                Email
+              </th>
+              <th className="px-4 py-2 text-base font-medium text-left border-b border-solid border-b-slate-200 text-slate-500">
+                Số điện thoại
+              </th>
+              <th className="px-4 py-2 text-base font-medium text-left border-b border-solid border-b-slate-200 text-slate-500">
+                Vai trò
+              </th>
+              <th className="px-4 py-2 text-base font-medium text-left border-b border-solid border-b-slate-200 text-slate-500">
+                Trạng thái
+              </th>
+              <th className="px-4 py-2 text-base font-medium text-left border-b border-solid border-b-slate-200 text-slate-500">
+                Hành động
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={index}>
+                <td className="p-4 text-sm text-black border-b border-solid border-b-slate-100">
+                  {user.name}
+                </td>
+                <td className="p-4 text-sm text-black border-b border-solid border-b-slate-100">
+                  {user.email}
+                </td>
+                <td className="p-4 text-sm text-black border-b border-solid border-b-slate-100">
+                  {user.phone}
+                </td>
+                <td className="p-4 text-sm text-black border-b border-solid border-b-slate-100">
+                  {user.role}
+                </td>
+                <td className="p-4 text-sm text-black border-b border-solid border-b-slate-100">
+                  {user.status}
+                </td>
+                <td className="p-4 text-sm text-black border-b border-solid border-b-slate-100">
+                  <div className="flex gap-2.5">
+                    <button className="px-3 py-1 text-sm text-cyan-800 bg-blue-300 rounded-xl cursor-pointer border-[none]">
+                      Sửa
+                    </button>
+                    <button className="px-3 py-1 text-sm text-red-800 bg-rose-400 rounded-xl cursor-pointer border-[none]">
+                      Xoá
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
