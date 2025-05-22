@@ -1,13 +1,12 @@
 "use client";
 import * as React from "react";
-import MainLayout from "../layouts/MainLayout";
 import { LoginForm } from "../components/Sign In/LoginForm";
 import { NewPasswordForm } from "../components/Sign In/NewPassWordForm";
 import { ResetCodeForm } from "../components/Sign In/ResetCodeForm";
 
 export default function LoginPage() {
   return (
-    <MainLayout>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#FCFCF6]">
       {/* Logo */}
       <div className="w-full flex justify-center mt-8 mb-6">
         <img
@@ -27,7 +26,6 @@ export default function LoginPage() {
             className="w-full h-full object-cover rounded-l-2xl"
           />
         </div>
-
         {/* Bên phải: Form đăng nhập */}
         <div className="w-1/2 flex items-center justify-center bg-white p-8">
           <div className="w-full max-w-xs">
@@ -35,6 +33,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </MainLayout>
+    </div>
   );
 }
