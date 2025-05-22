@@ -4,9 +4,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { AuthProvider } from '@cnpm/context/AuthContext';
 import SignInPage from '@cnpm/pages/LoginPage';
-import SignUpPage from '@cnpm/pages/SignUpPage';
+import SignUpPage from '@cnpm/pages/SignUp';
 import LoginError from '@cnpm/pages/LoginError';
-import AuthLayout from '@cnpm/components/Protect/AuthLayout';
 import DashboardHoiOngThamInh from '@cnpm/pages/DashboardHoiOngThamInh';
 import DashboardQuanTriVien from '@cnpm/pages/DashboardQuanTriVien';
 import DashboardQuanTriVien1 from '@cnpm/pages/DashboardQuanTriVien1';
@@ -27,16 +26,14 @@ export function App() {
             <Route path="/" element={<Navigate to="/signin" replace />} />
 
             <Route element={<PublicRoute />}>
-              <Route element={<AuthLayout />}>
-                <Route path="/signin" element={<SignInPage />} />
-                <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/login-error" element={<LoginError />} />
-                <Route path="/dashboard" element={<DashboardHoiOngThamInh />} />
-                <Route path="/quantrivien" element={<DashboardQuanTriVien />} />
-                <Route path="/quantrivien1" element={<DashboardQuanTriVien1 />} />
-                <Route path="/quantrivien2" element={<DashboardQuanTriVien2 />} />
-                <Route path="/admin" element={<AdminDashboard />} />
-              </Route>
+              <Route path="/signin" element={<SignInPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/login-error" element={<LoginError />} />
+              <Route path="/dashboard" element={<DashboardHoiOngThamInh />} />
+              <Route path="/quantrivien" element={<DashboardQuanTriVien />} />
+              <Route path="/quantrivien1" element={<DashboardQuanTriVien1 />} />
+              <Route path="/quantrivien2" element={<DashboardQuanTriVien2 />} />
+              <Route path="/admin" element={<AdminDashboard />} />]
             </Route>
           </Routes>
         </Router>

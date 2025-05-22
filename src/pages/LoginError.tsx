@@ -1,11 +1,10 @@
 "use client";
 import * as React from "react";
-import MainLayout from "../layouts/MainLayout";
 import { LoginFormError } from "../components/Log In Error/LoginFormError";
 
-export default function LoginPage() {
+export default function LoginErrorPage() {
   return (
-    <MainLayout>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#FCFCF6]">
       {/* Logo */}
       <div className="w-full flex justify-center mt-8 mb-6">
         <img
@@ -26,13 +25,13 @@ export default function LoginPage() {
           />
         </div>
 
-        {/* Bên phải: Form đăng nhập */}
+        {/* Bên phải: Form đăng nhập lỗi */}
         <div className="w-1/2 flex items-center justify-center bg-white p-8">
           <div className="w-full max-w-xs">
             <LoginFormError />
           </div>
         </div>
       </div>
-    </MainLayout>
+    </div>
   );
 }

@@ -228,7 +228,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "3374733738614198703",
+          "hash": "3289473083119391841",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -267,6 +267,20 @@
         {
           "file": "src/components/Admin/types.ts",
           "hash": "7298806207843946438"
+        },
+        {
+          "file": "src/components/Button.tsx",
+          "hash": "11354922186170937865",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/FormInput.tsx",
+          "hash": "11750277442836684145",
+          "deps": [
+            "npm:react"
+          ]
         },
         {
           "file": "src/components/Header.tsx",
@@ -335,7 +349,7 @@
         },
         {
           "file": "src/components/Protect/PublicRoute.tsx",
-          "hash": "14962962224724910641",
+          "hash": "7375305649736249533",
           "deps": [
             "npm:react-router-dom"
           ]
@@ -450,27 +464,15 @@
           ]
         },
         {
-          "file": "src/components/Sign Up/DetailsForm.tsx",
-          "hash": "1153797181469802111",
+          "file": "src/components/Sign Up/SelectField.tsx",
+          "hash": "15359637236448118182",
           "deps": [
-            "npm:react",
-            "npm:formik",
-            "npm:yup",
-            "npm:react-router-dom"
+            "npm:react"
           ]
         },
         {
-          "file": "src/components/Sign Up/GoogleForm.tsx",
-          "hash": "14700983068203407608",
-          "deps": [
-            "npm:react",
-            "npm:formik",
-            "npm:yup"
-          ]
-        },
-        {
-          "file": "src/components/Sign Up/VerificationDialog.tsx",
-          "hash": "16214891499033651700",
+          "file": "src/components/Sign Up/SignUpForm.tsx",
+          "hash": "3404350292423489185",
           "deps": [
             "npm:react"
           ]
@@ -581,26 +583,23 @@
         },
         {
           "file": "src/pages/LoginError.tsx",
-          "hash": "14277956673633728683",
+          "hash": "15991526502246434127",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/LoginPage.tsx",
-          "hash": "4463562937061738661",
+          "hash": "9266610702142637880",
           "deps": [
             "npm:react"
           ]
         },
         {
-          "file": "src/pages/SignUpPage.tsx",
-          "hash": "12552819982983510045",
+          "file": "src/pages/SignUp.tsx",
+          "hash": "14591053359267064792",
           "deps": [
-            "npm:react",
-            "npm:formik",
-            "npm:yup",
-            "npm:react-router-dom"
+            "npm:react"
           ]
         },
         {
