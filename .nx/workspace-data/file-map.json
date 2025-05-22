@@ -64,7 +64,7 @@
         },
         {
           "file": "index.html",
-          "hash": "11808866594407685837"
+          "hash": "4802051011029204316"
         },
         {
           "file": "nx.json",
@@ -209,6 +209,10 @@
           "hash": "3479805116032819782"
         },
         {
+          "file": "public/logo-uth.png",
+          "hash": "9754980678907211993"
+        },
+        {
           "file": "public/vite.svg",
           "hash": "16046085400642193116"
         },
@@ -284,7 +288,7 @@
         },
         {
           "file": "src/components/Header.tsx",
-          "hash": "872863086129378508",
+          "hash": "1253548236351817410",
           "deps": [
             "npm:react"
           ]
@@ -433,7 +437,7 @@
         },
         {
           "file": "src/components/Sidebar.tsx",
-          "hash": "8194806276900828835",
+          "hash": "9848890258164421710",
           "deps": [
             "npm:react"
           ]
@@ -472,7 +476,7 @@
         },
         {
           "file": "src/components/Sign Up/SignUpForm.tsx",
-          "hash": "3404350292423489185",
+          "hash": "9016412527481040617",
           "deps": [
             "npm:react"
           ]
@@ -555,42 +559,42 @@
         },
         {
           "file": "src/pages/DashboardHoiOngThamInh.tsx",
-          "hash": "12728972097967722632",
+          "hash": "4741090280587877275",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien.tsx",
-          "hash": "1636776396463921597",
+          "hash": "11435288695875744810",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "14642264652893785362",
+          "hash": "13409094685517059235",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien2.tsx",
-          "hash": "16955646552853785250",
+          "hash": "14630311784545057419",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/LoginError.tsx",
-          "hash": "15991526502246434127",
+          "hash": "116609638496233721",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/LoginPage.tsx",
-          "hash": "9266610702142637880",
+          "hash": "5348657734360798069",
           "deps": [
             "npm:react"
           ]
@@ -675,7 +679,7 @@
         },
         {
           "file": "my-tailwind-app/index.html",
-          "hash": "4025202329384162906"
+          "hash": "9363857189887754550"
         },
         {
           "file": "my-tailwind-app/package-lock.json",
