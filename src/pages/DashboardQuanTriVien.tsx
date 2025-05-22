@@ -17,7 +17,7 @@ export default function DashboardQuanTriVien() {
         {/* Main content */}
         <section className="flex-1 flex flex-col">
           <Header />
-          <main className="flex-1 p-6 overflow-y-auto bg-white">
+          <main className="flex-1 p-6 overflow-y-auto bg-gray-50">
             <SystemConfigCard />
           </main>
         </section>

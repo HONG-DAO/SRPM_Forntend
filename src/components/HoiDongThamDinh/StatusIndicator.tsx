@@ -15,29 +15,30 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({
   showIcon = false,
   className = "",
 }) => {
+  // Màu nền rõ hơn để hiển thị dễ nhìn hơn
   const getStatusStyles = () => {
     switch (status) {
       case "good":
-        return "bg-green-200";
+        return "bg-emerald-300";
       case "average":
-        return "bg-yellow-100";
+        return "bg-yellow-300";
       case "poor":
         return "bg-rose-300";
       default:
-        return "bg-zinc-300";
+        return "bg-gray-300";
     }
   };
 
   return (
-    <div className={`flex gap-3.5 ${className}`}>
+    <div className={`flex gap-3 items-center ${className}`}>
       <div
-        className={`flex shrink-0 rounded-full h-[23px] w-[23px] ${getStatusStyles()}`}
+        className={`h-[23px] w-[23px] rounded-full ${getStatusStyles()}`}
       />
-      <div className="my-auto">{label}</div>
+      <span className="text-sm text-gray-700">{label}</span>
       {showIcon && (
         <img
           src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/40274b722d9dbb54ac71371c7a7ba0ebfb894b86?placeholderIfAbsent=true"
-          className="object-contain shrink-0 w-6 aspect-square"
+          className="w-5 h-5 object-contain"
           alt="status icon"
         />
       )}

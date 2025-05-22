@@ -1,86 +1,75 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+
+type PhaseStatusType = "completed" | "in-progress" | "not-started";
 
 interface PhaseStatus {
   phase: string;
-  status: "completed" | "in-progress" | "not-started";
+  status: PhaseStatusType;
 }
 
+const statusOptions: Record<PhaseStatusType, { text: string; bg: string; icon: string }> = {
+  completed: {
+    text: "Hoàn Thành",
+    bg: "bg-emerald-300",
+    icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/8b98aeff18797f45569e8536ad1c37ed402f4276?placeholderIfAbsent=true",
+  },
+  "in-progress": {
+    text: "Đang thực hiện",
+    bg: "bg-yellow-300",
+    icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/dbd1e3dfcb2a72321254ca452254c2d280ffc3c3?placeholderIfAbsent=true",
+  },
+  "not-started": {
+    text: "Chưa bắt đầu",
+    bg: "bg-rose-300",
+    icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/467d769626ecc4b4470459ea68ac3ebf8a893038?placeholderIfAbsent=true",
+  },
+};
+
 const PhaseProgress: React.FC = () => {
-  const phases: PhaseStatus[] = [
+  const [phases, setPhases] = useState<PhaseStatus[]>([
     { phase: "Giai đoạn 1", status: "completed" },
     { phase: "Giai đoạn 2", status: "in-progress" },
     { phase: "Giai đoạn 3", status: "not-started" },
-  ];
+  ]);
 
-  const getStatusStyles = (status: PhaseStatus["status"]) => {
-    switch (status) {
-      case "completed":
-        return {
-          bg: "bg-green-200",
-          icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/8b98aeff18797f45569e8536ad1c37ed402f4276?placeholderIfAbsent=true",
-          text: "Hoàn Thành",
-        };
-      case "in-progress":
-        return {
-          bg: "bg-yellow-100",
-          icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/dbd1e3dfcb2a72321254ca452254c2d280ffc3c3?placeholderIfAbsent=true",
-          text: "Đang thực hiện",
-        };
-      case "not-started":
-        return {
-          bg: "bg-rose-300",
-          icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/467d769626ecc4b4470459ea68ac3ebf8a893038?placeholderIfAbsent=true",
-          text: "Chưa bắt đầu",
-        };
-    }
+  const handleChange = (index: number, newStatus: PhaseStatusType) => {
+    const newPhases = [...phases];
+    newPhases[index].status = newStatus;
+    setPhases(newPhases);
   };
 
   return (
-    <div className="grow px-6 py-10 rounded-none border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:pr-5 max-md:mt-10 max-md:max-w-full">
-      <div className="flex gap-5 max-md:flex-col">
-        <div className="w-[58%] max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col justify-center self-stretch my-auto text-base font-medium leading-none text-slate-500">
-            {phases.map((phase, index) => (
-              <h3
-                key={index}
-                className={`overflow-hidden py-1.5 w-full ${
-                  index > 0 ? "mt-12 max-md:mt-10" : ""
-                }`}
-              >
+    <div className="px-6 py-6 bg-white rounded-xl border border-gray-200 shadow-sm">
+      <div className="space-y-4">
+        {phases.map((phase, index) => {
+          const { icon, text, bg } = statusOptions[phase.status];
+          return (
+            <div key={index} className="flex items-center justify-between gap-4">
+              {/* Giai đoạn */}
+              <span className="text-base font-medium text-gray-800 whitespace-nowrap w-[120px]">
                 {phase.phase}
-              </h3>
-            ))}
-          </div>
-        </div>
-        <div className="ml-5 w-[42%] max-md:ml-0 max-md:w-full">
-          <div className="w-full font-medium text-black max-md:mt-10">
-            {phases.map((phase, index) => {
-              const status = getStatusStyles(phase.status);
-              return (
-                <div
-                  key={index}
-                  className={`flex gap-2.5 px-5 py-3.5 text-base leading-none ${
-                    status.bg
-                  } rounded-lg ${index > 0 ? "mt-7" : ""}`}
+              </span>
+
+              {/* Chọn trạng thái */}
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-lg ${bg} min-w-[230px]`}>
+                <img src={icon} alt={text} className="w-5 h-5 object-contain" />
+                <select
+                  value={phase.status}
+                  onChange={(e) => handleChange(index, e.target.value as PhaseStatusType)}
+                  className="bg-transparent text-sm font-medium text-black outline-none flex-1"
                 >
-                  <img
-                    src={status.icon}
-                    alt={status.text}
-                    className="object-contain shrink-0 w-6 aspect-square"
-                  />
-                  <div className="my-auto">{status.text}</div>
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/40274b722d9dbb54ac71371c7a7ba0ebfb894b86?placeholderIfAbsent=true"
-                    alt="Additional icon"
-                    className="object-contain shrink-0 w-6 aspect-square"
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                  {Object.entries(statusOptions).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value.text}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

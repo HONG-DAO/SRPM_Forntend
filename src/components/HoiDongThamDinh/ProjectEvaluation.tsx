@@ -1,47 +1,73 @@
 "use client";
 
-import React from "react";
-import StatusIndicator from "./StatusIndicator";
+import React, { useState } from "react";
+
+type EvaluationOption = "good" | "average" | "poor";
+
+interface Criterion {
+  id: string;
+  label: string;
+}
+
+const CRITERIA: Criterion[] = [
+  { id: "planning", label: "Lập kế hoạch" },
+  { id: "execution", label: "Thực hiện" },
+  { id: "effectiveness", label: "Hiệu quả" },
+];
+
+const statusColors = {
+  good: "bg-emerald-200 text-black",
+  average: "bg-yellow-200 text-black",
+  poor: "bg-rose-300 text-black",
+  base: "bg-gray-100 text-gray-600 hover:bg-gray-200",
+};
 
 const ProjectEvaluation: React.FC = () => {
+  const [selections, setSelections] = useState<Record<string, EvaluationOption | null>>({
+    planning: null,
+    execution: null,
+    effectiveness: null,
+  });
+
+  const handleSelect = (criterionId: string, value: EvaluationOption) => {
+    setSelections((prev) => ({ ...prev, [criterionId]: value }));
+  };
+
   return (
-    <section className="flex flex-col py-10 pr-20 pl-5 text-base leading-none text-black rounded-none border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:pr-5 max-md:max-w-full">
-      <div className="flex flex-col self-center max-w-full w-[400px]">
-        <div className="flex z-10 gap-16 self-end mt-0">
-          <StatusIndicator status="good" label="Tốt" />
-          <StatusIndicator status="average" label="Trung bình" />
-          <StatusIndicator status="poor" label="Kém" />
-        </div>
-      </div>
+    <section className="bg-white border border-gray-200 shadow-sm rounded-xl px-6 py-10 text-base text-gray-800 max-md:px-4">
+      <div className="max-w-4xl mx-auto space-y-6">
+        {CRITERIA.map((criterion) => (
+          <div
+            key={criterion.id}
+            className="flex items-center justify-between gap-6 min-h-[56px]"
+          >
+            {/* Label trái */}
+            <span className="text-gray-700 w-[40%] font-medium">
+              {criterion.label}
+            </span>
 
-      <div className="flex z-10 flex-col -mt-6 max-w-full w-[698px]">
-        <div className="flex flex-col justify-center max-w-full font-medium text-slate-500 w-[281px]">
-          <h3 className="overflow-hidden py-1.5 w-full">Lập kế hoạch</h3>
-          <h3 className="overflow-hidden py-1.5 mt-12 w-full max-md:mt-10">
-            Thực hiện
-          </h3>
-          <h3 className="overflow-hidden pt-px pb-2.5 mt-12 w-full max-md:mt-10">
-            Hiệu quả
-          </h3>
-        </div>
-
-        <div className="flex z-10 gap-3.5 self-center mt-0 whitespace-nowrap w-[62px]">
-          <StatusIndicator status="good" label="Tốt" />
-        </div>
-
-        <div className="flex z-10 gap-10 self-end mt-0">
-          <StatusIndicator status="average" label="Trung bình" />
-          <StatusIndicator status="poor" label="Kém" />
-        </div>
-
-        <div className="flex gap-3.5 self-center mt-14 whitespace-nowrap w-[62px] max-md:mt-10">
-          <StatusIndicator status="good" label="Tốt" />
-        </div>
-
-        <div className="flex z-10 gap-10 self-end mt-0">
-          <StatusIndicator status="average" label="Trung bình" />
-          <StatusIndicator status="poor" label="Kém" />
-        </div>
+            {/* Nút chọn phải */}
+            <div className="flex gap-4 w-[60%] justify-end">
+              {(["good", "average", "poor"] as EvaluationOption[]).map((option) => (
+                <button
+                  key={option}
+                  onClick={() => handleSelect(criterion.id, option)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition whitespace-nowrap ${
+                    selections[criterion.id] === option
+                      ? statusColors[option]
+                      : statusColors.base
+                  }`}
+                >
+                  {option === "good"
+                    ? "Tốt"
+                    : option === "average"
+                    ? "Trung bình"
+                    : "Kém"}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
