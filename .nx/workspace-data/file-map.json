@@ -197,10 +197,6 @@
           "hash": "14690660575003423352"
         },
         {
-          "file": "public/images.jpeg",
-          "hash": "2171559228581418362"
-        },
-        {
           "file": "public/images/download (1).jpeg",
           "hash": "711581090774610528"
         },
@@ -211,10 +207,6 @@
         {
           "file": "public/logo-uth.png",
           "hash": "9754980678907211993"
-        },
-        {
-          "file": "public/vite.svg",
-          "hash": "16046085400642193116"
         },
         {
           "file": "src/api/auth.ts",
@@ -249,21 +241,21 @@
         },
         {
           "file": "src/components/Admin/AddUserForm.tsx",
-          "hash": "3117616409403137317",
+          "hash": "12110047537821670129",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/Admin/ApprovalSection.tsx",
-          "hash": "6248222495581945588",
+          "hash": "9526934293252188919",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/Admin/UserTable.tsx",
-          "hash": "16398273684229505535",
+          "hash": "2701264302556607816",
           "deps": [
             "npm:react"
           ]
@@ -295,21 +287,21 @@
         },
         {
           "file": "src/components/HoiDongThamDinh/PhaseProgress.tsx",
-          "hash": "3169348426670485946",
+          "hash": "4495318909023423339",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/HoiDongThamDinh/ProjectEvaluation.tsx",
-          "hash": "4145456362820857200",
+          "hash": "2830435755437804781",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/HoiDongThamDinh/StatusIndicator.tsx",
-          "hash": "11922208183338095203",
+          "hash": "12148577841664807030",
           "deps": [
             "npm:react"
           ]
@@ -339,7 +331,7 @@
         },
         {
           "file": "src/components/Log In Error/LoginFormError.tsx",
-          "hash": "15187895781217893766",
+          "hash": "8280679799689134186",
           "deps": [
             "npm:react"
           ]
@@ -395,7 +387,7 @@
         },
         {
           "file": "src/components/QuanTriVien/SystemConfigCard.tsx",
-          "hash": "9034485194254704702",
+          "hash": "6434247197262211347",
           "deps": [
             "npm:react"
           ]
@@ -552,21 +544,21 @@
         },
         {
           "file": "src/pages/AdminDashboard.tsx",
-          "hash": "13889735174598021943",
+          "hash": "7149772840574551359",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardHoiOngThamInh.tsx",
-          "hash": "4741090280587877275",
+          "hash": "3723247933649847929",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien.tsx",
-          "hash": "11435288695875744810",
+          "hash": "10953034179034127546",
           "deps": [
             "npm:react"
           ]
