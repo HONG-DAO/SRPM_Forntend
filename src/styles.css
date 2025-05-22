@@ -407,4 +407,8 @@ input[type="password"]::-webkit-text-security {
   width: 100%;
   padding-left: 16px;
   padding-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
