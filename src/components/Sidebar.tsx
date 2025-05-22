@@ -36,33 +36,34 @@ const navigationItems = [
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="grow border border-solid border-slate-200 pb-[560px] max-md:pb-24">
-      <header className="flex flex-col justify-center px-9 py-4 border-b bg-black bg-opacity-0 border-slate-200 max-md:px-5">
+    <aside className="w-[240px] h-screen bg-gray-50 border-r border-gray-200 flex flex-col">
+      {/* Header logo */}
+      <header className="flex justify-center items-center h-[80px] border-b border-gray-200">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/f97f13d9cd69d09e5640a65bf4466139ca5ca8ae?placeholderIfAbsent=true"
           alt="Logo"
-          className="object-contain aspect-[5.68] w-[182px]"
+          className="w-[150px] object-contain"
         />
       </header>
-      <nav className="px-4 pt-4 pb-2">
-        <ul className="w-full">
+
+      {/* Navigation */}
+      <nav className="mt-4 px-3 flex-1">
+        <ul className="space-y-1">
           {navigationItems.map((item, index) => (
-            <li key={index} className="mt-1.5 first:mt-0">
+            <li key={index}>
               <div
-                className={`flex gap-3 p-4 w-full rounded-lg ${
-                  item.active ? "bg-blue-50" : "bg-transparent"
+                className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition-all ${
+                  item.active
+                    ? "bg-blue-100 text-blue-700 font-semibold"
+                    : "text-slate-600 hover:bg-gray-100"
                 }`}
               >
-                <div className="flex overflow-hidden justify-center items-center min-h-4">
-                  <img
-                    src={item.icon}
-                    alt={item.label}
-                    className="object-contain self-stretch my-auto w-4 aspect-square"
-                  />
-                </div>
-                <span className="grow shrink text-base font-semibold leading-none text-slate-600">
-                  {item.label}
-                </span>
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className="w-5 h-5 object-contain"
+                />
+                <span className="text-sm">{item.label}</span>
               </div>
             </li>
           ))}

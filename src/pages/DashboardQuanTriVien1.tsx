@@ -8,21 +8,22 @@ import { MainContent } from "../components/QuanTriVien/MainContent";
 export const DashboardLayout = () => {
   return (
     <MainLayout>
-      <div className="min-h-screen w-screen bg-white flex">
-        {/* Sidebar chiếm 18% */}
-        <div className="w-[18%]">
+      <div className="min-h-screen w-screen bg-gray-50 flex">
+        {/* Sidebar chiếm cố định 256px (w-64) */}
+        <aside className="w-64 bg-gray-50 border-r border-gray-200">
           <Sidebar />
-        </div>
+        </aside>
 
-        {/* Main content chiếm 82% */}
-        <div className="w-[82%] flex flex-col">
-          {/* Nếu muốn dùng Header, bỏ comment dòng dưới */}
+        {/* Main content flex-grow */}
+        <section className="flex-1 flex flex-col">
+          {/* Header - có thể bật nếu cần */}
           {/* <Header /> */}
+
           {/* Nội dung chính */}
-          <div className="flex-grow bg-slate-50 p-4 overflow-auto">
+          <main className="flex-1 bg-white p-6 overflow-auto">
             <MainContent />
-          </div>
-        </div>
+          </main>
+        </section>
       </div>
     </MainLayout>
   );
