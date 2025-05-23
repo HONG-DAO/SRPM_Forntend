@@ -224,7 +224,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "7459597023437522961",
+          "hash": "11765876676977863318",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -372,11 +372,8 @@
           ]
         },
         {
-          "file": "src/components/Profile/ResearchInfoCard.tsx",
-          "hash": "5324997562279729694",
-          "deps": [
-            "npm:react"
-          ]
+          "file": "src/components/Profile/ResearchInfo.tsx",
+          "hash": "323846970877031587"
         },
         {
           "file": "src/components/Profile/Sidebar.tsx",
@@ -386,11 +383,8 @@
           ]
         },
         {
-          "file": "src/components/Profile/UserDetailsCard.tsx",
-          "hash": "2457628235776407970",
-          "deps": [
-            "npm:react"
-          ]
+          "file": "src/components/Profile/UserDetails.tsx",
+          "hash": "6064456050572332896"
         },
         {
           "file": "src/components/Protect/AuthLayout.tsx",
@@ -664,6 +658,13 @@
         {
           "file": "src/pages/LoginPage.tsx",
           "hash": "5348657734360798069",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/pages/Profile.tsx",
+          "hash": "9692951810437337999",
           "deps": [
             "npm:react"
           ]
