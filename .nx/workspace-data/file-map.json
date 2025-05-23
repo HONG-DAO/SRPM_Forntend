@@ -384,7 +384,10 @@
         },
         {
           "file": "src/components/Profile/UserDetails.tsx",
-          "hash": "6064456050572332896"
+          "hash": "106991076899283424",
+          "deps": [
+            "npm:react"
+          ]
         },
         {
           "file": "src/components/Protect/AuthLayout.tsx",
@@ -664,7 +667,7 @@
         },
         {
           "file": "src/pages/Profile.tsx",
-          "hash": "9692951810437337999",
+          "hash": "10313439399284505233",
           "deps": [
             "npm:react"
           ]
