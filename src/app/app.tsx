@@ -13,6 +13,7 @@ import DashboardQuanTriVien2 from '@cnpm/pages/DashboardQuanTriVien2';
 import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
+import Profile from '@cnpm/pages/Profile';
 
 
 
@@ -37,6 +38,7 @@ export function App() {
               <Route path="/quantrivien2" element={<DashboardQuanTriVien2 />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/duan" element={<DuAn />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
         </Router>
