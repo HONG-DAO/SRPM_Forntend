@@ -224,7 +224,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "7246665244619651598",
+          "hash": "7459597023437522961",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -279,50 +279,22 @@
           ]
         },
         {
-          "file": "src/components/Dự Án/CircleProgress.tsx",
-          "hash": "2535783352045230384",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Dự Án/Icons.tsx",
-          "hash": "17150128798601848540",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Dự Án/NotificationBadge.tsx",
-          "hash": "6791427178456963961",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
           "file": "src/components/Dự Án/ProjectCard.tsx",
-          "hash": "13473461770762228000",
+          "hash": "8250855349937334990",
           "deps": [
             "npm:react"
           ]
         },
         {
-          "file": "src/components/Dự Án/ProjectList.tsx",
-          "hash": "16426648450614260755",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Dự Án/SearchBar.tsx",
-          "hash": "16628696052351066964",
+          "file": "src/components/Dự Án/SearchInput.tsx",
+          "hash": "8462963593036480080",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/Dự Án/Sidebar.tsx",
-          "hash": "11414257587543689091",
+          "hash": "8466291735383713882",
           "deps": [
             "npm:react"
           ]
@@ -609,7 +581,7 @@
         },
         {
           "file": "src/layouts/MainLayout.tsx",
-          "hash": "14028835702855839308",
+          "hash": "15234978860246531782",
           "deps": [
             "npm:react"
           ]
@@ -655,13 +627,6 @@
           ]
         },
         {
-          "file": "src/pages/DashboardLayout.tsx",
-          "hash": "4929059406037208094",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
           "file": "src/pages/DashboardQuanTriVien.tsx",
           "hash": "15544578746961257321",
           "deps": [
@@ -683,6 +648,13 @@
           ]
         },
         {
+          "file": "src/pages/DuAn.tsx",
+          "hash": "10179604247733312128",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "src/pages/LoginError.tsx",
           "hash": "116609638496233721",
           "deps": [
@@ -692,13 +664,6 @@
         {
           "file": "src/pages/LoginPage.tsx",
           "hash": "5348657734360798069",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/pages/ProfilePage.tsx",
-          "hash": "6543306211918222433",
           "deps": [
             "npm:react"
           ]

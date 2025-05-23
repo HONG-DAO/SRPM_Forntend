@@ -12,7 +12,7 @@ const navigationItems = [
     label: "Thông tin cá nhân",
   },
   {
-    icon:'<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 0C2.34375 0 1 1.34375 1 3V13C1 14.6562 2.34375 16 4 16H13H14C14.5531 16 15 15.5531 15 15C15 14.4469 14.5531 14 14 14V12C14.5531 12 15 11.5531 15 11V1C15 0.446875 14.5531 0 14 0H13H4ZM4 12H12V14H4C3.44688 14 3 13.5531 3 13C3 12.4469 3.44688 12 4 12ZM5 4.5C5 4.225 5.225 4 5.5 4H11.5C11.775 4 12 4.225 12 4.5C12 4.775 11.775 5 11.5 5H5.5C5.225 5 5 4.775 5 4.5ZM5.5 6H11.5C11.775 6 12 6.225 12 6.5C12 6.775 11.775 7 11.5 7H5.5C5.225 7 5 6.775 5 6.5C5 6.225 5.225 6 5.5 6Z" fill="#2563EB"/></svg>',
+    icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/a23bc1452b11f050133faef30aa2efd8a14544f3?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee",
     label: "Dự án",
     active: true,
   },
