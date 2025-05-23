@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Sidebar from "@cnpm/components/Sidebar";
+import Sidebar from "@cnpm/components/Admin/Sidebar";
 import Header from "@cnpm/components/Header";
 import { UserTable } from "../components/Admin/UserTable";
 import { AddUserForm } from "../components/Admin/AddUserForm";

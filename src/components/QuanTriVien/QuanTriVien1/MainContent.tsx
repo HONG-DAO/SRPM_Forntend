@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../Header";
+import Header from "../../Header";
 import { UserRoleFilter } from "./UserRoleFilter";
-import { UserList } from "./UserList";
+import { UserList } from "../QuanTriVien2/UserList";
 
 export const MainContent = () => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import MainLayout from "../layouts/MainLayout";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/QuanTriVien/Sidebar";
 import Header from "../components/Header";
 import { SystemConfigCard } from "../components/QuanTriVien/SystemConfigCard";
 
