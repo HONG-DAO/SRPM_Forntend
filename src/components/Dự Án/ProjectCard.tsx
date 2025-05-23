@@ -1,49 +1,38 @@
-"use client";
 import React from "react";
-import { CircleProgress } from "./CircleProgress";
 
 interface ProjectCardProps {
-  projectName: string;
-  groupName: string;
+  title: string;
+  group: string;
   supervisor: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
-  projectName,
-  groupName,
+  title,
+  group,
   supervisor,
 }) => {
   return (
-    <article className="flex gap-7 items-center p-5 bg-white rounded-xl border border-solid shadow-sm border-slate-200 h-[163px] w-[992px] max-md:flex-col max-md:p-4 max-md:w-full max-md:h-auto">
-      <div className="shrink-0 rounded-lg bg-zinc-300 h-[139px] w-[165px]" />
-      <div className="flex flex-col flex-1 gap-5 pl-2.5 max-md:w-full">
-        <div className="flex gap-2 items-center max-sm:flex-col max-sm:gap-1 max-sm:items-start">
-          <span className="text-xl font-bold text-slate-600 max-sm:text-base">
-            Tên dự án:
-          </span>
-          <span className="text-xl text-slate-600 max-sm:text-base">
-            {projectName}
-          </span>
+    <article className="px-4 py-3 mt-6 w-full rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:pr-5 max-md:max-w-full">
+      <div className="flex gap-5 max-md:flex-col">
+        <div className="w-[29%] max-md:ml-0 max-md:w-full">
+          <div className="flex shrink-0 mx-auto rounded-lg bg-zinc-300 h-[139px] w-[165px] max-md:mt-10" />
         </div>
-        <div className="flex gap-2 items-center max-sm:flex-col max-sm:gap-1 max-sm:items-start">
-          <span className="text-xl font-bold text-slate-600 max-sm:text-base">
-            Nhóm:
-          </span>
-          <span className="text-xl text-slate-600 max-sm:text-base">
-            {groupName}
-          </span>
+        <div className="ml-5 w-[71%] max-md:ml-0 max-md:w-full">
+          <div className="self-stretch my-auto text-xl text-black max-md:mt-10">
+            <div>
+              <strong className="text-slate-600">Tên dự án:</strong>
+              <span className="text-slate-600"> {title}</span>
+            </div>
+            <div className="mt-5">
+              <strong className="text-slate-600">Nhóm:</strong>
+              <span className="text-slate-600"> {group}</span>
+            </div>
+            <div className="mt-5">
+              <strong className="text-slate-600">Người hướng dẫn:</strong>
+              <span className="text-slate-600"> {supervisor}</span>
+            </div>
+          </div>
         </div>
-        <div className="flex gap-2 items-center max-sm:flex-col max-sm:gap-1 max-sm:items-start">
-          <span className="text-xl font-bold text-slate-600 max-sm:text-base">
-            Người hướng dẫn:
-          </span>
-          <span className="text-xl text-slate-600 max-sm:text-base">
-            {supervisor}
-          </span>
-        </div>
-      </div>
-      <div className="flex justify-center items-center h-[70px] w-[70px]">
-        <CircleProgress />
       </div>
     </article>
   );

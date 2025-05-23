@@ -12,8 +12,8 @@ import DashboardQuanTriVien1 from '@cnpm/pages/DashboardQuanTriVien1';
 import DashboardQuanTriVien2 from '@cnpm/pages/DashboardQuanTriVien2';
 import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
-import ProfilePage from '@cnpm/pages/ProfilePage';
-import DashboardLayout from '@cnpm/pages/DashboardLayout';
+import DuAn from '@cnpm/pages/DuAn';
+
 
 
 export function App() {
@@ -36,8 +36,7 @@ export function App() {
               <Route path="/quantrivien1" element={<DashboardQuanTriVien1 />} />
               <Route path="/quantrivien2" element={<DashboardQuanTriVien2 />} />
               <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/duan" element={<DashboardLayout />} />
+              <Route path="/duan" element={<DuAn />} />
             </Route>
           </Routes>
         </Router>
