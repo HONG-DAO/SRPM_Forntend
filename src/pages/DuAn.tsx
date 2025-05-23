@@ -26,14 +26,19 @@ export default function DuAn() {
               <div className="self-start mt-2">
                 <SearchInput />
               </div>
-              <button className="flex gap-1.5 px-6 py-4 text-base font-bold text-white bg-teal-500 rounded-lg">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/1bfd0f5c4eb9b96885ca236846c267d6df16db19?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee"
-                  className="object-contain shrink-0 w-5 aspect-square"
-                  alt="Create project icon"
-                />
-                <span>Tạo dự án</span>
-              </button>
+              <button
+              type="button"
+              className="flex gap-1.5 px-6 py-4 text-base font-bold text-white bg-teal-500 rounded-lg
+                        cursor-pointer transition duration-200 ease-in-out
+                        hover:bg-teal-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-teal-400"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1bfd0f5c4eb9b96885ca236846c267d6df16db19?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee"
+                className="object-contain shrink-0 w-5 aspect-square"
+                alt="Create project icon"
+              />
+              <span>Tạo dự án</span>
+            </button>
             </div>
             <div className="mt-3.5 w-full max-w-[992px]">
               <ProjectCard
