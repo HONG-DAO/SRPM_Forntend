@@ -610,7 +610,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "8836601160401453386",
+          "hash": "7389677012524558879",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -780,7 +780,7 @@
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/Sidebar.tsx",
-          "hash": "943682442603272279",
+          "hash": "18389102204445796926",
           "deps": [
             "npm:react"
           ]
@@ -815,7 +815,7 @@
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien2/Sidebar.tsx",
-          "hash": "1298419350677871165",
+          "hash": "5930890114909801704",
           "deps": [
             "npm:react"
           ]
@@ -850,7 +850,7 @@
         },
         {
           "file": "src/components/QuanTriVien/Sidebar.tsx",
-          "hash": "1998504269117599768",
+          "hash": "16550411016937133854",
           "deps": [
             "npm:react"
           ]
@@ -1042,7 +1042,7 @@
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "12687496585115351433",
+          "hash": "9366009428597025498",
           "deps": [
             "npm:react"
           ]
