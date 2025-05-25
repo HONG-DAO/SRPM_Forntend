@@ -48,8 +48,280 @@
           "hash": "9773565372686775399"
         },
         {
+          "file": "BE-1.zip",
+          "hash": "12243991328318109805"
+        },
+        {
           "file": "README.md",
           "hash": "17672139874103256258"
+        },
+        {
+          "file": "SRPM-master/.gitignore",
+          "hash": "12514794305391284510"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/AuthController.cs",
+          "hash": "15704190075273088173"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/EvaluationsController.cs",
+          "hash": "6491025192763247708"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/FundingRequestsController.cs",
+          "hash": "4942758508126609456"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/NotificationsController.cs",
+          "hash": "7838535621581493362"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/ProjectsController.cs",
+          "hash": "12293214328424383033"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/ResearchTopicsController.cs",
+          "hash": "15329580762789278526"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/TasksController.cs",
+          "hash": "4031422215347892543"
+        },
+        {
+          "file": "SRPM-master/API/Controllers/UsersController.cs",
+          "hash": "5618890015963140250"
+        },
+        {
+          "file": "SRPM-master/API/Models/AuthModels.cs",
+          "hash": "8501363990565637801"
+        },
+        {
+          "file": "SRPM-master/API/Models/EvaluationModels.cs",
+          "hash": "17268857797130477727"
+        },
+        {
+          "file": "SRPM-master/API/Models/FundingRequestModels.cs",
+          "hash": "9008451507499869968"
+        },
+        {
+          "file": "SRPM-master/API/Models/NotificationModels.cs",
+          "hash": "666173205894315375"
+        },
+        {
+          "file": "SRPM-master/API/Models/ProjectModels.cs",
+          "hash": "796344205675261480"
+        },
+        {
+          "file": "SRPM-master/API/Models/ResearchTopicModels.cs",
+          "hash": "4617974823805015488"
+        },
+        {
+          "file": "SRPM-master/API/Models/TaskModels.cs",
+          "hash": "9408079778251323548"
+        },
+        {
+          "file": "SRPM-master/API/Models/UserModels.cs",
+          "hash": "4675854653255983406"
+        },
+        {
+          "file": "SRPM-master/API/Services/AuthService.cs",
+          "hash": "18292676945776280327"
+        },
+        {
+          "file": "SRPM-master/API/Services/EvaluationService.cs",
+          "hash": "13044591413178464444"
+        },
+        {
+          "file": "SRPM-master/API/Services/FundingRequestService.cs",
+          "hash": "650139818875901074"
+        },
+        {
+          "file": "SRPM-master/API/Services/IAuthService.cs",
+          "hash": "3294081391839271162"
+        },
+        {
+          "file": "SRPM-master/API/Services/IEvaluationService.cs",
+          "hash": "2338504032833019499"
+        },
+        {
+          "file": "SRPM-master/API/Services/IFundingRequestService.cs",
+          "hash": "7252040032382319196"
+        },
+        {
+          "file": "SRPM-master/API/Services/INotificationService.cs",
+          "hash": "13010229301783507597"
+        },
+        {
+          "file": "SRPM-master/API/Services/IProjectService.cs",
+          "hash": "4456897182711201365"
+        },
+        {
+          "file": "SRPM-master/API/Services/IResearchTopicService.cs",
+          "hash": "12738891076827527191"
+        },
+        {
+          "file": "SRPM-master/API/Services/ITaskService.cs",
+          "hash": "15147137203042659626"
+        },
+        {
+          "file": "SRPM-master/API/Services/IUserService.cs",
+          "hash": "5084882138515017195"
+        },
+        {
+          "file": "SRPM-master/API/Services/NotificationService.cs",
+          "hash": "1222570708048006902"
+        },
+        {
+          "file": "SRPM-master/API/Services/ProjectService.cs",
+          "hash": "12258982559423969961"
+        },
+        {
+          "file": "SRPM-master/API/Services/ResearchTopicService.cs",
+          "hash": "12778694294541047242"
+        },
+        {
+          "file": "SRPM-master/API/Services/TaskService.cs",
+          "hash": "3785110679128023674"
+        },
+        {
+          "file": "SRPM-master/API/Services/UserService.cs",
+          "hash": "17774605033432854186"
+        },
+        {
+          "file": "SRPM-master/Data/ApplicationDbContext.cs",
+          "hash": "15403183305757318359"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/Evaluation.cs",
+          "hash": "8240691858726811040"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/FundingRequest.cs",
+          "hash": "16171547917075887235"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/Notification.cs",
+          "hash": "3329726348695187455"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/Project.cs",
+          "hash": "3425760879811105554"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/ProjectMember.cs",
+          "hash": "7331450747680457347"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/ResearchTopic.cs",
+          "hash": "11284514303409549353"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/Role.cs",
+          "hash": "15664117371128721753"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/Task.cs",
+          "hash": "16626545446987270817"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/User.cs",
+          "hash": "13451275487295862859"
+        },
+        {
+          "file": "SRPM-master/Data/Entities/UserRole.cs",
+          "hash": "912401333175711537"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/EvaluationRepository.cs",
+          "hash": "8924188089057664654"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/FundingRequestRepository.cs",
+          "hash": "14962514396351750633"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/IEvaluationRepository.cs",
+          "hash": "8309286584878625685"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/IFundingRequestRepository.cs",
+          "hash": "16067540885057603057"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/INotificationRepository.cs",
+          "hash": "13807126326398068491"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/IProjectRepository.cs",
+          "hash": "13000683456310028548"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/IResearchTopicRepository.cs",
+          "hash": "4936837370699372839"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/ITaskRepository.cs",
+          "hash": "9488779061746459632"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/IUserRepository.cs",
+          "hash": "16858115268227567174"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/NotificationRepository.cs",
+          "hash": "11445071433687843198"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/ProjectRepository.cs",
+          "hash": "11903702947830552771"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/ResearchTopicRepository.cs",
+          "hash": "5139849968626071851"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/TaskRepository.cs",
+          "hash": "15021428764611639012"
+        },
+        {
+          "file": "SRPM-master/Data/Repositories/UserRepository.cs",
+          "hash": "13330555038958737869"
+        },
+        {
+          "file": "SRPM-master/Migrations/20240515000000_InitialCreate.cs",
+          "hash": "6717225480786756880"
+        },
+        {
+          "file": "SRPM-master/Migrations/20250515170616_InitialCreate.Designer.cs",
+          "hash": "11847252577450463268"
+        },
+        {
+          "file": "SRPM-master/Migrations/20250515170616_InitialCreate.cs",
+          "hash": "15222352795261552756"
+        },
+        {
+          "file": "SRPM-master/Migrations/20250515172441_AddPasswordHashToUser.Designer.cs",
+          "hash": "6336059209698283330"
+        },
+        {
+          "file": "SRPM-master/Migrations/20250515172441_AddPasswordHashToUser.cs",
+          "hash": "6455838906952283931"
+        },
+        {
+          "file": "SRPM-master/Migrations/ApplicationDbContextModelSnapshot.cs",
+          "hash": "9475710325451539778"
+        },
+        {
+          "file": "SRPM-master/Program.cs",
+          "hash": "329116797508344408"
+        },
+        {
+          "file": "SRPM-master/SRPM.API.csproj",
+          "hash": "8106863355031920968"
+        },
+        {
+          "file": "SRPM-master/appsettings.json",
+          "hash": "14854030973973733310"
         },
         {
           "file": "components.json",
@@ -224,7 +496,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "11765876676977863318",
+          "hash": "7389677012524558879",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -234,10 +506,6 @@
         {
           "file": "src/app/nx-welcome.tsx",
           "hash": "11014967127052082266"
-        },
-        {
-          "file": "src/assets/react.svg",
-          "hash": "16069471864800376455"
         },
         {
           "file": "src/components/Admin/AddUserForm.tsx",
@@ -272,13 +540,6 @@
           "hash": "7298806207843946438"
         },
         {
-          "file": "src/components/Button.tsx",
-          "hash": "11354922186170937865",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
           "file": "src/components/Dự Án/ProjectCard.tsx",
           "hash": "8250855349937334990",
           "deps": [
@@ -295,13 +556,6 @@
         {
           "file": "src/components/Dự Án/Sidebar.tsx",
           "hash": "8466291735383713882",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/FormInput.tsx",
-          "hash": "11750277442836684145",
           "deps": [
             "npm:react"
           ]
@@ -329,7 +583,7 @@
         },
         {
           "file": "src/components/HoiDongThamDinh/Sidebar.tsx",
-          "hash": "9848890258164421710",
+          "hash": "1938855909996195571",
           "deps": [
             "npm:react"
           ]
@@ -390,13 +644,6 @@
           ]
         },
         {
-          "file": "src/components/Protect/AuthLayout.tsx",
-          "hash": "9352693911210191922",
-          "deps": [
-            "npm:react-router-dom"
-          ]
-        },
-        {
           "file": "src/components/Protect/PublicRoute.tsx",
           "hash": "7375305649736249533",
           "deps": [
@@ -411,15 +658,22 @@
           ]
         },
         {
-          "file": "src/components/QuanTriVien/QuanTriVien1/MainContent.tsx",
-          "hash": "17062025010632302577",
+          "file": "src/components/QuanTriVien/QuanTriVien1/RoleActionButton.tsx",
+          "hash": "13168722477354236029",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/Sidebar.tsx",
-          "hash": "17776768974937091628",
+          "hash": "18389102204445796926",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/QuanTriVien/QuanTriVien1/UserList.tsx",
+          "hash": "78446981628751505",
           "deps": [
             "npm:react"
           ]
@@ -427,13 +681,6 @@
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/UserRoleFilter.tsx",
           "hash": "6356047739922516523",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/QuanTriVien/QuanTriVien2/RoleActionButton.tsx",
-          "hash": "13168722477354236029",
           "deps": [
             "npm:react"
           ]
@@ -447,7 +694,7 @@
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien2/Sidebar.tsx",
-          "hash": "6114905833719472908",
+          "hash": "5930890114909801704",
           "deps": [
             "npm:react"
           ]
@@ -467,13 +714,6 @@
           ]
         },
         {
-          "file": "src/components/QuanTriVien/QuanTriVien2/UserList.tsx",
-          "hash": "78446981628751505",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
           "file": "src/components/QuanTriVien/QuanTriVien2/UserPerformanceChart.tsx",
           "hash": "3701925403606227163",
           "deps": [
@@ -482,7 +722,7 @@
         },
         {
           "file": "src/components/QuanTriVien/Sidebar.tsx",
-          "hash": "11647769417618115558",
+          "hash": "16550411016937133854",
           "deps": [
             "npm:react"
           ]
@@ -527,6 +767,20 @@
           ]
         },
         {
+          "file": "src/components/Sign Up/Button.tsx",
+          "hash": "11354922186170937865",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/Sign Up/FormInput.tsx",
+          "hash": "11750277442836684145",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
           "file": "src/components/Sign Up/SelectField.tsx",
           "hash": "15359637236448118182",
           "deps": [
@@ -536,6 +790,34 @@
         {
           "file": "src/components/Sign Up/SignUpForm.tsx",
           "hash": "9016412527481040617",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/Tài Trợ/ProgressBar.tsx",
+          "hash": "16160566171485536504",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/Tài Trợ/SearchInput.tsx",
+          "hash": "10459861275788114305",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/Tài Trợ/Sidebar.tsx",
+          "hash": "2420422619252127437",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/Tài Trợ/SponsorshipTable.tsx",
+          "hash": "17653195880480388954",
           "deps": [
             "npm:react"
           ]
@@ -632,7 +914,7 @@
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "1341604632096755768",
+          "hash": "9366009428597025498",
           "deps": [
             "npm:react"
           ]
@@ -675,6 +957,13 @@
         {
           "file": "src/pages/SignUp.tsx",
           "hash": "14591053359267064792",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/pages/TaiTro.tsx",
+          "hash": "4016788262263711530",
           "deps": [
             "npm:react"
           ]

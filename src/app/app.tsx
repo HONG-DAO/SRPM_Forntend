@@ -14,6 +14,7 @@ import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
 import Profile from '@cnpm/pages/Profile';
+import TaiTro from '@cnpm/pages/TaiTro';
 
 
 
@@ -39,6 +40,7 @@ export function App() {
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/taitro" element={<TaiTro />} />
             </Route>
           </Routes>
         </Router>

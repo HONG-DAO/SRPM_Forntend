@@ -4,10 +4,6 @@ import React from "react";
 
 const navigationItems = [
   {
-    icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/eab83ce3769a682628746e736e2c44dbf0bdad9e?placeholderIfAbsent=true",
-    label: "Trang chủ",
-  },
-  {
     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c84591682f06cf8546d773fae5c47ed653898fb?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee",
     label: "Cấu hình hệ thống",
   },

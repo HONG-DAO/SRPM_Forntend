@@ -1,26 +1,31 @@
 "use client";
 import * as React from "react";
-import MainLayout from "../layouts/MainLayout";
-import Sidebar from "../components/QuanTriVien/QuanTriVien1/Sidebar";
-import Header from "../components/Header";
-import { MainContent } from "@cnpm/components/QuanTriVien/QuanTriVien1/MainContent";
+import MainLayout from "@cnpm/layouts/MainLayout";
+import Sidebar from "@cnpm/components/QuanTriVien/QuanTriVien1/Sidebar";
+import Header from "@cnpm/components/Header";
+import { UserRoleFilter } from "@cnpm/components/QuanTriVien/QuanTriVien1/UserRoleFilter";
+import { UserList } from "@cnpm/components/QuanTriVien/QuanTriVien1/UserList";
 
 export const DashboardLayout = () => {
   return (
     <MainLayout>
       <div className="min-h-screen w-screen bg-gray-50 flex">
         {/* Sidebar cố định 256px */}
-        <aside className="w-64 bg-gray-50 border-r border-gray-100">
+        <aside className="w-64 bg-gray-50 border-r border-gray-200">
           <Sidebar />
         </aside>
 
         {/* Nội dung chính */}
-        <section className="flex-1 flex flex-col">
-          {/* <Header /> nếu bạn muốn bật */}
-          <main className="flex-1 bg-white overflow-auto pt-6 pb-10">
+        <section className="flex-1 flex flex-col bg-white">
+          <div className="border-b border-gray-200">
+            <Header />
+          </div>
+          <main className="flex-1 p-6 overflow-y-auto bg-gray-50">
             <div className="w-full max-w-[1280px] mx-auto px-6">
-              {/* Render nội dung ở đây */}
-              <MainContent />
+              <div className="w-[830px] mb-4">
+                <UserRoleFilter />
+              </div>
+              <UserList />
             </div>
           </main>
         </section>
