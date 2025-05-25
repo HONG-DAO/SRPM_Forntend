@@ -48,14 +48,18 @@
           "hash": "9773565372686775399"
         },
         {
+<<<<<<< HEAD
           "file": "BE-1.zip",
           "hash": "12243991328318109805"
         },
         {
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "README.md",
           "hash": "17672139874103256258"
         },
         {
+<<<<<<< HEAD
           "file": "SRPM-master/.gitignore",
           "hash": "12514794305391284510"
         },
@@ -324,6 +328,8 @@
           "hash": "14854030973973733310"
         },
         {
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "components.json",
           "hash": "11738164967971207906"
         },
@@ -496,7 +502,11 @@
         },
         {
           "file": "src/app/app.tsx",
+<<<<<<< HEAD
           "hash": "7389677012524558879",
+=======
+          "hash": "11765876676977863318",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -508,6 +518,13 @@
           "hash": "11014967127052082266"
         },
         {
+<<<<<<< HEAD
+=======
+          "file": "src/assets/react.svg",
+          "hash": "16069471864800376455"
+        },
+        {
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/Admin/AddUserForm.tsx",
           "hash": "12110047537821670129",
           "deps": [
@@ -540,6 +557,16 @@
           "hash": "7298806207843946438"
         },
         {
+<<<<<<< HEAD
+=======
+          "file": "src/components/Button.tsx",
+          "hash": "11354922186170937865",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/Dự Án/ProjectCard.tsx",
           "hash": "8250855349937334990",
           "deps": [
@@ -561,6 +588,16 @@
           ]
         },
         {
+<<<<<<< HEAD
+=======
+          "file": "src/components/FormInput.tsx",
+          "hash": "11750277442836684145",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/Header.tsx",
           "hash": "1253548236351817410",
           "deps": [
@@ -583,7 +620,11 @@
         },
         {
           "file": "src/components/HoiDongThamDinh/Sidebar.tsx",
+<<<<<<< HEAD
           "hash": "1938855909996195571",
+=======
+          "hash": "9848890258164421710",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react"
           ]
@@ -644,6 +685,16 @@
           ]
         },
         {
+<<<<<<< HEAD
+=======
+          "file": "src/components/Protect/AuthLayout.tsx",
+          "hash": "9352693911210191922",
+          "deps": [
+            "npm:react-router-dom"
+          ]
+        },
+        {
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/Protect/PublicRoute.tsx",
           "hash": "7375305649736249533",
           "deps": [
@@ -658,14 +709,20 @@
           ]
         },
         {
+<<<<<<< HEAD
           "file": "src/components/QuanTriVien/QuanTriVien1/RoleActionButton.tsx",
           "hash": "13168722477354236029",
+=======
+          "file": "src/components/QuanTriVien/QuanTriVien1/MainContent.tsx",
+          "hash": "17062025010632302577",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/Sidebar.tsx",
+<<<<<<< HEAD
           "hash": "18389102204445796926",
           "deps": [
             "npm:react"
@@ -674,6 +731,9 @@
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/UserList.tsx",
           "hash": "78446981628751505",
+=======
+          "hash": "17776768974937091628",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react"
           ]
@@ -686,6 +746,16 @@
           ]
         },
         {
+<<<<<<< HEAD
+=======
+          "file": "src/components/QuanTriVien/QuanTriVien2/RoleActionButton.tsx",
+          "hash": "13168722477354236029",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/QuanTriVien/QuanTriVien2/RoleFilter.tsx",
           "hash": "9512999537776138349",
           "deps": [
@@ -694,7 +764,11 @@
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien2/Sidebar.tsx",
+<<<<<<< HEAD
           "hash": "5930890114909801704",
+=======
+          "hash": "6114905833719472908",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react"
           ]
@@ -714,6 +788,16 @@
           ]
         },
         {
+<<<<<<< HEAD
+=======
+          "file": "src/components/QuanTriVien/QuanTriVien2/UserList.tsx",
+          "hash": "78446981628751505",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/QuanTriVien/QuanTriVien2/UserPerformanceChart.tsx",
           "hash": "3701925403606227163",
           "deps": [
@@ -722,7 +806,11 @@
         },
         {
           "file": "src/components/QuanTriVien/Sidebar.tsx",
+<<<<<<< HEAD
           "hash": "16550411016937133854",
+=======
+          "hash": "11647769417618115558",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react"
           ]
@@ -767,6 +855,7 @@
           ]
         },
         {
+<<<<<<< HEAD
           "file": "src/components/Sign Up/Button.tsx",
           "hash": "11354922186170937865",
           "deps": [
@@ -781,6 +870,8 @@
           ]
         },
         {
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/Sign Up/SelectField.tsx",
           "hash": "15359637236448118182",
           "deps": [
@@ -795,6 +886,7 @@
           ]
         },
         {
+<<<<<<< HEAD
           "file": "src/components/Tài Trợ/ProgressBar.tsx",
           "hash": "16160566171485536504",
           "deps": [
@@ -823,6 +915,8 @@
           ]
         },
         {
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/components/ui/button.tsx",
           "hash": "17804482923991153709",
           "deps": [
@@ -914,7 +1008,11 @@
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
+<<<<<<< HEAD
           "hash": "9366009428597025498",
+=======
+          "hash": "1341604632096755768",
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "deps": [
             "npm:react"
           ]
@@ -962,6 +1060,7 @@
           ]
         },
         {
+<<<<<<< HEAD
           "file": "src/pages/TaiTro.tsx",
           "hash": "4016788262263711530",
           "deps": [
@@ -969,6 +1068,8 @@
           ]
         },
         {
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
           "file": "src/services/authService.ts",
           "hash": "1242027388459318114",
           "deps": [

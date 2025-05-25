@@ -1,192 +1,14 @@
 {
   "nodes": {
-    "my-tailwind-app": {
-      "name": "my-tailwind-app",
-      "type": "app",
-      "data": {
-        "root": "my-tailwind-app",
-        "projectType": "application",
-        "metadata": {},
-        "targets": {
-          "build": {
-            "options": {
-              "cwd": "my-tailwind-app",
-              "command": "vite build"
-            },
-            "cache": true,
-            "dependsOn": [
-              "^build"
-            ],
-            "inputs": [
-              "production",
-              "^production",
-              {
-                "externalDependencies": [
-                  "vite"
-                ]
-              }
-            ],
-            "outputs": [
-              "{projectRoot}/dist"
-            ],
-            "metadata": {
-              "technologies": [
-                "vite"
-              ],
-              "description": "Run Vite build",
-              "help": {
-                "command": "yarn vite build --help",
-                "example": {
-                  "options": {
-                    "sourcemap": true,
-                    "manifest": "manifest.json"
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
-          "serve": {
-            "options": {
-              "cwd": "my-tailwind-app",
-              "command": "vite serve"
-            },
-            "metadata": {
-              "technologies": [
-                "vite"
-              ],
-              "description": "Starts Vite dev server",
-              "help": {
-                "command": "yarn vite --help",
-                "example": {
-                  "options": {
-                    "port": 3000
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
-          "preview": {
-            "dependsOn": [
-              "build"
-            ],
-            "options": {
-              "cwd": "my-tailwind-app",
-              "command": "vite preview"
-            },
-            "metadata": {
-              "technologies": [
-                "vite"
-              ],
-              "description": "Locally preview Vite production build",
-              "help": {
-                "command": "yarn vite preview --help",
-                "example": {
-                  "options": {
-                    "port": 3000
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
-          "serve-static": {
-            "executor": "@nx/web:file-server",
-            "options": {
-              "buildTarget": "build",
-              "spa": true
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "typecheck": {
-            "cache": true,
-            "inputs": [
-              "production",
-              "^production",
-              {
-                "externalDependencies": [
-                  "typescript"
-                ]
-              }
-            ],
-            "options": {
-              "cwd": "my-tailwind-app",
-              "command": "tsc --noEmit -p tsconfig.app.json"
-            },
-            "metadata": {
-              "description": "Run Typechecking",
-              "help": {
-                "command": "yarn tsc --help -p tsconfig.app.json",
-                "example": {
-                  "options": {
-                    "noEmit": true
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
-          "lint": {
-            "cache": true,
-            "options": {
-              "cwd": "my-tailwind-app",
-              "command": "eslint ."
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/eslint.config.js",
-              "{projectRoot}/eslint.config.js",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
-            "outputs": [
-              "{options.outputFile}"
-            ],
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "yarn eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          }
-        },
-        "name": "my-tailwind-app",
-        "implicitDependencies": [],
-        "tags": []
-      }
-    },
     "cnpm": {
       "name": "cnpm",
       "type": "app",
       "data": {
         "root": ".",
-        "projectType": "application",
+        "name": "cnpm",
+        "tags": [
+          "npm:private"
+        ],
         "metadata": {
           "targetGroups": {
             "NPM Scripts": [
@@ -201,167 +23,6 @@
           }
         },
         "targets": {
-          "build": {
-            "executor": "nx:run-script",
-            "metadata": {
-              "technologies": [
-                "vite"
-              ],
-              "description": "Run Vite build",
-              "help": {
-                "command": "yarn vite build --help",
-                "example": {
-                  "options": {
-                    "sourcemap": true,
-                    "manifest": "manifest.json"
-                  }
-                }
-              },
-              "scriptContent": "nx build",
-              "runCommand": "yarn build"
-            },
-            "options": {
-              "script": "build"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "serve": {
-            "executor": "@nx/vite:dev-server",
-            "options": {
-              "buildTarget": "cnpm:build"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "preview": {
-            "dependsOn": [
-              "build"
-            ],
-            "options": {
-              "cwd": ".",
-              "command": "vite preview"
-            },
-            "metadata": {
-              "technologies": [
-                "vite"
-              ],
-              "description": "Locally preview Vite production build",
-              "help": {
-                "command": "yarn vite preview --help",
-                "example": {
-                  "options": {
-                    "port": 3000
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
-          "serve-static": {
-            "executor": "@nx/web:file-server",
-            "options": {
-              "buildTarget": "build",
-              "spa": true
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "typecheck": {
-            "cache": true,
-            "inputs": [
-              "production",
-              "^production",
-              {
-                "externalDependencies": [
-                  "typescript"
-                ]
-              }
-            ],
-            "options": {
-              "cwd": ".",
-              "command": "tsc --noEmit -p tsconfig.app.json"
-            },
-            "metadata": {
-              "description": "Run Typechecking",
-              "help": {
-                "command": "yarn tsc --help -p tsconfig.app.json",
-                "example": {
-                  "options": {
-                    "noEmit": true
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
-          "test": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test"
-            },
-            "metadata": {
-              "technologies": [
-                "vite"
-              ],
-              "description": "Run Vite tests",
-              "help": {
-                "command": "yarn vitest --help",
-                "example": {
-                  "options": {
-                    "bail": 1,
-                    "coverage": true
-                  }
-                }
-              },
-              "scriptContent": "nx test",
-              "runCommand": "yarn test"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "lint": {
-            "cache": true,
-            "options": {
-              "cwd": ".",
-              "command": "eslint ./src"
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/eslint.config.js",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
-            "outputs": [
-              "{options.outputFile}"
-            ],
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "yarn eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
           "start": {
             "executor": "nx:run-script",
             "options": {
@@ -373,15 +34,44 @@
             },
             "configurations": {},
             "parallelism": true
+          },
+          "build": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "nx build",
+              "runCommand": "yarn build"
+            },
+            "options": {
+              "script": "build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "test"
+            },
+            "metadata": {
+              "scriptContent": "nx test",
+              "runCommand": "yarn test"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve": {
+            "executor": "@nx/vite:dev-server",
+            "options": {
+              "buildTarget": "cnpm:build"
+            },
+            "configurations": {},
+            "parallelism": true
           }
         },
-        "name": "cnpm",
-        "tags": [
-          "npm:private"
-        ],
         "$schema": "node_modules/nx/schemas/project-schema.json",
         "includedScripts": [],
         "sourceRoot": "./src",
+        "projectType": "application",
         "implicitDependencies": []
       }
     }
@@ -13484,83 +13174,6 @@
     }
   },
   "dependencies": {
-    "my-tailwind-app": [
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:@eslint/js",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:globals",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:eslint-plugin-react-hooks",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:typescript-eslint",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:@types/react",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:@types/react-dom",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:@vitejs/plugin-react",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:autoprefixer",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:eslint",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:postcss",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:tailwindcss",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:typescript",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:vite",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "my-tailwind-app",
-        "target": "npm:react-dom",
-        "type": "static"
-      }
-    ],
     "cnpm": [
       {
         "source": "cnpm",
@@ -13570,6 +13183,46 @@
       {
         "source": "cnpm",
         "target": "npm:@eslint/js",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:globals",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:eslint-plugin-react-hooks",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:eslint-plugin-react-refresh",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:typescript-eslint",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:react-dom",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:vite",
+        "type": "static"
+      },
+      {
+        "source": "cnpm",
+        "target": "npm:@vitejs/plugin-react",
         "type": "static"
       },
       {
@@ -13679,11 +13332,6 @@
       },
       {
         "source": "cnpm",
-        "target": "npm:@vitejs/plugin-react",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
         "target": "npm:@vitest/coverage-v8",
         "type": "static"
       },
@@ -13729,16 +13377,6 @@
       },
       {
         "source": "cnpm",
-        "target": "npm:eslint-plugin-react-hooks",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
-        "target": "npm:eslint-plugin-react-refresh",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
         "target": "npm:jsdom",
         "type": "static"
       },
@@ -13770,16 +13408,6 @@
       {
         "source": "cnpm",
         "target": "npm:typescript",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
-        "target": "npm:typescript-eslint",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
-        "target": "npm:vite",
         "type": "static"
       },
       {
@@ -13984,11 +13612,6 @@
       },
       {
         "source": "cnpm",
-        "target": "npm:react",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
         "target": "npm:react-apexcharts",
         "type": "static"
       },
@@ -14000,11 +13623,6 @@
       {
         "source": "cnpm",
         "target": "npm:react-d3-axis",
-        "type": "static"
-      },
-      {
-        "source": "cnpm",
-        "target": "npm:react-dom",
         "type": "static"
       },
       {
@@ -30464,6 +30082,39 @@
     ]
   },
   "version": "6.0",
-  "errors": [],
-  "computedAt": 1748161213807
+  "errors": [
+    {
+      "stack": " - Error: InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/eslint-4393011795395336301.hash at 15464:1\n  15462 |       }\n  15463 |     }\n> 15464 | <<<<<<< HEAD\n        | ^^^^^^^\n  15465 |   },\n  15466 |   \"6480392213608110171\": {\n  15467 |     \".\": {\n\n    at parseJson (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/json.js:29:15)\n    at readJsonFile (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/fileutils.js:32:37)\n    at readTargetsCache (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/eslint/src/plugins/plugin.js:25:37)\n    at exports.createNodesV2 (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/eslint/src/plugins/plugin.js:154:30)\n    at LoadedNxPlugin.createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:26:65)\n    at LoadedNxPlugin.createNodes.<computed> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:36:34)\n    at createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:76:63)\n    at consumeMessage (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/messaging.js:42:32)\n    at /Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:34:47\n    at Socket.<anonymous> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)",
+      "message": "An error occurred while processing files for the @nx/eslint/plugin plugin (Defined at nx.json#plugins[1])\n.\n  - InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/eslint-4393011795395336301.hash at 15464:1\n  15462 |       }\n  15463 |     }\n> 15464 | <<<<<<< HEAD\n        | ^^^^^^^\n  15465 |   },\n  15466 |   \"6480392213608110171\": {\n  15467 |     \".\": {\n",
+      "errors": [
+        [
+          null,
+          {
+            "stack": "Error: InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/eslint-4393011795395336301.hash at 15464:1\n  15462 |       }\n  15463 |     }\n> 15464 | <<<<<<< HEAD\n        | ^^^^^^^\n  15465 |   },\n  15466 |   \"6480392213608110171\": {\n  15467 |     \".\": {\n\n    at parseJson (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/json.js:29:15)\n    at readJsonFile (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/fileutils.js:32:37)\n    at readTargetsCache (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/eslint/src/plugins/plugin.js:25:37)\n    at exports.createNodesV2 (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/eslint/src/plugins/plugin.js:154:30)\n    at LoadedNxPlugin.createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:26:65)\n    at LoadedNxPlugin.createNodes.<computed> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:36:34)\n    at createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:76:63)\n    at consumeMessage (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/messaging.js:42:32)\n    at /Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:34:47\n    at Socket.<anonymous> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)",
+            "message": "InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/eslint-4393011795395336301.hash at 15464:1\n  15462 |       }\n  15463 |     }\n> 15464 | <<<<<<< HEAD\n        | ^^^^^^^\n  15465 |   },\n  15466 |   \"6480392213608110171\": {\n  15467 |     \".\": {\n"
+          }
+        ]
+      ],
+      "partialResults": [],
+      "name": "AggregateCreateNodesError",
+      "pluginIndex": 1
+    },
+    {
+      "stack": " - Error: InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/vite-8410637291831080659.hash at 58718:1\n  58716 |     },\n  58717 |     \"metadata\": {}\n> 58718 | <<<<<<< HEAD\n        | ^^^^^^^\n  58719 |   },\n  58720 |   \"5659694565978112629vite.config.ts\": {\n  58721 |     \"targets\": {\n\n    at parseJson (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/json.js:29:15)\n    at readJsonFile (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/fileutils.js:32:37)\n    at readTargetsCache (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/vite/src/plugins/plugin.js:33:120)\n    at Array.createNodesV2 (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/vite/src/plugins/plugin.js:47:30)\n    at LoadedNxPlugin.createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:26:65)\n    at LoadedNxPlugin.createNodes.<computed> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:36:34)\n    at createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:76:63)\n    at consumeMessage (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/messaging.js:42:32)\n    at /Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:34:47\n    at Socket.<anonymous> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)",
+      "message": "An error occurred while processing files for the @nx/vite/plugin plugin\n.\n  - InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/vite-8410637291831080659.hash at 58718:1\n  58716 |     },\n  58717 |     \"metadata\": {}\n> 58718 | <<<<<<< HEAD\n        | ^^^^^^^\n  58719 |   },\n  58720 |   \"5659694565978112629vite.config.ts\": {\n  58721 |     \"targets\": {\n",
+      "errors": [
+        [
+          null,
+          {
+            "stack": "Error: InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/vite-8410637291831080659.hash at 58718:1\n  58716 |     },\n  58717 |     \"metadata\": {}\n> 58718 | <<<<<<< HEAD\n        | ^^^^^^^\n  58719 |   },\n  58720 |   \"5659694565978112629vite.config.ts\": {\n  58721 |     \"targets\": {\n\n    at parseJson (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/json.js:29:15)\n    at readJsonFile (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/fileutils.js:32:37)\n    at readTargetsCache (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/vite/src/plugins/plugin.js:33:120)\n    at Array.createNodesV2 (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/@nx/vite/src/plugins/plugin.js:47:30)\n    at LoadedNxPlugin.createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:26:65)\n    at LoadedNxPlugin.createNodes.<computed> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/loaded-nx-plugin.js:36:34)\n    at createNodes (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:76:63)\n    at consumeMessage (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/messaging.js:42:32)\n    at /Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/project-graph/plugins/isolation/plugin-worker.js:34:47\n    at Socket.<anonymous> (/Users/buidoanhaiyen/Documents/SRPM_FE-master/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)",
+            "message": "InvalidSymbol in /Users/buidoanhaiyen/Documents/SRPM_FE-master/.nx/workspace-data/vite-8410637291831080659.hash at 58718:1\n  58716 |     },\n  58717 |     \"metadata\": {}\n> 58718 | <<<<<<< HEAD\n        | ^^^^^^^\n  58719 |   },\n  58720 |   \"5659694565978112629vite.config.ts\": {\n  58721 |     \"targets\": {\n"
+          }
+        ]
+      ],
+      "partialResults": [],
+      "name": "AggregateCreateNodesError",
+      "pluginIndex": 0
+    }
+  ],
+  "computedAt": 1748161423170
 }

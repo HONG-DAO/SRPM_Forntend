@@ -14,7 +14,10 @@ import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
 import Profile from '@cnpm/pages/Profile';
+<<<<<<< HEAD
 import TaiTro from '@cnpm/pages/TaiTro';
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
 
 
 
@@ -40,7 +43,10 @@ export function App() {
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
+<<<<<<< HEAD
               <Route path="/taitro" element={<TaiTro />} />
+=======
+>>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
             </Route>
           </Routes>
         </Router>
