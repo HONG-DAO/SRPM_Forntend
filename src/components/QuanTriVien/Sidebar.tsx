@@ -3,15 +3,7 @@
 import React from "react";
 
 const navigationItems = [
-<<<<<<< HEAD
 {
-=======
-  {
-    icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/eab83ce3769a682628746e736e2c44dbf0bdad9e?placeholderIfAbsent=true",
-    label: "Trang chủ",
-  },
-  {
->>>>>>> a1b7d63de158f78babe3a12a91009ecbc5b150d0
     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/5a7cb54bb69cb21dd255bf8a272f3a5c47796146?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee",
     label: "Cấu hình hệ thống",
     active: true,
