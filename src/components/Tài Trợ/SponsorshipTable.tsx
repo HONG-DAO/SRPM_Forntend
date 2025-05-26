@@ -28,7 +28,7 @@ const initialData: SponsorshipItem[] = [
     projectName: "You can Change the text and all",
     date: "12/12/2023",
     progress: 55,
-    amount: "$45454,888",
+    amount: "40.000.000VND",
     purpose: "unknown",
     status: "completed",
   },
@@ -36,7 +36,7 @@ const initialData: SponsorshipItem[] = [
     projectName: "Landing Page Design",
     date: "12/12/2023",
     progress: 12,
-    amount: "$45454,888",
+    amount: "50.000.000VND",
     purpose: "unknown",
     status: "in-progress",
   },
@@ -44,7 +44,7 @@ const initialData: SponsorshipItem[] = [
     projectName: "Landing Page Design",
     date: "12/12/2023",
     progress: 24,
-    amount: "$45454,888",
+    amount: "5.000.000VND",
     purpose: "unknown",
     status: "completed",
   },
@@ -52,7 +52,7 @@ const initialData: SponsorshipItem[] = [
     projectName: "Landing Page Design",
     date: "12/12/2023",
     progress: 12,
-    amount: "$45454,888",
+    amount: "1.000.000VND",
     purpose: "unknown",
     status: "rejected",
   },
@@ -83,7 +83,6 @@ export const SponsorshipTable: React.FC<SponsorshipTableProps> = ({ sortOrder })
       <div className="hidden md:flex items-center text-gray-700 font-semibold text-lg px-3 py-2 border-b border-gray-300">
         <div className="w-[300px] px-3">Tên dự án</div>
         <div className="w-28 px-3">Ngày</div>
-        <div className="w-[174px] px-3">Tiến độ</div>
         <div className="w-[140px] px-3">Số Tiền</div>
         <div className="flex-1 px-3">Mục đích</div>
         <div className="w-60 px-3">Trạng thái</div>
@@ -103,9 +102,11 @@ export const SponsorshipTable: React.FC<SponsorshipTableProps> = ({ sortOrder })
           <div className="w-full md:w-28 text-sm text-neutral-700 px-3">
             {item.date}
           </div>
+          {/*
           <div className="w-full md:w-[174px] px-3">
             <ProgressBar progress={item.progress} />
           </div>
+          */}
           <div className="w-full md:w-[140px] text-sm text-neutral-700 px-3">
             {item.amount}
           </div>
@@ -126,9 +127,9 @@ export const SponsorshipTable: React.FC<SponsorshipTableProps> = ({ sortOrder })
                   : "bg-red-100 text-red-800"
               }`}
             >
-              <option value="completed">Hoàn thành</option>
-              <option value="in-progress">Đang làm</option>
-              <option value="rejected">Loại bỏ</option>
+              <option value="completed">Duyệt</option>
+              <option value="in-progress">Đang duyệt</option>
+              <option value="rejected">Huỷ bỏ</option>
             </select>
           </div>
         </div>
