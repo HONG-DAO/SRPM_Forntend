@@ -2,8 +2,8 @@
 import React, { useState, ChangeEvent, useRef } from "react";
 import Sidebar from "@cnpm/components/Profile/Sidebar";
 import Header from "@cnpm/components/Header";
-import { UserDetails } from "../components/Profile/UserDetails";
-import { ResearchInfo } from "../components/Profile/ResearchInfo";
+import { UserDetails } from "@cnpm/components/Profile/UserDetails";
+import { ResearchInfo } from "@cnpm/components/Profile/ResearchInfo";
 
 const ThongTinCaNhanThanhVienNghienCuu = () => {
   const [previewImg, setPreviewImg] = useState<string>(

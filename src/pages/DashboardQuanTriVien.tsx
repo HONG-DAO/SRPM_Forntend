@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import MainLayout from "../layouts/MainLayout";
-import Sidebar from "../components/QuanTriVien/Sidebar";
-import Header from "../components/Header";
-import { SystemConfigCard } from "../components/QuanTriVien/SystemConfigCard";
+import MainLayout from "@cnpm/layouts/MainLayout";
+import Sidebar from "@cnpm/components/QuanTriVien/Sidebar";
+import Header from "@cnpm/components/Header";
+import { SystemConfigCard } from "@cnpm/components/QuanTriVien/SystemConfigCard";
 
 export default function DashboardQuanTriVien() {
   return (

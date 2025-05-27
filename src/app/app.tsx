@@ -15,6 +15,7 @@ import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
 import Profile from '@cnpm/pages/Profile';
 import TaiTro from '@cnpm/pages/TaiTro';
+import ThanhVienNghienCuu from '@cnpm/pages/ThanhVienNghienCuu';
 
 
 
@@ -33,7 +34,7 @@ export function App() {
               <Route path="/signin" element={<SignInPage />} />
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/login-error" element={<LoginError />} />
-              <Route path="/dashboard" element={<DashboardHoiOngThamInh />} />
+              <Route path="/hoidongthamdinh" element={<DashboardHoiOngThamInh />} />
               <Route path="/quantrivien" element={<DashboardQuanTriVien />} />
               <Route path="/quantrivien1" element={<DashboardQuanTriVien1 />} />
               <Route path="/quantrivien2" element={<DashboardQuanTriVien2 />} />
@@ -41,6 +42,7 @@ export function App() {
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/taitro" element={<TaiTro />} />
+              <Route path="/thanhviennghiencuu" element={<ThanhVienNghienCuu />} />
             </Route>
           </Routes>
         </Router>

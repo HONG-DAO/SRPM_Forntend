@@ -10,7 +10,8 @@ interface User {
 const users: User[] = [
   { name: "Nguyên Văn A", email: "fe@ut.edu.vn", role: "Sinh viên" },
   { name: "Trần Thị B", email: "b@gv.ut.edu.vn", role: "Giảng viên" },
-  { name: "Lê Văn C", email: "c@st.ut.edu.vn", role: "Chưa phân quyền" },
+  { name: "Lê Văn C", email: "c@st.ut.edu.vn", role: "Nhân Viên" },
+  { name: "Bùi Bảo D", email: "d@it.ut.edu.vn", role: "Quản trị viên" },
 ];
 
 export const UserList = () => {

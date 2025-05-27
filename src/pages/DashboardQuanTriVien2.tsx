@@ -1,12 +1,12 @@
 "use client";
 import * as React from "react";
-import MainLayout from "../layouts/MainLayout";
-import Sidebar from "../components/QuanTriVien/QuanTriVien2/Sidebar";
-import Header from "../components/Header";
-import { UserPerformanceChart } from "../components/QuanTriVien/QuanTriVien2/UserPerformanceChart";
-import { UserInteractionChart } from "../components/QuanTriVien/QuanTriVien2/UserInteractionChart";
-import { TimeFilter } from "../components/QuanTriVien/QuanTriVien2/TimeFilter";
-import { RoleFilter } from "../components/QuanTriVien/QuanTriVien2/RoleFilter";
+import MainLayout from "@cnpm/layouts/MainLayout";
+import Sidebar from "@cnpm/components/QuanTriVien/QuanTriVien2/Sidebar";
+import Header from "@cnpm/components/Header";
+import { UserPerformanceChart } from "@cnpm/components/QuanTriVien/QuanTriVien2/UserPerformanceChart";
+import { UserInteractionChart } from "@cnpm/components/QuanTriVien/QuanTriVien2/UserInteractionChart";
+import { TimeFilter } from "@cnpm/components/QuanTriVien/QuanTriVien2/TimeFilter";
+import { RoleFilter } from "@cnpm/components/QuanTriVien/QuanTriVien2/RoleFilter";
 
 const DashboardQuanTriVien2: React.FC = () => {
   return (

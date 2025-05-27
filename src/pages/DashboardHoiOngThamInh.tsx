@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "@cnpm/layouts/MainLayout";
 import Sidebar from "@cnpm/components/HoiDongThamDinh/Sidebar";
 import DashboardHeader from "@cnpm/components/Header";
 import ProjectEvaluation from "@cnpm/components/HoiDongThamDinh/ProjectEvaluation";

@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { LoginFormError } from "../components/Log In Error/LoginFormError";
+import { LoginFormError } from "@cnpm/components/Log In Error/LoginFormError";
 
 export default function LoginErrorPage() {
   return (

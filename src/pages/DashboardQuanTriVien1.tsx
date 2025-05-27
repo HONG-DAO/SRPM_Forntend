@@ -22,7 +22,7 @@ export const DashboardLayout = () => {
           </div>
           <main className="flex-1 p-6 overflow-y-auto bg-gray-50">
             <div className="w-full max-w-[1280px] mx-auto px-6">
-              <div className="w-[830px] mb-4">
+              <div className="w-[750px] mb-4">
                 <UserRoleFilter />
               </div>
               <UserList />

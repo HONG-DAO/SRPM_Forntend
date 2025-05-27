@@ -6,7 +6,6 @@ const roles = [
   "Giảng viên",
   "Nhân viên",
   "Quản trị viên",
-  "Chưa phân quyền",
 ];
 
 export const UserRoleFilter = () => {

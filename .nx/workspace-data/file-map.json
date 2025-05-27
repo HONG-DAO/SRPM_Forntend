@@ -34,6 +34,120 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "my-tailwind-app": [
+        {
+          "file": "my-tailwind-app/.gitignore",
+          "hash": "13046175384202504187"
+        },
+        {
+          "file": "my-tailwind-app/README.md",
+          "hash": "13160460843517416105"
+        },
+        {
+          "file": "my-tailwind-app/eslint.config.js",
+          "hash": "16145672096969245511",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:globals",
+            "npm:eslint-plugin-react-hooks",
+            "npm:eslint-plugin-react-refresh",
+            "npm:typescript-eslint"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/index.html",
+          "hash": "9363857189887754550"
+        },
+        {
+          "file": "my-tailwind-app/package-lock.json",
+          "hash": "10479334102634539113"
+        },
+        {
+          "file": "my-tailwind-app/package.json",
+          "hash": "2368834901205880777",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:@vitejs/plugin-react",
+            "npm:autoprefixer",
+            "npm:eslint",
+            "npm:eslint-plugin-react-hooks",
+            "npm:eslint-plugin-react-refresh",
+            "npm:globals",
+            "npm:postcss",
+            "npm:tailwindcss",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:vite",
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/postcss.config.js",
+          "hash": "1121830044826443979"
+        },
+        {
+          "file": "my-tailwind-app/public/vite.svg",
+          "hash": "16046085400642193116"
+        },
+        {
+          "file": "my-tailwind-app/src/App.css",
+          "hash": "3739391659270974612"
+        },
+        {
+          "file": "my-tailwind-app/src/App.tsx",
+          "hash": "11448401833549720588",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/src/assets/react.svg",
+          "hash": "16069471864800376455"
+        },
+        {
+          "file": "my-tailwind-app/src/index.css",
+          "hash": "13504153635654440336"
+        },
+        {
+          "file": "my-tailwind-app/src/main.tsx",
+          "hash": "11038211546439381838",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "my-tailwind-app/src/vite-env.d.ts",
+          "hash": "12946363841406869089"
+        },
+        {
+          "file": "my-tailwind-app/tailwind.config.js",
+          "hash": "1620497832093742526"
+        },
+        {
+          "file": "my-tailwind-app/tsconfig.app.json",
+          "hash": "3992348939299782212"
+        },
+        {
+          "file": "my-tailwind-app/tsconfig.json",
+          "hash": "2365188958523842680"
+        },
+        {
+          "file": "my-tailwind-app/tsconfig.node.json",
+          "hash": "3588689360788834997"
+        },
+        {
+          "file": "my-tailwind-app/vite.config.ts",
+          "hash": "16225914092815047172",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react"
+          ]
+        }
+      ],
       "cnpm": [
         {
           "file": ".gitignore",
@@ -48,280 +162,8 @@
           "hash": "9773565372686775399"
         },
         {
-          "file": "BE-1.zip",
-          "hash": "12243991328318109805"
-        },
-        {
           "file": "README.md",
           "hash": "17672139874103256258"
-        },
-        {
-          "file": "SRPM-master/.gitignore",
-          "hash": "12514794305391284510"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/AuthController.cs",
-          "hash": "15704190075273088173"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/EvaluationsController.cs",
-          "hash": "6491025192763247708"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/FundingRequestsController.cs",
-          "hash": "4942758508126609456"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/NotificationsController.cs",
-          "hash": "7838535621581493362"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/ProjectsController.cs",
-          "hash": "12293214328424383033"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/ResearchTopicsController.cs",
-          "hash": "15329580762789278526"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/TasksController.cs",
-          "hash": "4031422215347892543"
-        },
-        {
-          "file": "SRPM-master/API/Controllers/UsersController.cs",
-          "hash": "5618890015963140250"
-        },
-        {
-          "file": "SRPM-master/API/Models/AuthModels.cs",
-          "hash": "8501363990565637801"
-        },
-        {
-          "file": "SRPM-master/API/Models/EvaluationModels.cs",
-          "hash": "17268857797130477727"
-        },
-        {
-          "file": "SRPM-master/API/Models/FundingRequestModels.cs",
-          "hash": "9008451507499869968"
-        },
-        {
-          "file": "SRPM-master/API/Models/NotificationModels.cs",
-          "hash": "666173205894315375"
-        },
-        {
-          "file": "SRPM-master/API/Models/ProjectModels.cs",
-          "hash": "796344205675261480"
-        },
-        {
-          "file": "SRPM-master/API/Models/ResearchTopicModels.cs",
-          "hash": "4617974823805015488"
-        },
-        {
-          "file": "SRPM-master/API/Models/TaskModels.cs",
-          "hash": "9408079778251323548"
-        },
-        {
-          "file": "SRPM-master/API/Models/UserModels.cs",
-          "hash": "4675854653255983406"
-        },
-        {
-          "file": "SRPM-master/API/Services/AuthService.cs",
-          "hash": "18292676945776280327"
-        },
-        {
-          "file": "SRPM-master/API/Services/EvaluationService.cs",
-          "hash": "13044591413178464444"
-        },
-        {
-          "file": "SRPM-master/API/Services/FundingRequestService.cs",
-          "hash": "650139818875901074"
-        },
-        {
-          "file": "SRPM-master/API/Services/IAuthService.cs",
-          "hash": "3294081391839271162"
-        },
-        {
-          "file": "SRPM-master/API/Services/IEvaluationService.cs",
-          "hash": "2338504032833019499"
-        },
-        {
-          "file": "SRPM-master/API/Services/IFundingRequestService.cs",
-          "hash": "7252040032382319196"
-        },
-        {
-          "file": "SRPM-master/API/Services/INotificationService.cs",
-          "hash": "13010229301783507597"
-        },
-        {
-          "file": "SRPM-master/API/Services/IProjectService.cs",
-          "hash": "4456897182711201365"
-        },
-        {
-          "file": "SRPM-master/API/Services/IResearchTopicService.cs",
-          "hash": "12738891076827527191"
-        },
-        {
-          "file": "SRPM-master/API/Services/ITaskService.cs",
-          "hash": "15147137203042659626"
-        },
-        {
-          "file": "SRPM-master/API/Services/IUserService.cs",
-          "hash": "5084882138515017195"
-        },
-        {
-          "file": "SRPM-master/API/Services/NotificationService.cs",
-          "hash": "1222570708048006902"
-        },
-        {
-          "file": "SRPM-master/API/Services/ProjectService.cs",
-          "hash": "12258982559423969961"
-        },
-        {
-          "file": "SRPM-master/API/Services/ResearchTopicService.cs",
-          "hash": "12778694294541047242"
-        },
-        {
-          "file": "SRPM-master/API/Services/TaskService.cs",
-          "hash": "3785110679128023674"
-        },
-        {
-          "file": "SRPM-master/API/Services/UserService.cs",
-          "hash": "17774605033432854186"
-        },
-        {
-          "file": "SRPM-master/Data/ApplicationDbContext.cs",
-          "hash": "15403183305757318359"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/Evaluation.cs",
-          "hash": "8240691858726811040"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/FundingRequest.cs",
-          "hash": "16171547917075887235"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/Notification.cs",
-          "hash": "3329726348695187455"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/Project.cs",
-          "hash": "3425760879811105554"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/ProjectMember.cs",
-          "hash": "7331450747680457347"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/ResearchTopic.cs",
-          "hash": "11284514303409549353"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/Role.cs",
-          "hash": "15664117371128721753"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/Task.cs",
-          "hash": "16626545446987270817"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/User.cs",
-          "hash": "13451275487295862859"
-        },
-        {
-          "file": "SRPM-master/Data/Entities/UserRole.cs",
-          "hash": "912401333175711537"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/EvaluationRepository.cs",
-          "hash": "8924188089057664654"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/FundingRequestRepository.cs",
-          "hash": "14962514396351750633"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/IEvaluationRepository.cs",
-          "hash": "8309286584878625685"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/IFundingRequestRepository.cs",
-          "hash": "16067540885057603057"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/INotificationRepository.cs",
-          "hash": "13807126326398068491"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/IProjectRepository.cs",
-          "hash": "13000683456310028548"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/IResearchTopicRepository.cs",
-          "hash": "4936837370699372839"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/ITaskRepository.cs",
-          "hash": "9488779061746459632"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/IUserRepository.cs",
-          "hash": "16858115268227567174"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/NotificationRepository.cs",
-          "hash": "11445071433687843198"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/ProjectRepository.cs",
-          "hash": "11903702947830552771"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/ResearchTopicRepository.cs",
-          "hash": "5139849968626071851"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/TaskRepository.cs",
-          "hash": "15021428764611639012"
-        },
-        {
-          "file": "SRPM-master/Data/Repositories/UserRepository.cs",
-          "hash": "13330555038958737869"
-        },
-        {
-          "file": "SRPM-master/Migrations/20240515000000_InitialCreate.cs",
-          "hash": "6717225480786756880"
-        },
-        {
-          "file": "SRPM-master/Migrations/20250515170616_InitialCreate.Designer.cs",
-          "hash": "11847252577450463268"
-        },
-        {
-          "file": "SRPM-master/Migrations/20250515170616_InitialCreate.cs",
-          "hash": "15222352795261552756"
-        },
-        {
-          "file": "SRPM-master/Migrations/20250515172441_AddPasswordHashToUser.Designer.cs",
-          "hash": "6336059209698283330"
-        },
-        {
-          "file": "SRPM-master/Migrations/20250515172441_AddPasswordHashToUser.cs",
-          "hash": "6455838906952283931"
-        },
-        {
-          "file": "SRPM-master/Migrations/ApplicationDbContextModelSnapshot.cs",
-          "hash": "9475710325451539778"
-        },
-        {
-          "file": "SRPM-master/Program.cs",
-          "hash": "329116797508344408"
-        },
-        {
-          "file": "SRPM-master/SRPM.API.csproj",
-          "hash": "8106863355031920968"
-        },
-        {
-          "file": "SRPM-master/appsettings.json",
-          "hash": "14854030973973733310"
         },
         {
           "file": "components.json",
@@ -496,7 +338,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "7389677012524558879",
+          "hash": "1611913946557285823",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -509,7 +351,7 @@
         },
         {
           "file": "src/components/Admin/AddUserForm.tsx",
-          "hash": "12110047537821670129",
+          "hash": "9759064581721044897",
           "deps": [
             "npm:react"
           ]
@@ -583,7 +425,7 @@
         },
         {
           "file": "src/components/HoiDongThamDinh/Sidebar.tsx",
-          "hash": "1507018351798025778",
+          "hash": "16466082987785366756",
           "deps": [
             "npm:react"
           ]
@@ -673,14 +515,14 @@
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/UserList.tsx",
-          "hash": "78446981628751505",
+          "hash": "17628030215566600677",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/UserRoleFilter.tsx",
-          "hash": "6356047739922516523",
+          "hash": "16755247100712559155",
           "deps": [
             "npm:react"
           ]
@@ -809,6 +651,29 @@
           ]
         },
         {
+          "file": "src/components/TrangChuThanhVienNghienCuu/Icons.tsx",
+          "hash": "299484921808448417"
+        },
+        {
+          "file": "src/components/TrangChuThanhVienNghienCuu/ProjectsTable.tsx",
+          "hash": "2282460041119753110"
+        },
+        {
+          "file": "src/components/TrangChuThanhVienNghienCuu/Sidebar.tsx",
+          "hash": "4766608127895756965",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/components/TrangChuThanhVienNghienCuu/StatsCard.tsx",
+          "hash": "2533798825584812443"
+        },
+        {
+          "file": "src/components/TrangChuThanhVienNghienCuu/TaskList.tsx",
+          "hash": "3203987917060466270"
+        },
+        {
           "file": "src/components/Tài Trợ/ProgressBar.tsx",
           "hash": "16160566171485536504",
           "deps": [
@@ -907,70 +772,70 @@
         },
         {
           "file": "src/pages/AdminDashboard.tsx",
-          "hash": "4487999682272332265",
+          "hash": "17050874000452882024",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardHoiOngThamInh.tsx",
-          "hash": "16856547634063500082",
+          "hash": "17544745877367561510",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien.tsx",
-          "hash": "15544578746961257321",
+          "hash": "12013400789058991253",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "9366009428597025498",
+          "hash": "9578543429784115238",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DashboardQuanTriVien2.tsx",
-          "hash": "7851273383323875089",
+          "hash": "1065750906364398101",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/DuAn.tsx",
-          "hash": "8514315655403561075",
+          "hash": "4836662341767086770",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/LoginError.tsx",
-          "hash": "116609638496233721",
+          "hash": "18390093509028508018",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/LoginPage.tsx",
-          "hash": "5348657734360798069",
+          "hash": "6953574535778677598",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/Profile.tsx",
-          "hash": "10313439399284505233",
+          "hash": "15620423856449347148",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/SignUp.tsx",
-          "hash": "14591053359267064792",
+          "hash": "8692135595078964185",
           "deps": [
             "npm:react"
           ]
@@ -978,6 +843,13 @@
         {
           "file": "src/pages/TaiTro.tsx",
           "hash": "4016788262263711530",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/pages/ThanhVienNghienCuu.tsx",
+          "hash": "135209842887603993",
           "deps": [
             "npm:react"
           ]
@@ -1032,120 +904,6 @@
         {
           "file": "yarn.lock",
           "hash": "2288038161052201161"
-        }
-      ],
-      "my-tailwind-app": [
-        {
-          "file": "my-tailwind-app/.gitignore",
-          "hash": "13046175384202504187"
-        },
-        {
-          "file": "my-tailwind-app/README.md",
-          "hash": "13160460843517416105"
-        },
-        {
-          "file": "my-tailwind-app/eslint.config.js",
-          "hash": "16145672096969245511",
-          "deps": [
-            "npm:@eslint/js",
-            "npm:globals",
-            "npm:eslint-plugin-react-hooks",
-            "npm:eslint-plugin-react-refresh",
-            "npm:typescript-eslint"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/index.html",
-          "hash": "9363857189887754550"
-        },
-        {
-          "file": "my-tailwind-app/package-lock.json",
-          "hash": "10479334102634539113"
-        },
-        {
-          "file": "my-tailwind-app/package.json",
-          "hash": "2368834901205880777",
-          "deps": [
-            "npm:@eslint/js",
-            "npm:@types/react",
-            "npm:@types/react-dom",
-            "npm:@vitejs/plugin-react",
-            "npm:autoprefixer",
-            "npm:eslint",
-            "npm:eslint-plugin-react-hooks",
-            "npm:eslint-plugin-react-refresh",
-            "npm:globals",
-            "npm:postcss",
-            "npm:tailwindcss",
-            "npm:typescript",
-            "npm:typescript-eslint",
-            "npm:vite",
-            "npm:react",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/postcss.config.js",
-          "hash": "1121830044826443979"
-        },
-        {
-          "file": "my-tailwind-app/public/vite.svg",
-          "hash": "16046085400642193116"
-        },
-        {
-          "file": "my-tailwind-app/src/App.css",
-          "hash": "3739391659270974612"
-        },
-        {
-          "file": "my-tailwind-app/src/App.tsx",
-          "hash": "11448401833549720588",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/src/assets/react.svg",
-          "hash": "16069471864800376455"
-        },
-        {
-          "file": "my-tailwind-app/src/index.css",
-          "hash": "13504153635654440336"
-        },
-        {
-          "file": "my-tailwind-app/src/main.tsx",
-          "hash": "11038211546439381838",
-          "deps": [
-            "npm:react",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "my-tailwind-app/src/vite-env.d.ts",
-          "hash": "12946363841406869089"
-        },
-        {
-          "file": "my-tailwind-app/tailwind.config.js",
-          "hash": "1620497832093742526"
-        },
-        {
-          "file": "my-tailwind-app/tsconfig.app.json",
-          "hash": "3992348939299782212"
-        },
-        {
-          "file": "my-tailwind-app/tsconfig.json",
-          "hash": "2365188958523842680"
-        },
-        {
-          "file": "my-tailwind-app/tsconfig.node.json",
-          "hash": "3588689360788834997"
-        },
-        {
-          "file": "my-tailwind-app/vite.config.ts",
-          "hash": "16225914092815047172",
-          "deps": [
-            "npm:vite",
-            "npm:@vitejs/plugin-react"
-          ]
         }
       ]
     }

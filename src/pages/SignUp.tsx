@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { SignUpForm } from "../components/Sign Up/SignUpForm";
+import { SignUpForm } from "@cnpm/components/Sign Up/SignUpForm";
 
 export default function SignUp() {
   return (

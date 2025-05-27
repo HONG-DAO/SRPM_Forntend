@@ -11,7 +11,7 @@ export const AddUserForm: React.FC = () => {
             fill="black"
           />
         </svg>
-        <span>Thêm mới tài khoản</span>
+        <span>Cấp tài khoản mới</span>
       </div>
 
       {/* Form */}

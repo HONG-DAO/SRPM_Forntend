@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
-import { LoginForm } from "../components/Sign In/LoginForm";
-import { NewPasswordForm } from "../components/Sign In/NewPassWordForm";
-import { ResetCodeForm } from "../components/Sign In/ResetCodeForm";
+import { LoginForm } from "@cnpm/components/Sign In/LoginForm";
+import { NewPasswordForm } from "@cnpm/components/Sign In/NewPassWordForm";
+import { ResetCodeForm } from "@cnpm/components/Sign In/ResetCodeForm";
 
 export default function LoginPage() {
   return (
