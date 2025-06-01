@@ -11,11 +11,14 @@ import DashboardQuanTriVien from '@cnpm/pages/DashboardQuanTriVien';
 import DashboardQuanTriVien1 from '@cnpm/pages/DashboardQuanTriVien1';
 import DashboardQuanTriVien2 from '@cnpm/pages/DashboardQuanTriVien2';
 import AdminDashboard from '@cnpm/pages/AdminDashboard';
-import { PublicRoute } from '@cnpm/components/Protect/PublicRoute';
+import { PublicRoute, ProtectedRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
 import Profile from '@cnpm/pages/Profile';
 import TaiTro from '@cnpm/pages/TaiTro';
 import ThanhVienNghienCuu from '@cnpm/pages/ThanhVienNghienCuu';
+import TaoDuAnNghienCuuChinh from '@cnpm/pages/TaoDuAnNghienCuuChinh';
+import DuyetDuAn from '@cnpm/pages/DuyetDuAn';
+import DuyetTaiTro from '@cnpm/pages/DuyetTaiTro';
 
 
 
@@ -41,8 +44,11 @@ export function App() {
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/taitro" element={<TaiTro />} />
+              <Route path="/tai-tro" element={<TaiTro />} />
               <Route path="/thanhviennghiencuu" element={<ThanhVienNghienCuu />} />
+              <Route path="/taoduannghiencuuchinh" element={<TaoDuAnNghienCuuChinh />} />
+              <Route path="/duyetduan" element={<DuyetDuAn />} />
+              <Route path="/duyettaitro" element={<DuyetTaiTro />} />
             </Route>
           </Routes>
         </Router>
@@ -51,5 +57,6 @@ export function App() {
     </div>
   );
 }
+
 
 export default App;

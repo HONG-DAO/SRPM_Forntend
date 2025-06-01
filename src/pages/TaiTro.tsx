@@ -1,8 +1,8 @@
 import * as React from "react";
-import Sidebar from "@cnpm/components/Tài Trợ/Sidebar";
+import Sidebar from "@cnpm/components/Tai Tro/Sidebar";
 import Header from "@cnpm/components/Header";
-import { SearchInput } from "@cnpm/components/Tài Trợ/SearchInput";
-import { SponsorshipTable } from "@cnpm/components/Tài Trợ/SponsorshipTable";
+import { SearchInput } from "@cnpm/components/Tai Tro/SearchInput";
+import { SponsorshipTable } from "@cnpm/components/Tai Tro/SponsorshipTable";
 
 function TaiTroThanhVienNghienCuu() {
   const [sortOrder, setSortOrder] = React.useState<"asc" | "desc">("asc");
