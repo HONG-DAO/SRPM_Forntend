@@ -5,6 +5,34 @@ import { NewPasswordForm } from "@cnpm/components/Sign In/NewPassWordForm";
 import { ResetCodeForm } from "@cnpm/components/Sign In/ResetCodeForm";
 
 export default function LoginPage() {
+  // Hàm xử lý đăng nhập
+  async function handleLogin(email: string, password: string, rememberMe: boolean) {
+    try {
+      // Ví dụ gọi API login - thay đổi URL API cho phù hợp
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, rememberMe }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Đăng nhập thất bại");
+      }
+
+      const data = await response.json();
+      console.log("Đăng nhập thành công:", data);
+
+      // Xử lý sau khi đăng nhập thành công, ví dụ lưu token, chuyển trang
+      // ...
+    } catch (error: any) {
+      // Bắn lỗi để LoginForm bắt và hiển thị
+      throw new Error(error.message || "Lỗi khi đăng nhập");
+    }
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
       {/* Logo */}
@@ -30,7 +58,8 @@ export default function LoginPage() {
         {/* Bên phải: Form đăng nhập */}
         <div className="w-1/2 flex items-center justify-center bg-white p-8">
           <div className="w-full max-w-xs">
-            <LoginForm />
+            {/* Truyền onLogin prop vào đây */}
+            <LoginForm onLogin={handleLogin} />
           </div>
         </div>
       </div>

@@ -103,17 +103,6 @@ export const SignUpForm: React.FC = () => {
           >
             {loading ? "Đang xử lý..." : "Tạo"}
           </Button>
-
-          <Button variant="social" className="mt-3">
-            <div className="flex gap-2.5 justify-center items-center max-w-full w-[177px] mx-auto">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/2a65fed3a990f1e3242a0de9ba6cd1a3d8f6effe?placeholderIfAbsent=true"
-                className="object-contain shrink-0 self-start my-auto aspect-square w-[18px]"
-                alt="Google icon"
-              />
-              <span className="grow shrink my-auto">Tiếp tục với Google</span>
-            </div>
-          </Button>
         </div>
 
         <div className="flex flex-col pt-5 mt-5 w-full text-center">

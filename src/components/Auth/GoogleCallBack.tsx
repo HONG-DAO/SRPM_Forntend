@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { googleAuthService } from '../../services/googleAuthService';
 import { authService } from '../../services/authService';
 
 const GoogleCallback: React.FC = () => {
@@ -13,8 +12,8 @@ const GoogleCallback: React.FC = () => {
     const handleCallback = async () => {
       try {
         const queryParams = new URLSearchParams(location.search);
-        const code = queryParams.get('code');
-        const state = queryParams.get('state');
+        const token = queryParams.get('token');
+        const success = queryParams.get('success');
         const error = queryParams.get('error');
 
         if (error) {
@@ -23,51 +22,27 @@ const GoogleCallback: React.FC = () => {
           return;
         }
 
-        if (!code) {
-          setError('No authentication code received');
+        if (!success || success !== 'true') {
+          setError('Authentication was not successful');
           setLoading(false);
           return;
         }
 
-        // Xác định xem đây là callback đăng nhập hay đăng ký
-        const isSignUp = location.pathname.includes('signup');
-
-        if (isSignUp) {
-          const userData = await googleAuthService.handleGoogleSignUpCallback(
-            code
-          );
-
-          if (userData.needsAdditionalInfo) {
-            // Nếu cần thêm thông tin, chuyển đến form đăng ký với Google
-            navigate('/signup', {
-              state: {
-                googleUserData: {
-                  email: userData.email,
-                  name: userData.name,
-                  picture: userData.picture,
-                },
-              },
-            });
-          } else {
-            // Nếu đăng ký thành công và không cần thêm thông tin
-            navigate('/signin', {
-              state: { message: 'Registration successful! Please sign in.' },
-            });
-          }
-        } else {
-          // Xử lý callback đăng nhập
-          const loginData = await googleAuthService.handleGoogleSignInCallback(
-            code
-          );
-
-          if (loginData.accessToken) {
-            sessionStorage.setItem('accessToken', loginData.accessToken);
-            await authService.fetchAndStoreUserProfile();
-            navigate('/thanhviennghiencuu');
-          } else {
-            setError('Failed to sign in with Google');
-          }
+        if (!token) {
+          setError('No authentication token received');
+          setLoading(false);
+          return;
         }
+
+        // Lưu token và redirect
+        sessionStorage.setItem('accessToken', token);
+        
+        // Fetch user profile
+        await authService.fetchAndStoreUserProfile();
+        
+        // Redirect to dashboard
+        navigate('/thanhviennghiencuu');
+        
       } catch (error: any) {
         console.error('Error handling Google callback:', error);
         setError(error.message || 'An error occurred during authentication');

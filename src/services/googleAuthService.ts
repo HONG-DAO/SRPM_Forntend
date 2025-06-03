@@ -22,13 +22,13 @@ export const handleGoogleResponse = (response: any): GoogleUser => {
   }
 };
 
-// Thêm các hàm mới để xử lý endpoints Google mới
 export const googleAuthService = {
   // Bắt đầu quá trình đăng ký với Google
-  initiateGoogleSignUp: async (): Promise<string> => {
+  initiateGoogleSignUp: async (): Promise<void> => {
     try {
       const response = await api.get('/Auth/google/signup');
-      return response.data.redirectUrl;
+      // Redirect trực tiếp đến Google
+      window.location.href = response.data.redirectUrl;
     } catch (error) {
       console.error('Error initiating Google sign up:', error);
       throw new Error('Failed to start Google sign up process');
@@ -36,17 +36,18 @@ export const googleAuthService = {
   },
 
   // Bắt đầu quá trình đăng nhập với Google
-  initiateGoogleSignIn: async (): Promise<string> => {
+  initiateGoogleSignIn: async (): Promise<void> => {
     try {
       const response = await api.get('/Auth/google/signin');
-      return response.data.redirectUrl;
+      // Redirect trực tiếp đến Google
+      window.location.href = response.data.redirectUrl;
     } catch (error) {
       console.error('Error initiating Google sign in:', error);
       throw new Error('Failed to start Google sign in process');
     }
   },
 
-  // Xử lý callback từ Google sau khi đăng ký
+  // Xử lý callback từ Google sau khi đăng ký (chỉ dùng khi cần)
   handleGoogleSignUpCallback: async (code: string): Promise<any> => {
     try {
       const response = await api.get(`/Auth/google/signup/callback?code=${code}`);
@@ -57,7 +58,7 @@ export const googleAuthService = {
     }
   },
 
-  // Xử lý callback từ Google sau khi đăng nhập
+  // Xử lý callback từ Google sau khi đăng nhập (chỉ dùng khi cần)
   handleGoogleSignInCallback: async (code: string): Promise<any> => {
     try {
       const response = await api.get(`/Auth/google/signin/callback?code=${code}`);

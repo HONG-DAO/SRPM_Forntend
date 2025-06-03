@@ -19,7 +19,7 @@ import ThanhVienNghienCuu from '@cnpm/pages/ThanhVienNghienCuu';
 import TaoDuAnNghienCuuChinh from '@cnpm/pages/TaoDuAnNghienCuuChinh';
 import DuyetDuAn from '@cnpm/pages/DuyetDuAn';
 import DuyetTaiTro from '@cnpm/pages/DuyetTaiTro';
-
+import GoogleCallback from '@cnpm/components/Auth/GoogleCallBack';
 
 
 export function App() {
@@ -49,6 +49,7 @@ export function App() {
               <Route path="/taoduannghiencuuchinh" element={<TaoDuAnNghienCuuChinh />} />
               <Route path="/duyetduan" element={<DuyetDuAn />} />
               <Route path="/duyettaitro" element={<DuyetTaiTro />} />
+              <Route path="/google-callback" element={<GoogleCallback />} />
             </Route>
           </Routes>
         </Router>

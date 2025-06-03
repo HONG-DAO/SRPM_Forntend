@@ -191,7 +191,7 @@ const userState: UserState = {
 };
 
 export const authService = {
-  AUTH_PATH: '/auth',
+  AUTH_PATH: '/Auth',
   
   // Đăng ký
   async completeRegistration(payload: RegisterPayload): Promise<AxiosResponse> {

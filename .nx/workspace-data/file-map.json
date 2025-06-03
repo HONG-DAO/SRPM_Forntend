@@ -177,6 +177,10 @@
           ]
         },
         {
+          "file": "et --hard e1de1394",
+          "hash": "13434071775584521750"
+        },
+        {
           "file": "index.html",
           "hash": "4802051011029204316"
         },
@@ -338,7 +342,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "7855587910664321738",
+          "hash": "844650569648789684",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -383,7 +387,7 @@
         },
         {
           "file": "src/components/Auth/GoogleCallBack.tsx",
-          "hash": "2115748569128459311",
+          "hash": "3229418281218827841",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
@@ -684,9 +688,10 @@
         },
         {
           "file": "src/components/Sign In/LoginForm.tsx",
-          "hash": "815730356083164922",
+          "hash": "4491961209797953654",
           "deps": [
-            "npm:react"
+            "npm:react",
+            "npm:react-router-dom"
           ]
         },
         {
@@ -716,7 +721,7 @@
         },
         {
           "file": "src/components/Sign Up/FormInput.tsx",
-          "hash": "13996784269542326211",
+          "hash": "2792370949412106661",
           "deps": [
             "npm:react"
           ]
@@ -739,7 +744,7 @@
         },
         {
           "file": "src/components/Sign Up/SignUpForm.tsx",
-          "hash": "3341676403936246038",
+          "hash": "4380678648255060785",
           "deps": [
             "npm:react",
             "npm:formik",
@@ -932,7 +937,7 @@
         },
         {
           "file": "src/pages/LoginPage.tsx",
-          "hash": "6953574535778677598",
+          "hash": "8217435277558289752",
           "deps": [
             "npm:react"
           ]
@@ -973,6 +978,18 @@
           ]
         },
         {
+          "file": "src/public/images/download (1).jpeg",
+          "hash": "711581090774610528"
+        },
+        {
+          "file": "src/public/images/images1.png",
+          "hash": "3479805116032819782"
+        },
+        {
+          "file": "src/public/logo-uth.png",
+          "hash": "9754980678907211993"
+        },
+        {
           "file": "src/services/apiService.ts",
           "hash": "4100163007370946971",
           "deps": [
@@ -981,14 +998,14 @@
         },
         {
           "file": "src/services/authService.ts",
-          "hash": "14893527367080126761",
+          "hash": "16413249998685245289",
           "deps": [
             "npm:axios"
           ]
         },
         {
           "file": "src/services/googleAuthService.ts",
-          "hash": "1256794970841078505",
+          "hash": "17972962243013620861",
           "deps": [
             "npm:jwt-decode"
           ]
@@ -1031,7 +1048,7 @@
         },
         {
           "file": "yarn.lock",
-          "hash": "2288038161052201161"
+          "hash": "1170743976483617291"
         }
       ]
     }

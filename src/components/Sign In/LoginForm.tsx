@@ -2,9 +2,14 @@
 import React, { useState } from "react";
 import { UserIcon } from "../Icons/UserIcon";
 import { GoogleIcon } from "../Icons/GoogleIcon";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
-  onLogin: (email: string, password: string, rememberMe: boolean) => Promise<void>;
+  onLogin: (
+    email: string,
+    password: string,
+    rememberMe: boolean
+  ) => Promise<void>;
   onBack?: () => void;
   error?: string;
 }
@@ -13,20 +18,20 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
-
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-    const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement)
+      .value;
 
     setLocalError(null);
     setLoading(true);
     try {
       await onLogin(email, password, rememberMe);
-      // Nếu thành công, có thể chuyển hướng bên ngoài hàm onLogin xử lý
+      // Thành công: có thể xử lý chuyển trang ngoài hàm onLogin
     } catch (err: any) {
-      // Xử lý lỗi nhận từ onLogin
       setLocalError(err?.message || "Đăng nhập thất bại, vui lòng thử lại.");
     } finally {
       setLoading(false);
@@ -34,20 +39,21 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
   };
 
   const handleGoogleLogin = async () => {
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL.replace(/\/$/, "")}/Auth/google/signup`);
-    const data = await res.json();
-    if (data.redirectUrl) {
-      window.location.href = data.redirectUrl; // Chuyển trang đến Google OAuth
-    } else {
-      alert("Không lấy được URL đăng nhập Google.");
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL.replace(/\/$/, "")}/Auth/google/signup`
+      );
+      const data = await res.json();
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl; // Redirect Google OAuth
+      } else {
+        alert("Không lấy được URL đăng nhập Google.");
+      }
+    } catch (error) {
+      console.error("Lỗi khi gọi API đăng nhập Google:", error);
+      alert("Đã xảy ra lỗi khi đăng nhập Google.");
     }
-  } catch (error) {
-    console.error("Lỗi khi gọi API đăng nhập Google:", error);
-    alert("Đã xảy ra lỗi khi đăng nhập Google.");
-  }
-};
-
+  };
 
   return (
     <article className="w-full max-w-md">
@@ -58,7 +64,6 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
         <h1 className="mt-4 text-3xl font-bold text-gray-700">XIN CHÀO !</h1>
       </div>
 
-      {/* Nút Back */}
       {onBack && (
         <button
           type="button"
@@ -71,7 +76,10 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="email"
+            className="text-sm font-semibold text-gray-700"
+          >
             Email:
           </label>
           <input
@@ -86,7 +94,10 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="password" className="text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="password"
+            className="text-sm font-semibold text-gray-700"
+          >
             Mật Khẩu:
           </label>
           <input
@@ -120,7 +131,6 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
           </a>
         </div>
 
-        {/* Hiển thị lỗi */}
         {(localError || error) && (
           <p className="text-red-500 text-sm text-center">
             {localError || error}
@@ -134,7 +144,7 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
             loading ? "opacity-50 cursor-not-allowed" : "hover:bg-teal-600"
           }`}
         >
-          {loading ? "Đang đăng nhập..." : "Đăng nhập"}
+          {loading ? "Đang đăng nhập..." : "Đăng Nhập"}
         </button>
       </form>
 
@@ -153,7 +163,7 @@ export function LoginForm({ onLogin, onBack, error }: LoginFormProps) {
         <button
           className="w-full h-[48px] text-base font-bold text-teal-700 border border-teal-500 rounded-lg hover:bg-teal-50 transition-colors"
           disabled={loading}
-          // Bạn có thể thêm onClick chuyển trang đăng ký ở đây
+          onClick={() => navigate("/signup")} // Thêm sự kiện chuyển trang đăng ký// Bạn có thể thêm onClick chuyển trang đăng ký ở đây
         >
           Tạo tài khoản
         </button>
