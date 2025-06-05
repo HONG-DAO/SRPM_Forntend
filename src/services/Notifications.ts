@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import api from './apiService';
 
-export interface Notification {
+interface Notification {
   id: string;
   title: string;
   message: string;
@@ -10,8 +10,7 @@ export interface Notification {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface NotificationResponse {
+interface NotificationResponse {
   data: Notification[];
   total: number;
   page: number;

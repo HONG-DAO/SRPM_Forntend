@@ -256,7 +256,7 @@
         },
         {
           "file": "src/components/Auth/GoogleCallBack.tsx",
-          "hash": "3229418281218827841",
+          "hash": "9893962946882410308",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
@@ -471,7 +471,7 @@
         },
         {
           "file": "src/components/Phiếu Yêu Cầu Tài Trợ/FundingRequestForm.tsx",
-          "hash": "1028112490776762404",
+          "hash": "349479071372726107",
           "deps": [
             "npm:react"
           ]
@@ -525,7 +525,7 @@
         },
         {
           "file": "src/components/Sign In/LoginForm.tsx",
-          "hash": "4491961209797953654",
+          "hash": "2537584013546948776",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
@@ -605,7 +605,7 @@
         },
         {
           "file": "src/components/Tai Tro/SponsorshipTable.tsx",
-          "hash": "17538131033936480213",
+          "hash": "13277693274043358556",
           "deps": [
             "npm:react"
           ]
@@ -812,9 +812,10 @@
         },
         {
           "file": "src/pages/LoginPage.tsx",
-          "hash": "8217435277558289752",
+          "hash": "3991057777172396025",
           "deps": [
-            "npm:react"
+            "npm:react",
+            "npm:react-router-dom"
           ]
         },
         {
@@ -861,7 +862,7 @@
         },
         {
           "file": "src/pages/TaiTro.tsx",
-          "hash": "13300326116397111157",
+          "hash": "8663762365034921610",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
@@ -916,7 +917,10 @@
         },
         {
           "file": "src/services/Evaluations.ts",
-          "hash": "3244421341483603138"
+          "hash": "16819999295590707282",
+          "deps": [
+            "npm:axios"
+          ]
         },
         {
           "file": "src/services/FundingService.ts",
@@ -927,7 +931,7 @@
         },
         {
           "file": "src/services/Notifications.ts",
-          "hash": "4596164019634260830",
+          "hash": "1878230881958757141",
           "deps": [
             "npm:axios"
           ]
@@ -955,14 +959,14 @@
         },
         {
           "file": "src/services/authService.ts",
-          "hash": "16413249998685245289",
+          "hash": "3756476256042074524",
           "deps": [
             "npm:axios"
           ]
         },
         {
           "file": "src/services/googleAuthService.ts",
-          "hash": "17972962243013620861",
+          "hash": "18025547868767566879",
           "deps": [
             "npm:jwt-decode"
           ]
@@ -996,7 +1000,7 @@
         },
         {
           "file": "vite.config.ts",
-          "hash": "17018569487341196367",
+          "hash": "14006657804668827465",
           "deps": [
             "npm:vite",
             "npm:@vitejs/plugin-react",
