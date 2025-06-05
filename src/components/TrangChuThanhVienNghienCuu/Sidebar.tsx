@@ -1,35 +1,55 @@
 "use client";
-
-import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 const navigationItems = [
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/c2254af2fb19b76bb45058bb3dd09a66ce195e39?placeholderIfAbsent=true",
     label: "Trang chủ",
-    active: true,
+    path: "/thanhviennghiencuu",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/f3e88bfa9ae998efe3390d97326af3323f959e8e?placeholderIfAbsent=true",
     label: "Thông tin cá nhân",
+    path: "/profile",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/548976d608c31c0e145581e31116c4038add5580?placeholderIfAbsent=true",
     label: "Dự án",
+    path: "/duan",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/dae94ba2cd9a9672a4bd4c0e474ec122f58df427?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee",
     label: "Tài trợ",
+    path: "/tai-tro",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/08232af02813e185a2f8fc37b028087b250d5b28?placeholderIfAbsent=true",
     label: "Đăng Xuất",
+    path: "/signin",
   },
 ];
 
 const Sidebar: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation(); // Để theo dõi URL hiện tại
+
+  // Đồng bộ activeIndex với URL
+  useEffect(() => {
+    const activeItemIndex = navigationItems.findIndex(
+      (item) => item.path === location.pathname
+    );
+    setActiveIndex(activeItemIndex === -1 ? 0 : activeItemIndex);
+  }, [location.pathname]); // Khi pathname thay đổi, cập nhật activeIndex
+
+  const handleClick = (index: number) => {
+    setActiveIndex(index); // Cập nhật activeIndex ngay lập tức
+    navigate(navigationItems[index].path); // Điều hướng tới URL tương ứng
+  };
+
   return (
     <aside className="w-[240px] h-screen bg-gray-50 border-r border-gray-200 flex flex-col">
-      {/* Header logo */}
       <header className="flex justify-center items-center h-[80px] border-b border-gray-200">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/f97f13d9cd69d09e5640a65bf4466139ca5ca8ae?placeholderIfAbsent=true"
@@ -38,14 +58,14 @@ const Sidebar: React.FC = () => {
         />
       </header>
 
-      {/* Navigation */}
       <nav className="mt-4 px-3 flex-1">
         <ul className="space-y-1">
           {navigationItems.map((item, index) => (
             <li key={index}>
               <div
+                onClick={() => handleClick(index)} // Cập nhật activeIndex và điều hướng
                 className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition-all ${
-                  item.active
+                  index === activeIndex
                     ? "bg-blue-100 text-blue-700 font-semibold"
                     : "text-slate-600 hover:bg-gray-100"
                 }`}

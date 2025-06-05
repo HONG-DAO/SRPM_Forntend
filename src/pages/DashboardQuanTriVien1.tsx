@@ -1,10 +1,9 @@
 "use client";
 import * as React from "react";
 import MainLayout from "@cnpm/layouts/MainLayout";
-import Sidebar from "@cnpm/components/QuanTriVien/QuanTriVien1/Sidebar";
+import Sidebar from "@cnpm/components/QuanTriVien/Sidebar";
 import Header from "@cnpm/components/Header";
-import { UserRoleFilter } from "@cnpm/components/QuanTriVien/QuanTriVien1/UserRoleFilter";
-import { UserList } from "@cnpm/components/QuanTriVien/QuanTriVien1/UserList";
+import { UserRoleFilter, UserList } from "@cnpm/components/QuanTriVien/QuanTriVien1/UserRoleFilter";
 
 export const DashboardLayout = () => {
   return (

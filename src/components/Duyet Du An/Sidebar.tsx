@@ -1,28 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navigationItems = [
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/f3e88bfa9ae998efe3390d97326af3323f959e8e?placeholderIfAbsent=true",
     label: "Thông tin cá nhân",
+    path: "/profile2",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/a23bc1452b11f050133faef30aa2efd8a14544f3?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee",
     label: "Phê duyệt dự án",
-    active: true,
+    path: "/duyetduan",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/d38d4b1c84f38a455b7414f2cde8d2b58b8911d5?placeholderIfAbsent=true",
     label: "Danh sách NHH",
+    path: "/danhsachnhh",
   },
   {
     icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/08232af02813e185a2f8fc37b028087b250d5b28?placeholderIfAbsent=true",
     label: "Đăng Xuất",
+    path: "/signin",
   },
 ];
 
 const Sidebar: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(1); // Default active là "Phê duyệt dự án"
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Đồng bộ activeIndex với URL hiện tại
+  useEffect(() => {
+    const activeItemIndex = navigationItems.findIndex(
+      (item) => item.path === location.pathname
+    );
+    setActiveIndex(activeItemIndex === -1 ? 1 : activeItemIndex);
+  }, [location.pathname]);
+
+  const handleClick = (index: number) => {
+    setActiveIndex(index);
+    navigate(navigationItems[index].path);
+  };
+
   return (
     <aside className="w-[240px] h-screen bg-gray-50 border-r border-gray-200 flex flex-col">
       {/* Header logo */}
@@ -40,8 +61,9 @@ const Sidebar: React.FC = () => {
           {navigationItems.map((item, index) => (
             <li key={index}>
               <div
+                onClick={() => handleClick(index)}
                 className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition-all ${
-                  item.active
+                  index === activeIndex
                     ? "bg-blue-100 text-blue-700 font-semibold"
                     : "text-slate-600 hover:bg-gray-100"
                 }`}

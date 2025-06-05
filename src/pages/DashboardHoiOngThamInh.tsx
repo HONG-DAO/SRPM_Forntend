@@ -4,8 +4,7 @@ import React from "react";
 import MainLayout from "@cnpm/layouts/MainLayout";
 import Sidebar from "@cnpm/components/HoiDongThamDinh/Sidebar";
 import DashboardHeader from "@cnpm/components/Header";
-import ProjectEvaluation from "@cnpm/components/HoiDongThamDinh/ProjectEvaluation";
-import PhaseProgress from "@cnpm/components/HoiDongThamDinh/PhaseProgress";
+import {ProjectEvaluation, PhaseProgress} from "@cnpm/components/HoiDongThamDinh/StatusIndicator";
 
 const DashboardHoiDongThamDinh: React.FC = () => {
   return (

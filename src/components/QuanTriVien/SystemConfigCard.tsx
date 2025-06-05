@@ -2,6 +2,74 @@
 
 import React, { useState } from "react";
 
+// Types
+interface NavigationItemProps {
+  icon: string;
+  label: string;
+  isActive?: boolean;
+}
+
+interface SidebarNavItemProps {
+  icon: string;
+  label: string;
+  isActive?: boolean;
+}
+
+// NavigationItem Component
+export const NavigationItem: React.FC<NavigationItemProps> = ({
+  icon,
+  label,
+  isActive,
+}) => {
+  const baseClasses = "flex gap-3 py-3 px-4 rounded-lg w-full";
+  const activeClasses = isActive ? "bg-blue-50" : "bg-black bg-opacity-0";
+  const textClasses = isActive ? "text-blue-600" : "text-slate-600";
+
+  return (
+    <li className="mt-1.5">
+      <div className={`${baseClasses} ${activeClasses}`}>
+        <div className="flex overflow-hidden justify-center items-center min-h-4">
+          <img
+            src={icon}
+            className="object-contain self-stretch my-auto w-4 aspect-square"
+            alt=""
+          />
+        </div>
+        <span className={`text-base font-semibold ${textClasses}`}>
+          {label}
+        </span>
+      </div>
+    </li>
+  );
+};
+
+// SidebarNavItem Component
+export function SidebarNavItem({ icon, label, isActive }: SidebarNavItemProps) {
+  const baseClasses = "flex gap-3 p-4 mt-1.5 w-full";
+  const activeClasses = isActive
+    ? "bg-blue-50 rounded-lg"
+    : "bg-black bg-opacity-0";
+  const textClasses = isActive ? "text-blue-600" : "text-slate-600";
+
+  return (
+    <li className={`${baseClasses} ${activeClasses}`}>
+      <div className="flex overflow-hidden justify-center items-center min-h-4">
+        <img
+          src={icon}
+          alt=""
+          className="object-contain self-stretch my-auto w-4 aspect-square"
+        />
+      </div>
+      <span
+        className={`grow shrink w-40 text-base font-semibold leading-none ${textClasses}`}
+      >
+        {label}
+      </span>
+    </li>
+  );
+}
+
+// SystemConfigCard Component
 export function SystemConfigCard() {
   const [defaultRole, setDefaultRole] = useState("Sinh viên");
   const [themeMode, setThemeMode] = useState("Sáng");
@@ -71,5 +139,95 @@ export function SystemConfigCard() {
         </div>
       </div>
     </section>
+  );
+}
+
+// Main Dashboard Component with demo
+export default function NavigationSystemDashboard() {
+  const [activeNav, setActiveNav] = useState(0);
+  const [activeSidebar, setActiveSidebar] = useState(1);
+
+  // Sample navigation items
+  const navigationItems = [
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/XXXXXXXX/icon1.png",
+      label: "Trang chủ"
+    },
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/XXXXXXXX/icon2.png",
+      label: "Quản lý người dùng"
+    },
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/XXXXXXXX/icon3.png",
+      label: "Cấu hình hệ thống"
+    }
+  ];
+
+  const sidebarItems = [
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/XXXXXXXX/sidebar1.png",
+      label: "Dashboard"
+    },
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/XXXXXXXX/sidebar2.png",
+      label: "Báo cáo"
+    },
+    {
+      icon: "https://cdn.builder.io/api/v1/image/assets/XXXXXXXX/sidebar3.png",
+      label: "Thiết lập"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <div className="w-64 bg-white shadow-sm border-r border-gray-200">
+        <div className="p-4">
+          <h2 className="text-lg font-semibold text-gray-800 mb-4">
+            Navigation Menu
+          </h2>
+          <ul className="space-y-1">
+            {navigationItems.map((item, index) => (
+              <div key={index} onClick={() => setActiveNav(index)}>
+                <NavigationItem
+                  icon={item.icon}
+                  label={item.label}
+                  isActive={activeNav === index}
+                />
+              </div>
+            ))}
+          </ul>
+        </div>
+
+        <div className="p-4 border-t border-gray-200">
+          <h3 className="text-md font-medium text-gray-700 mb-4">
+            Sidebar Navigation
+          </h3>
+          <ul>
+            {sidebarItems.map((item, index) => (
+              <div key={index} onClick={() => setActiveSidebar(index)}>
+                <SidebarNavItem
+                  icon={item.icon}
+                  label={item.label}
+                  isActive={activeSidebar === index}
+                />
+              </div>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-6">
+        <div className="max-w-full mx-auto">
+          <h1 className="text-2xl font-bold text-gray-800 mb-6">
+            Hệ thống quản lý
+          </h1>
+          
+          {/* System Config */}
+          <SystemConfigCard />
+        </div>
+      </div>
+    </div>
   );
 }

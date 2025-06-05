@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import Sidebar from "@cnpm/components/Du An/Sidebar";
+import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { ProjectCard } from "@cnpm/components/Du An/ProjectCard";
 import { SearchInput } from "@cnpm/components/Du An/SearchInput";

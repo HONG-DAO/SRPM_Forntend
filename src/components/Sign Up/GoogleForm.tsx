@@ -65,7 +65,7 @@ const GoogleSignUpForm: React.FC<GoogleSignUpFormProps> = ({
     try {
       await authService.completeRegistration({
         email,
-        fullname: values.name,
+        Name: values.name,
         password: values.password,
         repeatPassword: values.confirmPassword,
         address: values.address

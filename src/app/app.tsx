@@ -14,13 +14,18 @@ import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute, ProtectedRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
 import Profile from '@cnpm/pages/Profile';
+import Profile1 from '@cnpm/pages/Profile1';
+import Profile2 from '@cnpm/pages/Profile2';
 import TaiTro from '@cnpm/pages/TaiTro';
 import ThanhVienNghienCuu from '@cnpm/pages/ThanhVienNghienCuu';
 import TaoDuAnNghienCuuChinh from '@cnpm/pages/TaoDuAnNghienCuuChinh';
 import DuyetDuAn from '@cnpm/pages/DuyetDuAn';
 import DuyetTaiTro from '@cnpm/pages/DuyetTaiTro';
 import GoogleCallback from '@cnpm/components/Auth/GoogleCallBack';
-
+import TrangChiTietNhiemVu from '@cnpm/pages/TrangChiTietNhiemVuThanhVienNgienCuu';
+import PhieuYeuCauTaiTro from '@cnpm/pages/PhieuYeuCauTaiTro';
+import ThemTaiLieuNghienCuuChinh from '@cnpm/pages/ThemTaiLieuNghienCuuChinh';
+import ThemNhiemVu from '@cnpm/pages/ThemNhienVu';
 
 export function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
@@ -32,7 +37,6 @@ export function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Navigate to="/signin" replace />} />
-
             <Route element={<PublicRoute />}>
               <Route path="/signin" element={<SignInPage />} />
               <Route path="/signup" element={<SignUpPage />} />
@@ -44,12 +48,18 @@ export function App() {
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profile1" element={<Profile1 />} />
+              <Route path="/profile2" element={<Profile2 />} />
               <Route path="/tai-tro" element={<TaiTro />} />
               <Route path="/thanhviennghiencuu" element={<ThanhVienNghienCuu />} />
               <Route path="/taoduannghiencuuchinh" element={<TaoDuAnNghienCuuChinh />} />
               <Route path="/duyetduan" element={<DuyetDuAn />} />
               <Route path="/duyettaitro" element={<DuyetTaiTro />} />
               <Route path="/google-callback" element={<GoogleCallback />} />
+              {/* <Route path="/trangchitietnhiemvu" element={<TrangChiTietNhiemVu/>} />
+              <Route path="/phieuyeucautaitro" element={<PhieuYeuCauTaiTro />} /> */}
+              <Route path="/themtailieu" element={<ThemTaiLieuNghienCuuChinh/>} />
+              {/* <Route path="/themnhiemvu" element={<ThemNhiemVu/>} /> */}
             </Route>
           </Routes>
         </Router>

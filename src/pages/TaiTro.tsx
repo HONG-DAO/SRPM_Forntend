@@ -1,5 +1,5 @@
 import * as React from "react";
-import Sidebar from "@cnpm/components/Tai Tro/Sidebar";
+import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { SearchInput } from "@cnpm/components/Tai Tro/SearchInput";
 import { SponsorshipTable } from "@cnpm/components/Tai Tro/SponsorshipTable";

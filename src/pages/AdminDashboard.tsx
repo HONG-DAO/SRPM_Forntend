@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Sidebar from "@cnpm/components/Admin/Sidebar";
+import Sidebar from "@cnpm/components/Admin/Sidebar1";
 import Header from "@cnpm/components/Header";
-import { UserTable } from "@cnpm/components/Admin/UserTable";
-import { AddUserForm } from "@cnpm/components/Admin/AddUserForm";
-import { ApprovalSection } from "@cnpm/components/Admin/ApprovalSection";
-import { User, ApprovalRequest } from "@cnpm/components/Admin/types";
+import { AddUserForm, ApprovalSection, 
+  UserTable,
+  User,
+  ApprovalRequest  } from "@cnpm/components/Admin/AddUserForm";
 
 const mockUsers: User[] = [
   { name: "Nguyễn Văn A", email: "fe@ut.edu.vn", phone: "0000000001", role: "Sinh viên", status: "Hoạt động" },

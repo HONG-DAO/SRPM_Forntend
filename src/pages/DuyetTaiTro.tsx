@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import Sidebar from "@cnpm/components/Duyet Tai Tro/Sidebar";
+import Sidebar from "@cnpm/components/Admin/Sidebar1";
 import Header from "@cnpm/components/Header";
 import { TabSelector } from "@cnpm/components/Duyet Tai Tro/SponsorshipTabSelector";
 
