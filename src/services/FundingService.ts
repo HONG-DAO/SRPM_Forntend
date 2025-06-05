@@ -34,47 +34,22 @@ interface ApiResponse<T> {
   success: boolean;
 }
 
-// Không phải API, tạo lớp này để quản lý lỗi
-class FundingRequestError extends Error {
-  constructor(
-    message: string,
-    public statusCode?: number,
-    public operation?: string
-  ) {
-    super(message);
-    this.name = 'FundingRequestError';
-  }
-}
-
-// Tạo hàm xử lý lỗi
-const handleError = (error: any, operation: string): never => {
-  const message = error.response?.data?.message || error.message || 'Unknown error occurred';
-  const statusCode = error.response?.status;
-  
-  console.error(`Error in ${operation}:`, {
-    message,
-    statusCode,
-    originalError: error
-  });
-  
-  throw new FundingRequestError(message, statusCode, operation);
-}; 
-
 // Tạo yêu cầu
-export const createFundingRequest = async (data: CreateFundingRequest): Promise<ApiResponse<FundingRequest>> => {
+export const createFundingRequest = async (data: CreateFundingRequest): Promise<any> => {
   try {
-    const response = await api.post('/funding-requests', data);
+    const response: AxiosResponse<any> = await api.post('/funding-requests', data);
     return response.data;
   } catch (error) {
-    handleError(error, 'createFundingRequest');
+    console.error('Lỗi tạo yêu cầu:', error);
+    throw error;
   }
 };
 
 //  lấy danh sách yêu cầu cấp vốn
-export const getFundingRequests = async () => {
+export const getFundingRequests = async (): Promise<any> => {
   try {
-    const response = await api.get('/funding-requests');
-    return response.data;
+    const response: AxiosResponse<any> = await api.get('/funding-requests');
+    return response.data; // ← Thêm return statement này
   } catch (error) {
     console.error('Failed to fetch funding requests:', error);
     throw error;
@@ -82,29 +57,34 @@ export const getFundingRequests = async () => {
 };
 
 // Xem chi tiết yêu cầu
-export const getFundingRequestById = async (id: number) => {
+export const getFundingRequestById = async (id: number): Promise<any> => {
   try {
-    const response = await api.get(`/funding-requests/${id}`);
+    const response: AxiosResponse<any> = await api.get(`/funding-requests/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu ID ${id}:`, error);
     throw error;
   }
 };
+
 // Cập nhật yêu cầu
-export const updateFundingRequest = async (id: number, data: Partial<CreateFundingRequest>): Promise<ApiResponse<FundingRequest>> => {
+export const updateFundingRequest = async (
+  id: number,
+  data: Partial<FundingRequest>
+): Promise<any> => {
   try {
-    const response = await api.put(`/funding-requests/${id}`, data);
+    const response: AxiosResponse<any> = await api.put(`/funding-requests/${id}`, data);
     return response.data;
   } catch (error) {
-    handleError(error, `updateFundingRequest(${id})`);
+    console.error(`Lỗi khi cập nhật yêu cầu ID ${id}:`, error);
     throw error;
   }
 };
+
 // Xóa Yêu cầu
-export const deleteFundingRequest = async (id: number) => {
+export const deleteFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response = await api.delete(`/funding-requests/${id}`);
+    const response: AxiosResponse<any> = await api.delete(`/funding-requests/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi xoá yêu cầu ID ${id}:`, error);
@@ -113,9 +93,9 @@ export const deleteFundingRequest = async (id: number) => {
 };
 
 // Tìm yêu cầu bằng Id Project
-export const getFundingRequestsByProject = async (projectId: number) => {
+export const getFundingRequestsByProject = async (projectId: number): Promise<any> => {
   try {
-    const response = await api.get(`/funding-requests/project/${projectId}`);
+    const response: AxiosResponse<any> = await api.get(`/funding-requests/project/${projectId}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu theo projectId ${projectId}:`, error);
@@ -124,9 +104,9 @@ export const getFundingRequestsByProject = async (projectId: number) => {
 };
 
 // Lấy yêu cầu theo người yêu cầu
-export const getFundingRequestsByRequester = async (userId: number) => {
+export const getFundingRequestsByRequester = async (userId: number): Promise<any> => {
   try {
-    const response = await api.get(`/funding-requests/requested-by/${userId}`);
+    const response: AxiosResponse<any> = await api.get(`/funding-requests/requested-by/${userId}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu theo userId ${userId}:`, error);
@@ -135,9 +115,9 @@ export const getFundingRequestsByRequester = async (userId: number) => {
 };
 
 // Lọc yeu cầu theo trạng thái
-export const getFundingRequestsByStatus = async (status: string) => {
+export const getFundingRequestsByStatus = async (status: string): Promise<any> => {
   try {
-    const response = await api.get(`/funding-requests/status/${status}`);
+    const response: AxiosResponse<any> = await api.get(`/funding-requests/status/${status}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu theo status ${status}:`, error);
@@ -146,9 +126,9 @@ export const getFundingRequestsByStatus = async (status: string) => {
 };
 
 // Duyệt yêu cầu (approve)
-export const approveFundingRequest = async (id: number) => {
+export const approveFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response = await api.post(`/funding-requests/${id}/approve`);
+    const response: AxiosResponse<any> = await api.post(`/funding-requests/${id}/approve`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi duyệt yêu cầu ID ${id}:`, error);
@@ -157,9 +137,9 @@ export const approveFundingRequest = async (id: number) => {
 };
 
 // Từ chối yêu cầu (reject)
-export const rejectFundingRequest = async (id: number) => {
+export const rejectFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response = await api.post(`/funding-requests/${id}/reject`);
+    const response: AxiosResponse<any> = await api.post(`/funding-requests/${id}/reject`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi từ chối yêu cầu ID ${id}:`, error);

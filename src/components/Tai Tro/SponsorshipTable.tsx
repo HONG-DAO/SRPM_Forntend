@@ -8,7 +8,6 @@ type SponsorshipTableProps = {
 
 interface SponsorshipItem {
   projectName: string;
-  date: string;
   progress: number;
   amount: string;
   purpose: string;
@@ -18,7 +17,6 @@ interface SponsorshipItem {
 const initialData: SponsorshipItem[] = [
   {
     projectName: "New Work Les DO",
-    date: "12/12/2023",
     progress: 33,
     amount: "10.000.000VND",
     purpose: "unknown",
@@ -26,7 +24,6 @@ const initialData: SponsorshipItem[] = [
   },
   {
     projectName: "You can Change the text and all",
-    date: "12/12/2023",
     progress: 55,
     amount: "40.000.000VND",
     purpose: "unknown",
@@ -34,7 +31,6 @@ const initialData: SponsorshipItem[] = [
   },
   {
     projectName: "Landing Page Design",
-    date: "12/12/2023",
     progress: 12,
     amount: "50.000.000VND",
     purpose: "unknown",
@@ -42,7 +38,6 @@ const initialData: SponsorshipItem[] = [
   },
   {
     projectName: "Landing Page Design",
-    date: "12/12/2023",
     progress: 24,
     amount: "5.000.000VND",
     purpose: "unknown",
@@ -50,7 +45,6 @@ const initialData: SponsorshipItem[] = [
   },
   {
     projectName: "Landing Page Design",
-    date: "12/12/2023",
     progress: 12,
     amount: "1.000.000VND",
     purpose: "unknown",
@@ -82,7 +76,6 @@ export const SponsorshipTable: React.FC<SponsorshipTableProps> = ({ sortOrder })
       {/* Header */}
       <div className="hidden md:flex items-center text-gray-700 font-semibold text-lg px-3 py-2 border-b border-gray-300">
         <div className="w-[300px] px-3">Tên dự án</div>
-        <div className="w-28 px-3">Ngày</div>
         <div className="w-[140px] px-3">Số Tiền</div>
         <div className="flex-1 px-3">Mục đích</div>
         <div className="w-60 px-3">Trạng thái</div>
@@ -99,9 +92,9 @@ export const SponsorshipTable: React.FC<SponsorshipTableProps> = ({ sortOrder })
           <div className="w-full md:w-[300px] text-sm font-medium text-neutral-800 px-3 truncate">
             {item.projectName}
           </div>
-          <div className="w-full md:w-28 text-sm text-neutral-700 px-3">
+          {/* <div className="w-full md:w-28 text-sm text-neutral-700 px-3">
             {item.date}
-          </div>
+          </div> */}
           {/*
           <div className="w-full md:w-[174px] px-3">
             <ProgressBar progress={item.progress} />
@@ -110,7 +103,7 @@ export const SponsorshipTable: React.FC<SponsorshipTableProps> = ({ sortOrder })
           <div className="w-full md:w-[140px] text-sm text-neutral-700 px-3">
             {item.amount}
           </div>
-          <div className="w-full md:flex-1 text-sm text-neutral-700 px-3 truncate">
+          <div className="w-full md:w-[300px] text-sm font-medium text-neutral-800 px-3 truncate">
             {item.purpose}
           </div>
           <div className="w-full md:w-60 px-3 mt-2 md:mt-0">

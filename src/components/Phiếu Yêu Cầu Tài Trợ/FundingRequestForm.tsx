@@ -61,9 +61,6 @@ export const FundingRequestForm: React.FC<FundingRequestFormProps> = ({
             >
               <div className="w-full text-base whitespace-nowrap bg-black bg-opacity-0 max-md:max-w-full">
                 <div className="flex flex-wrap gap-3 px-3 pt-2.5 pb-4 bg-white rounded-md border border-gray-300 border-solid">
-                  <span className="self-start leading-none text-gray-500">
-                    ₫
-                  </span>
                   <input
                     type="number"
                     className="flex-auto text-gray-400 w-[658px] max-md:max-w-full bg-transparent border-none outline-none"

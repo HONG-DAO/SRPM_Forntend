@@ -25,8 +25,7 @@ import GoogleCallback from '@cnpm/components/Auth/GoogleCallBack';
 import TrangChiTietNhiemVu from '@cnpm/pages/TrangChiTietNhiemVuThanhVienNgienCuu';
 import PhieuYeuCauTaiTro from '@cnpm/pages/PhieuYeuCauTaiTro';
 import ThemTaiLieuNghienCuuChinh from '@cnpm/pages/ThemTaiLieuNghienCuuChinh';
-import ThemNhiemVu from '@cnpm/pages/ThemNhienVu';
-import ProjectDetailPage from '@cnpm/pages/ProjectDetailPage';
+import ThemNhiemVu from '@cnpm/pages/ThemNhiemVu';
 import { useParams } from 'react-router-dom';
 import ChiTietDuAn from '@cnpm/pages/ChiTietDuAn';
 function TrangChiTietNhiemVuWrapper() {
@@ -71,6 +70,7 @@ export function App() {
               <Route path="/duyetduan" element={<DuyetDuAn />} />
               <Route path="/duyettaitro" element={<DuyetTaiTro />} />
               <Route path="/google-callback" element={<GoogleCallback />} />
+              
               {/* Removed invalid route: TrangChiTietNhiemVu requires a taskId prop */}
               {/* <Route path="/trangchitietnhiemvu" element={<TrangChiTietNhiemVu/>} /> */}
               <Route
@@ -81,14 +81,8 @@ export function App() {
               /> 
               <Route path="/themtailieu" element={<ThemTaiLieuNghienCuuChinh/>} />
               <Route path="/themnhiemvu" element={<ThemNhiemVu availableMembers={[]} />} /> 
-              <Route
-                path="/project-detail/:projectId"
-                element={
-                  <ProjectDetailPage
-                    projectId={window.location.pathname.split('/').pop() || ''}
-                  />
-                }
-              />
+              
+      
             </Route>
           </Routes>
         </Router>

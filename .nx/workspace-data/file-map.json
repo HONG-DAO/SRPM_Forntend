@@ -228,7 +228,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "7666694529000292975",
+          "hash": "10242472299373607690",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -347,22 +347,8 @@
           ]
         },
         {
-          "file": "src/components/Du An/Tao Du An/Sidebar.tsx",
-          "hash": "8965745019617067848",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
           "file": "src/components/Du An/Thêm Tài Liệu/DocumentUpload.tsx",
           "hash": "8747304910366435779",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/Du An/Thêm Tài Liệu/Sidebar.tsx",
-          "hash": "14601999050270859693",
           "deps": [
             "npm:react"
           ]
@@ -485,7 +471,7 @@
         },
         {
           "file": "src/components/Phiếu Yêu Cầu Tài Trợ/FundingRequestForm.tsx",
-          "hash": "1013381235176018765",
+          "hash": "1028112490776762404",
           "deps": [
             "npm:react"
           ]
@@ -619,7 +605,7 @@
         },
         {
           "file": "src/components/Tai Tro/SponsorshipTable.tsx",
-          "hash": "8950967419995820660",
+          "hash": "17538131033936480213",
           "deps": [
             "npm:react"
           ]
@@ -669,7 +655,7 @@
         },
         {
           "file": "src/components/TrangChuThanhVienNghienCuu/Sidebar.tsx",
-          "hash": "5778645738765590337",
+          "hash": "10301860462686869444",
           "deps": [
             "npm:react-router-dom",
             "npm:react"
@@ -761,9 +747,10 @@
         },
         {
           "file": "src/pages/ChiTietDuAn.tsx",
-          "hash": "661508157859090333",
+          "hash": "14709875993114914163",
           "deps": [
-            "npm:react"
+            "npm:react",
+            "npm:react-router-dom"
           ]
         },
         {
@@ -796,9 +783,10 @@
         },
         {
           "file": "src/pages/DuAn.tsx",
-          "hash": "4425494779133766170",
+          "hash": "1045102506266243498",
           "deps": [
-            "npm:react"
+            "npm:react",
+            "npm:react-router-dom"
           ]
         },
         {
@@ -865,13 +853,6 @@
           ]
         },
         {
-          "file": "src/pages/ProjectDetailPage.tsx",
-          "hash": "12763569854981204852",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
           "file": "src/pages/SignUp.tsx",
           "hash": "8692135595078964185",
           "deps": [
@@ -901,7 +882,7 @@
           ]
         },
         {
-          "file": "src/pages/ThemNhienVu.tsx",
+          "file": "src/pages/ThemNhiemVu.tsx",
           "hash": "10066459428445621308",
           "deps": [
             "npm:react"
@@ -909,7 +890,7 @@
         },
         {
           "file": "src/pages/ThemTaiLieuNghienCuuChinh.tsx",
-          "hash": "16980482511052481249",
+          "hash": "17405895044984387758",
           "deps": [
             "npm:react"
           ]
@@ -934,8 +915,19 @@
           "hash": "9754980678907211993"
         },
         {
+          "file": "src/services/Evaluations.ts",
+          "hash": "3244421341483603138"
+        },
+        {
           "file": "src/services/FundingService.ts",
-          "hash": "5021525170912252216",
+          "hash": "18284841465176721637",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "src/services/Notifications.ts",
+          "hash": "9566217839889365001",
           "deps": [
             "npm:axios"
           ]
