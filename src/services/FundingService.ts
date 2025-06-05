@@ -19,21 +19,54 @@ interface FundingRequest {
   updatedAt: string;
 }
 
-// Tạo yêu cầu
-export const createFundingRequest = async (data: {
+interface CreateFundingRequest {
   title: string;
   description: string;
   amount: number;
   purpose: string;
   justificationDocumentUrl: string;
   projectId: number;
-}) => {
+}
+
+interface ApiResponse<T> {
+  data: T;
+  message?: string;
+  success: boolean;
+}
+
+// Không phải API, tạo lớp này để quản lý lỗi
+class FundingRequestError extends Error {
+  constructor(
+    message: string,
+    public statusCode?: number,
+    public operation?: string
+  ) {
+    super(message);
+    this.name = 'FundingRequestError';
+  }
+}
+
+// Tạo hàm xử lý lỗi
+const handleError = (error: any, operation: string): never => {
+  const message = error.response?.data?.message || error.message || 'Unknown error occurred';
+  const statusCode = error.response?.status;
+  
+  console.error(`Error in ${operation}:`, {
+    message,
+    statusCode,
+    originalError: error
+  });
+  
+  throw new FundingRequestError(message, statusCode, operation);
+}; 
+
+// Tạo yêu cầu
+export const createFundingRequest = async (data: CreateFundingRequest): Promise<ApiResponse<FundingRequest>> => {
   try {
     const response = await api.post('/funding-requests', data);
     return response.data;
   } catch (error) {
-    console.error('Lỗi tạo yêu cầu:', error);
-    throw error;
+    handleError(error, 'createFundingRequest');
   }
 };
 
@@ -59,15 +92,12 @@ export const getFundingRequestById = async (id: number) => {
   }
 };
 // Cập nhật yêu cầu
-export const updateFundingRequest = async (
-  id: number,
-  data: Partial<FundingRequest>
-) => {
+export const updateFundingRequest = async (id: number, data: Partial<CreateFundingRequest>): Promise<ApiResponse<FundingRequest>> => {
   try {
     const response = await api.put(`/funding-requests/${id}`, data);
     return response.data;
   } catch (error) {
-    console.error(`Lỗi khi cập nhật yêu cầu ID ${id}:`, error);
+    handleError(error, `updateFundingRequest(${id})`);
     throw error;
   }
 };

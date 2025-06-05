@@ -228,7 +228,7 @@
         },
         {
           "file": "src/app/app.tsx",
-          "hash": "5484946567326214136",
+          "hash": "7666694529000292975",
           "deps": [
             "npm:react",
             "npm:react-router-dom",
@@ -263,22 +263,8 @@
           ]
         },
         {
-          "file": "src/components/ChiTietDuAn/AttachmenItem.tsx",
-          "hash": "18358485813829855318",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/ChiTietDuAn/AttachmentList.tsx",
-          "hash": "17453012798837904903",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/ChiTietDuAn/ProjectInfo.tsx",
-          "hash": "1022638942359146870",
+          "file": "src/components/ChiTietDuAn/ChiTietDuAn.tsx",
+          "hash": "4265892955448509566",
           "deps": [
             "npm:react"
           ]
@@ -286,13 +272,6 @@
         {
           "file": "src/components/ChiTietDuAn/Sidebar.tsx",
           "hash": "1114877867990389714",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "src/components/ChiTietDuAn/TaskItem.tsx",
-          "hash": "1103184043306063668",
           "deps": [
             "npm:react"
           ]
@@ -782,7 +761,7 @@
         },
         {
           "file": "src/pages/ChiTietDuAn.tsx",
-          "hash": "12191516355106198258",
+          "hash": "661508157859090333",
           "deps": [
             "npm:react"
           ]
@@ -887,7 +866,7 @@
         },
         {
           "file": "src/pages/ProjectDetailPage.tsx",
-          "hash": "15857696257918540109",
+          "hash": "12763569854981204852",
           "deps": [
             "npm:react"
           ]
@@ -956,7 +935,7 @@
         },
         {
           "file": "src/services/FundingService.ts",
-          "hash": "12447505401006848994",
+          "hash": "5021525170912252216",
           "deps": [
             "npm:axios"
           ]

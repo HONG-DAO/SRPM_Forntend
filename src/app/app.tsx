@@ -28,7 +28,7 @@ import ThemTaiLieuNghienCuuChinh from '@cnpm/pages/ThemTaiLieuNghienCuuChinh';
 import ThemNhiemVu from '@cnpm/pages/ThemNhienVu';
 import ProjectDetailPage from '@cnpm/pages/ProjectDetailPage';
 import { useParams } from 'react-router-dom';
-
+import ChiTietDuAn from '@cnpm/pages/ChiTietDuAn';
 function TrangChiTietNhiemVuWrapper() {
   const { taskId = '' } = useParams<{ taskId: string }>();
   return <TrangChiTietNhiemVu taskId={taskId} />;
@@ -56,6 +56,7 @@ export function App() {
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile1" element={<Profile1 />} />
+              <Route path="/chitietduan" element={<ChiTietDuAn />} />
               <Route
                 path="/trangchitietnhiemvu/:taskId"
                 element={

@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import Sidebar from "@cnpm/components/ChiTietDuAn/Sidebar";
+import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
-import { TaskList } from "../components/ChiTietDuAn/TaskList";
-import { AttachmentList } from "../components/ChiTietDuAn/AttachmentList";
+import { TaskList,AttachmentList } from "../components/ChiTietDuAn/ChiTietDuAn";
+
 
 export const ChiTietDuAn_nnc: React.FC = () => {
   return (

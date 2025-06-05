@@ -2,9 +2,8 @@
 import React from "react";
 import Sidebar from "@cnpm/components/ChiTietDuAn/Sidebar";
 import Header from "@cnpm/components/Header";
-import { ProjectInfo } from "../components/ChiTietDuAn/ProjectInfo";
-import { TaskList } from "../components/ChiTietDuAn/TaskList";
-import { AttachmentList } from "../components/ChiTietDuAn/AttachmentList";
+import { ProjectInfo,TaskList,AttachmentList } from "../components/ChiTietDuAn/ChiTietDuAn";
+
 
 interface ProjectDetailPageProps {
   projectId: string; // Example prop: ID of the project to display
