@@ -26,6 +26,13 @@ import TrangChiTietNhiemVu from '@cnpm/pages/TrangChiTietNhiemVuThanhVienNgienCu
 import PhieuYeuCauTaiTro from '@cnpm/pages/PhieuYeuCauTaiTro';
 import ThemTaiLieuNghienCuuChinh from '@cnpm/pages/ThemTaiLieuNghienCuuChinh';
 import ThemNhiemVu from '@cnpm/pages/ThemNhienVu';
+import ProjectDetailPage from '@cnpm/pages/ProjectDetailPage';
+import { useParams } from 'react-router-dom';
+
+function TrangChiTietNhiemVuWrapper() {
+  const { taskId = '' } = useParams<{ taskId: string }>();
+  return <TrangChiTietNhiemVu taskId={taskId} />;
+}
 
 export function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
@@ -49,17 +56,38 @@ export function App() {
               <Route path="/duan" element={<DuAn />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile1" element={<Profile1 />} />
-              <Route path="/profile2" element={<Profile2 />} />
+              <Route
+                path="/trangchitietnhiemvu/:taskId"
+                element={
+                  <React.Suspense fallback={null}>
+                    <TrangChiTietNhiemVuWrapper />
+                  </React.Suspense>
+                }
+              />
               <Route path="/tai-tro" element={<TaiTro />} />
               <Route path="/thanhviennghiencuu" element={<ThanhVienNghienCuu />} />
               <Route path="/taoduannghiencuuchinh" element={<TaoDuAnNghienCuuChinh />} />
               <Route path="/duyetduan" element={<DuyetDuAn />} />
               <Route path="/duyettaitro" element={<DuyetTaiTro />} />
               <Route path="/google-callback" element={<GoogleCallback />} />
-              {/* <Route path="/trangchitietnhiemvu" element={<TrangChiTietNhiemVu/>} />
-              <Route path="/phieuyeucautaitro" element={<PhieuYeuCauTaiTro />} /> */}
+              {/* Removed invalid route: TrangChiTietNhiemVu requires a taskId prop */}
+              {/* <Route path="/trangchitietnhiemvu" element={<TrangChiTietNhiemVu/>} /> */}
+              <Route
+                path="/phieuyeucautaitro"
+                element={
+                  <PhieuYeuCauTaiTro onSubmit={(formData) => { /* handle form submission here */ }} />
+                }
+              /> 
               <Route path="/themtailieu" element={<ThemTaiLieuNghienCuuChinh/>} />
-              {/* <Route path="/themnhiemvu" element={<ThemNhiemVu/>} /> */}
+              <Route path="/themnhiemvu" element={<ThemNhiemVu availableMembers={[]} />} /> 
+              <Route
+                path="/project-detail/:projectId"
+                element={
+                  <ProjectDetailPage
+                    projectId={window.location.pathname.split('/').pop() || ''}
+                  />
+                }
+              />
             </Route>
           </Routes>
         </Router>

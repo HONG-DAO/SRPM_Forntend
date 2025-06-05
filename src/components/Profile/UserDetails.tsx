@@ -140,57 +140,6 @@ export const UserDetails = () => {
           </button>
         </div>
       </form>
-
-      {/* Form đổi mật khẩu */}
-      <form
-        onSubmit={handlePasswordSubmit}
-        className="mt-10 border-t border-gray-300 pt-6 max-w-md"
-      >
-        <h3 className="text-lg font-semibold mb-4 text-gray-700">
-          Thay đổi mật khẩu
-        </h3>
-        <div className="flex flex-col gap-4">
-          <label className="flex flex-col text-gray-700">
-            Mật khẩu hiện tại
-            <input
-              type="password"
-              name="current"
-              value={passwords.current}
-              onChange={handlePasswordsChange}
-              className="mt-1 rounded border border-gray-300 p-2"
-              required
-            />
-          </label>
-          <label className="flex flex-col text-gray-700">
-            Mật khẩu mới
-            <input
-              type="password"
-              name="newPassword"
-              value={passwords.newPassword}
-              onChange={handlePasswordsChange}
-              className="mt-1 rounded border border-gray-300 p-2"
-              required
-            />
-          </label>
-          <label className="flex flex-col text-gray-700">
-            Xác nhận mật khẩu mới
-            <input
-              type="password"
-              name="confirmNewPassword"
-              value={passwords.confirmNewPassword}
-              onChange={handlePasswordsChange}
-              className="mt-1 rounded border border-gray-300 p-2"
-              required
-            />
-          </label>
-          <button
-            type="submit"
-            className="bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
-          >
-            Đổi mật khẩu
-          </button>
-        </div>
-      </form>
     </section>
   );
 };

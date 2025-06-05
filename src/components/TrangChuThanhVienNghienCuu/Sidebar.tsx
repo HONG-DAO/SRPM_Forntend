@@ -33,19 +33,35 @@ const navigationItems = [
 const Sidebar: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
-  const location = useLocation(); // Để theo dõi URL hiện tại
+  const location = useLocation();
 
   // Đồng bộ activeIndex với URL
   useEffect(() => {
-    const activeItemIndex = navigationItems.findIndex(
-      (item) => item.path === location.pathname
+    const currentPath = location.pathname;
+    
+    // Tìm item active dựa trên path
+    let activeItemIndex = navigationItems.findIndex(
+      (item) => currentPath.startsWith(item.path)
     );
-    setActiveIndex(activeItemIndex === -1 ? 0 : activeItemIndex);
-  }, [location.pathname]); // Khi pathname thay đổi, cập nhật activeIndex
+
+    // Xử lý các trường hợp đặc biệt
+    if (activeItemIndex === -1) {
+      // Nếu đang ở trang tạo yêu cầu tài trợ, highlight "Tài trợ"
+      if (currentPath === "/phieuyeucautaitro") {
+        activeItemIndex = navigationItems.findIndex(item => item.path === "/tai-tro");
+      }
+      // Nếu vẫn không tìm thấy, mặc định là Trang chủ
+      if (activeItemIndex === -1) {
+        activeItemIndex = 0;
+      }
+    }
+
+    setActiveIndex(activeItemIndex);
+  }, [location.pathname]);
 
   const handleClick = (index: number) => {
-    setActiveIndex(index); // Cập nhật activeIndex ngay lập tức
-    navigate(navigationItems[index].path); // Điều hướng tới URL tương ứng
+    setActiveIndex(index);
+    navigate(navigationItems[index].path);
   };
 
   return (
@@ -63,7 +79,7 @@ const Sidebar: React.FC = () => {
           {navigationItems.map((item, index) => (
             <li key={index}>
               <div
-                onClick={() => handleClick(index)} // Cập nhật activeIndex và điều hướng
+                onClick={() => handleClick(index)}
                 className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition-all ${
                   index === activeIndex
                     ? "bg-blue-100 text-blue-700 font-semibold"
