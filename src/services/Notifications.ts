@@ -1,44 +1,76 @@
 import { AxiosResponse } from 'axios';
 import api from './apiService';
 
-interface Notification {
-  id: number;
+export interface Notification {
+  id: string;
   title: string;
   message: string;
-  type: string;
-  relatedEntityType: string;
-  relatedEntityId: number;
+  type: 'info' | 'success' | 'warning' | 'error';
   isRead: boolean;
-  userId: number;
   createdAt: string;
+  updatedAt: string;
 }
 
-interface CreateNotificationDto {
-  title: string;
-  message: string;
-  type: string;
-  relatedEntityType?: string;
-  relatedEntityId?: number;
-  userId: number;
+export interface NotificationResponse {
+  data: Notification[];
+  total: number;
+  page: number;
+  limit: number;
 }
-interface NotificationQuery {
+
+const baseUrl = '/api/Notifications';
+
+export const getNotificationById = async (id: string): Promise<AxiosResponse<Notification>> => {
+  const response = await api.get<Notification>(`${baseUrl}/${id}`);
+  return response;
+};
+
+// Xóa tt theo id
+export const deleteNotification = async (id: string): Promise<AxiosResponse<void>> => {
+  return await api.delete(`${baseUrl}/${id}`);
+};
+
+// Lấy tất cả tt
+export const getAllNotifications = async (params?: {
   page?: number;
-  pageSize?: number;
+  limit?: number;
   type?: string;
   isRead?: boolean;
-  fromDate?: string;
-  toDate?: string;
-}
+}): Promise<AxiosResponse<NotificationResponse>> => {
+  const response = await api.get<NotificationResponse>(baseUrl, { params });
+  return response;
+};
 
-interface ApiResponse<T> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  message?: string;
-}
-// Lấy thông báo theo ID
-// Xóa thông báo theo ID
-// Lấy tất cả thông báo
-// Lấy danh sách thông báo chưa đọc
-// Đánh dấu 1 thông báo là đã đọc
-// Đánh dấu tất cả là đã đọc
+// Lấy tt chưa đọc
+export const getUnreadNotifications = async (): Promise<AxiosResponse<Notification[]>> => {
+  const response = await api.get<Notification[]>(`${baseUrl}/unread`);
+  return response;
+};
+
+// Đánh dấu đã đọc
+export const markAsRead = async (id: string): Promise<AxiosResponse<void>> => {
+  return await api.patch(`${baseUrl}/${id}/mark-as-read`);
+};
+
+// Đánh dấu tất cả đã đọc
+export const markAllAsRead = async (): Promise<AxiosResponse<void>> => {
+  return await api.patch(`${baseUrl}/mark-all-as-read`);
+};
+
+// Đếm số tt chưa đọc
+export const getUnreadCount = async (): Promise<number> => {
+  const response = await getUnreadNotifications();
+  return response.data.length;
+};
+
+// Xóa
+export const bulkDeleteNotifications = async (ids: string[]): Promise<void> => {
+  const deletePromises = ids.map(id => deleteNotification(id));
+  await Promise.all(deletePromises);
+};
+
+// Đánh dấu nhiều đã đọc
+export const markMultipleAsRead = async (ids: string[]): Promise<void> => {
+  const markPromises = ids.map(id => markAsRead(id));
+  await Promise.all(markPromises);
+};
