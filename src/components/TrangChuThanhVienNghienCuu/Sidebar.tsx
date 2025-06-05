@@ -56,6 +56,12 @@ const Sidebar: React.FC = () => {
       if (currentPath === "/taoduannghiencuuchinh") {
         activeItemIndex = navigationItems.findIndex(item => item.path === "/duan");
       }
+      if (currentPath === "/themnhiemvu") {
+        activeItemIndex = navigationItems.findIndex(item => item.path === "/duan");
+      }
+      if (currentPath === "/themtailieu") {
+        activeItemIndex = navigationItems.findIndex(item => item.path === "/duan");
+      }
       // Nếu vẫn không tìm thấy, mặc định là Trang chủ
       if (activeItemIndex === -1) {
         activeItemIndex = 0;

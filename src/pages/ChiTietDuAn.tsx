@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
@@ -11,8 +10,12 @@ export const ChiTietDuAn_nnc: React.FC = () => {
 
   const projectTitle = location.state?.title || "Tên Dự án";
 
-  const handleCreateClick = () => {
-    navigate("/taoduannghiencuuchinh");
+  const handleCreateTask = () => {
+    navigate("/themnhiemvu", { state: { project: projectTitle } });
+  };
+
+  const handleCreateAttachment = () => {
+    navigate("/themtailieu", { state: { project: projectTitle } });
   };
 
   return (
@@ -32,10 +35,10 @@ export const ChiTietDuAn_nnc: React.FC = () => {
               {/* Nút tạo nhiệm vụ */}
               <div className="flex items-center justify-end mb-2">
                 <button
-                  onClick={handleCreateClick} // 👈 Điều hướng
+                  onClick={handleCreateTask}
                   className="flex items-center gap-2 px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors text-base font-semibold"
                 >
-                  + Tạo
+                  + Tạo nhiệm vụ
                 </button>
               </div>
 
@@ -44,10 +47,10 @@ export const ChiTietDuAn_nnc: React.FC = () => {
               {/* Nút tạo tài liệu đính kèm */}
               <div className="flex items-center justify-end mt-10 mb-2">
                 <button
-                  onClick={handleCreateClick} // 👈 Điều hướng giống nhau
+                  onClick={handleCreateAttachment}
                   className="flex items-center gap-2 px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors text-base font-semibold"
                 >
-                  + Tạo
+                  + Tạo tài liệu
                 </button>
               </div>
 

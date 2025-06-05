@@ -655,7 +655,7 @@
         },
         {
           "file": "src/components/TrangChuThanhVienNghienCuu/Sidebar.tsx",
-          "hash": "10301860462686869444",
+          "hash": "7032324010138472970",
           "deps": [
             "npm:react-router-dom",
             "npm:react"
@@ -747,7 +747,7 @@
         },
         {
           "file": "src/pages/ChiTietDuAn.tsx",
-          "hash": "14709875993114914163",
+          "hash": "3446318141072155172",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
