@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { DocumentUpload } from "@cnpm/components/Du An/Thêm Tài Liệu/DocumentUpload";
 

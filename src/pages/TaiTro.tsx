@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { SearchInput } from "@cnpm/components/Tai Tro/SearchInput";
 import { SponsorshipTable } from "@cnpm/components/Tai Tro/SponsorshipTable";
@@ -20,7 +20,7 @@ function TaiTroThanhVienNghienCuu() {
           <Sidebar />
         </aside>
 
-        <section className="w-[82%] flex flex-col">
+        <section className="w-[110%] flex flex-col">
           <Header />
 
           <div className="flex flex-col mx-auto w-full pb-64">
@@ -30,6 +30,7 @@ function TaiTroThanhVienNghienCuu() {
 
             <div className="flex justify-between items-center mt-7 w-full max-w-[989px] mx-auto">
               <SearchInput />
+              {/* Nút tạo */}
               <button
                 onClick={() => navigate("/phieuyeucautaitro")}
                 className="flex items-center gap-2 px-5 py-3 text-base font-semibold text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition"
@@ -42,8 +43,7 @@ function TaiTroThanhVienNghienCuu() {
                 <span>{"Tạo yêu cầu"}</span>
               </button>
             </div>
-
-            <div className="mt-6 px-6 pt-6 pb-20 bg-black rounded-2xl shadow-sm max-w-[1158px] mx-auto">
+            <div className="mt-6 px-6 pt-6 pb-20 bg-white rounded-2xl shadow-sm max-w-[1158px] mx-auto">
               <div className="flex justify-between items-center px-3 pb-2.5">
                 <h2 className="text-xl font-bold text-gray-700">
                   Danh sách yêu cầu tài trợ

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { ProjectsTable } from "@cnpm/components/TrangChuThanhVienNghienCuu/ProjectsTable";
 import { Icons } from "@cnpm/components/TrangChuThanhVienNghienCuu/Icons";
@@ -51,36 +51,13 @@ export const ThanhVienNghienCuu = () => {
 					<Sidebar />
 				</div>
 				{/* Main content */}
-				<div className="w-[82%] flex flex-col">
+				<div className="w-[110%] flex flex-col">
 					<Header />
 					<section className="flex flex-col items-center pb-20 w-full max-w-full">
 						<div className="flex flex-col gap-6 p-6 w-full max-w-[1136px] max-md:p-4 max-md:w-full">
 							<h1 className="mb-6 text-3xl text-black max-sm:text-2xl">
 								Xin chào, tên !
 							</h1>
-							<section className="inline-flex gap-6 items-center mb-6 max-md:flex-wrap max-md:gap-4 max-sm:flex-col max-sm:gap-3">
-								<StatsCard
-									title="Dự án"
-									value={10}
-									icon={<Icons.Projects />}
-								/>
-								<StatsCard
-									title="Chờ Duyệt"
-									value={2}
-									icon={<Icons.Clock />}
-								/>
-								<StatsCard
-									title="Đã duyệt"
-									value={10}
-									icon={<Icons.Checkmark />}
-									showViewDetails={false}
-								/>
-								<StatsCard
-									title="Yêu cầu tài trợ"
-									value={4}
-									icon={<Icons.User />}
-								/>
-							</section>
 							<section className="w-full max-w-[1136px] max-md:max-w-full">
 								<h2 className="text-xl font-semibold text-gray-700 mb-4"></h2>
 								<div className="flex gap-6 max-md:flex-col max-md:gap-4" style={{ height: 340 }}>
@@ -89,7 +66,7 @@ export const ThanhVienNghienCuu = () => {
 											<TaskList />
 										</div>
 									</div>
-									<aside className="px-6 py-4 bg-white rounded-xl border border-solid shadow-sm border-slate-200 w-[266px] max-md:w-full flex flex-col h-full">
+									<aside className="px-6 py-4 bg-white rounded-xl border border-solid shadow-sm border-slate-200 w-[400px] max-md:w-full flex flex-col h-full">
 										<h2 className="pt-0.5 h-4 text-base leading-4 text-slate-500 mb-4 font-semibold">
 											Thông báo chung
 										</h2>

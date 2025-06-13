@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { FundingRequestForm } from "@cnpm/components/Phiếu Yêu Cầu Tài Trợ/FundingRequestForm";
 

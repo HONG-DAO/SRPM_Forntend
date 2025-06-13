@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { ProjectForm } from "@cnpm/components/Du An/Tao Du An/ProjectForm";
 

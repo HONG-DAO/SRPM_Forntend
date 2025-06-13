@@ -2,7 +2,7 @@
 
 import React from "react";
 import MainLayout from "@cnpm/layouts/MainLayout";
-import Sidebar from "@cnpm/components/HoiDongThamDinh/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/HD_Sidebar";
 import DashboardHeader from "@cnpm/components/Header";
 import {ProjectEvaluation, PhaseProgress} from "@cnpm/components/HoiDongThamDinh/StatusIndicator";
 

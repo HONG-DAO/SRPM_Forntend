@@ -28,16 +28,10 @@ interface CreateFundingRequest {
   projectId: number;
 }
 
-interface ApiResponse<T> {
-  data: T;
-  message?: string;
-  success: boolean;
-}
-
-// Tạo yêu cầu
+// Tạo yêu cầu cấp vốn
 export const createFundingRequest = async (data: CreateFundingRequest): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.post('/funding-requests', data);
+    const response: AxiosResponse<any> = await api.post('/FundingRequests', data);
     return response.data;
   } catch (error) {
     console.error('Lỗi tạo yêu cầu:', error);
@@ -45,21 +39,21 @@ export const createFundingRequest = async (data: CreateFundingRequest): Promise<
   }
 };
 
-//  lấy danh sách yêu cầu cấp vốn
+// Lấy danh sách yêu cầu cấp vốn
 export const getFundingRequests = async (): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.get('/funding-requests');
-    return response.data; // ← Thêm return statement này
+    const response: AxiosResponse<any> = await api.get('/FundingRequests');
+    return response.data;
   } catch (error) {
     console.error('Failed to fetch funding requests:', error);
     throw error;
   }
 };
 
-// Xem chi tiết yêu cầu
+// Lấy yêu cầu cấp vốn theo ID
 export const getFundingRequestById = async (id: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.get(`/funding-requests/${id}`);
+    const response: AxiosResponse<any> = await api.get(`/FundingRequests/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu ID ${id}:`, error);
@@ -67,13 +61,13 @@ export const getFundingRequestById = async (id: number): Promise<any> => {
   }
 };
 
-// Cập nhật yêu cầu
+// Cập nhật yêu cầu cấp vốn
 export const updateFundingRequest = async (
   id: number,
   data: Partial<FundingRequest>
 ): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.put(`/funding-requests/${id}`, data);
+    const response: AxiosResponse<any> = await api.put(`/FundingRequests/${id}`, data);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi cập nhật yêu cầu ID ${id}:`, error);
@@ -81,10 +75,10 @@ export const updateFundingRequest = async (
   }
 };
 
-// Xóa Yêu cầu
+// Xóa yêu cầu cấp vốn
 export const deleteFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.delete(`/funding-requests/${id}`);
+    const response: AxiosResponse<any> = await api.delete(`/FundingRequests/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi xoá yêu cầu ID ${id}:`, error);
@@ -92,10 +86,10 @@ export const deleteFundingRequest = async (id: number): Promise<any> => {
   }
 };
 
-// Tìm yêu cầu bằng Id Project
+// Lấy yêu cầu cấp vốn theo projectId
 export const getFundingRequestsByProject = async (projectId: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.get(`/funding-requests/project/${projectId}`);
+    const response: AxiosResponse<any> = await api.get(`/FundingRequests/project/${projectId}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu theo projectId ${projectId}:`, error);
@@ -103,10 +97,10 @@ export const getFundingRequestsByProject = async (projectId: number): Promise<an
   }
 };
 
-// Lấy yêu cầu theo người yêu cầu
+// Lấy yêu cầu cấp vốn theo người yêu cầu
 export const getFundingRequestsByRequester = async (userId: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.get(`/funding-requests/requested-by/${userId}`);
+    const response: AxiosResponse<any> = await api.get(`/FundingRequests/requested-by/${userId}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu theo userId ${userId}:`, error);
@@ -114,10 +108,10 @@ export const getFundingRequestsByRequester = async (userId: number): Promise<any
   }
 };
 
-// Lọc yeu cầu theo trạng thái
+// Lọc yêu cầu cấp vốn theo trạng thái
 export const getFundingRequestsByStatus = async (status: string): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.get(`/funding-requests/status/${status}`);
+    const response: AxiosResponse<any> = await api.get(`/FundingRequests/status/${status}`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi lấy yêu cầu theo status ${status}:`, error);
@@ -128,7 +122,7 @@ export const getFundingRequestsByStatus = async (status: string): Promise<any> =
 // Duyệt yêu cầu (approve)
 export const approveFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.post(`/funding-requests/${id}/approve`);
+    const response: AxiosResponse<any> = await api.post(`/FundingRequests/${id}/approve`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi duyệt yêu cầu ID ${id}:`, error);
@@ -139,7 +133,7 @@ export const approveFundingRequest = async (id: number): Promise<any> => {
 // Từ chối yêu cầu (reject)
 export const rejectFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.post(`/funding-requests/${id}/reject`);
+    const response: AxiosResponse<any> = await api.post(`/FundingRequests/${id}/reject`);
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi từ chối yêu cầu ID ${id}:`, error);

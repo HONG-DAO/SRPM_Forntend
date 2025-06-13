@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { FormField } from "./FormField";
 import { FileUpload } from "./FileUpload";
-import { createFundingRequest } from "@cnpm/services/FundingService"; // Import API function
-import { getProjects } from "@cnpm/services/Project";
+import { createFundingRequest } from "@cnpm/services/fundingService"; // Import API function
+import { getProjects } from "@cnpm/services/projectService";
 
 interface Project {
   id: number;
@@ -172,8 +172,7 @@ export const FundingRequestForm: React.FC<FundingRequestFormProps> = ({
         onSubmit(formData);
       }
 
-      // Show success message
-      alert("Yêu cầu tài trợ đã được gửi thành công!");
+      alert("Yêu cầu tài trợ gửi thành công!");
 
       // Reset form
       setFormData({
@@ -219,7 +218,7 @@ export const FundingRequestForm: React.FC<FundingRequestFormProps> = ({
                     {isLoadingProjects 
                       ? "Đang tải danh sách dự án..." 
                       : projectsError 
-                        ? "Lỗi tải dự án" 
+                        ? "Chưa có dự án" 
                         : "Chọn dự án của bạn"
                     }
                   </option>

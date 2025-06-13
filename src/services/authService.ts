@@ -103,7 +103,22 @@ export const authService = {
   // Cập nhật profile
   async updateUserProfile(payload: UpdateProfilePayload): Promise<AxiosResponse<any>> {
     try {
-      const response = await api.put('/Users/profile', payload); // ✅
+      const response = await api.put('/Users/profile', payload);
+      
+      // Cập nhật local state sau khi update thành công
+      if (response.data && userState.profile) {
+        const updatedProfile = {
+          ...userState.profile,
+          name: payload.name,
+          avatarUrl: payload.avatarUrl || null,
+          backgroundUrl: payload.backgroundUrl || null,
+          socialLinks: payload.socialLinks ? payload.socialLinks.split(',').map(s => s.trim()) : [],
+        };
+        
+        userState.profile = updatedProfile;
+        sessionStorage.setItem('user_profile', JSON.stringify(updatedProfile));
+      }
+      
       return response;
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -111,24 +126,24 @@ export const authService = {
     }
   },
 
-  // Đăng xuất
-  async logout(): Promise<void> {
-    try {
-      await api.post(`${this.AUTH_PATH}/logout`);
-      sessionStorage.clear();
-      document.cookie = 'refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      userState.profile = null;
-    } catch (error: unknown) {
-      if ((error as { response?: { status?: number } })?.response?.status === 401) {
-        console.warn('Unauthorized during logout. Clearing session anyway.');
-      } else {
-        console.error('Logout error:', error);
-        throw error;
-      }
-    } finally {
-      window.location.replace('/signin');
-    }
-  },
+  // // Đăng xuất
+  // async logout(): Promise<void> {
+  //   try {
+  //     await api.post(`${this.AUTH_PATH}/logout`);
+  //     sessionStorage.clear();
+  //     document.cookie = 'refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  //     userState.profile = null;
+  //   } catch (error: unknown) {
+  //     if ((error as { response?: { status?: number } })?.response?.status === 401) {
+  //       console.warn('Unauthorized during logout. Clearing session anyway.');
+  //     } else {
+  //       console.error('Logout error:', error);
+  //       throw error;
+  //     }
+  //   } finally {
+  //     window.location.replace('/signin');
+  //   }
+  // },
 
   // Kiểm tra email đã tồn tại
   async checkExistingUser(email: string): Promise<boolean> {
@@ -206,4 +221,5 @@ export const authService = {
       return null;
     }
   }
+  
 };

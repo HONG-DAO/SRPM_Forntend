@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { TaskList, AttachmentList } from "../components/ChiTietDuAn/ChiTietDuAn";
 import { useParams, useNavigate } from "react-router-dom";

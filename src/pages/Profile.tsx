@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, ChangeEvent, useRef } from "react";
-import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
+import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
 import Header from "@cnpm/components/Header";
 import { UserDetails } from "@cnpm/components/Profile/UserDetails";
-import { ResearchInfo } from "@cnpm/components/Profile/ResearchInfo";
 
 const ThongTinCaNhanThanhVienNghienCuu = () => {
   const [previewImg, setPreviewImg] = useState<string>(
@@ -54,7 +53,7 @@ const ThongTinCaNhanThanhVienNghienCuu = () => {
           <Sidebar />
         </div>
         {/* Main content */}
-        <div className="w-[82%] flex flex-col">
+        <div className="w-[110%] flex flex-col">
           {/* Header */}
           <Header />
           {/* Content */}
@@ -122,7 +121,6 @@ const ThongTinCaNhanThanhVienNghienCuu = () => {
                   <UserDetails />
                 </div>
                 <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                  <ResearchInfo />
                 </div>
               </div>
             </div>
