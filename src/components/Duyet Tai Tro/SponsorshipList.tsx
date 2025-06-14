@@ -37,7 +37,7 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
 
   // Fetch danh sách yêu cầu cấp vốn
   const fetchFundingRequests = async () => {
-    if (!autoFetch && initialProjects) return;
+    if (!autoFetch) return;
     
     setLoading(true);
     setError(null);
@@ -46,9 +46,9 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
       // Giả sử API trả về dữ liệu có cấu trúc khác, bạn cần map về đúng interface
       const mappedData: Sponsorship[] = response.data?.map((item: any) => ({
         id: item.id.toString(),
-        name: item.project_name || item.name || '',
-        proposer: item.proposer_name || item.proposer || '',
-        date: new Date(item.created_at || item.date).toLocaleDateString('vi-VN'),
+        name: item.title || item.projectTitle || item.name || '',
+        proposer: item.requestedByName || item.proposer || '',
+        date: new Date(item.createdAt || item.date).toLocaleDateString('vi-VN'),
         amount: item.amount || 0
       })) || [];
       
@@ -63,15 +63,19 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
 
   // Xử lý duyệt yêu cầu
   const handleApprove = async (id: string) => {
+    if (onApprove) {
+      // Nếu có custom handler từ parent, sử dụng nó
+      onApprove(id);
+      return;
+    }
+
+    // Fallback logic nếu không có custom handler
     try {
       setLoading(true);
       await approveFundingRequest(Number(id));
       
       // Cập nhật lại danh sách sau khi duyệt thành công
       await fetchFundingRequests();
-      
-      // Gọi callback nếu có
-      onApprove?.(id);
       
       alert('Duyệt yêu cầu thành công!');
     } catch (err) {
@@ -84,15 +88,19 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
 
   // Xử lý từ chối yêu cầu
   const handleReject = async (id: string) => {
+    if (onReject) {
+      // Nếu có custom handler từ parent, sử dụng nó
+      onReject(id);
+      return;
+    }
+
+    // Fallback logic nếu không có custom handler
     try {
       setLoading(true);
       await rejectFundingRequest(Number(id));
       
       // Cập nhật lại danh sách sau khi từ chối thành công
       await fetchFundingRequests();
-      
-      // Gọi callback nếu có
-      onReject?.(id);
       
       alert('Từ chối yêu cầu thành công!');
     } catch (err) {
@@ -105,26 +113,37 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
 
   // Xử lý xem chi tiết
   const handleView = async (id: string) => {
+    if (onView) {
+      // Nếu có custom handler từ parent, sử dụng nó
+      onView(id);
+      return;
+    }
+
+    // Fallback logic nếu không có custom handler
     try {
-      if (onView) {
-        onView(id);
-      } else {
-        // Nếu không có custom handler, fetch chi tiết và hiển thị
-        const detail = await getFundingRequestById(Number(id));
-        console.log('Funding request detail:', detail);
-        // Bạn có thể mở modal hoặc navigate đến trang chi tiết
-        alert(`Chi tiết yêu cầu ID: ${id}\n${JSON.stringify(detail, null, 2)}`);
-      }
+      const detail = await getFundingRequestById(Number(id));
+      console.log('Funding request detail:', detail);
+      // Bạn có thể mở modal hoặc navigate đến trang chi tiết
+      alert(`Chi tiết yêu cầu ID: ${id}\n${JSON.stringify(detail, null, 2)}`);
     } catch (err) {
       console.error('Error fetching request detail:', err);
       alert('Không thể tải chi tiết yêu cầu');
     }
   };
 
-  // Fetch data khi component mount
+  // Cập nhật projects khi initialProjects thay đổi
   useEffect(() => {
-    fetchFundingRequests();
-  }, []);
+    if (initialProjects) {
+      setProjects(initialProjects);
+    }
+  }, [initialProjects]);
+
+  // Fetch data khi component mount (chỉ khi autoFetch = true)
+  useEffect(() => {
+    if (autoFetch) {
+      fetchFundingRequests();
+    }
+  }, [autoFetch]);
 
   // Hiển thị loading
   if (loading && projects.length === 0) {
@@ -153,16 +172,18 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-2 mt-6">
-      {/* Header với nút refresh */}
+      {/* Header */}
       <div className="flex justify-between items-center px-4 py-2">
         <h3 className="font-semibold text-gray-800">Danh sách yêu cầu cấp vốn</h3>
-        <button
-          onClick={fetchFundingRequests}
-          disabled={loading}
-          className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 disabled:opacity-50"
-        >
-          {loading ? 'Đang tải...' : 'Làm mới'}
-        </button>
+        {autoFetch && (
+          <button
+            onClick={fetchFundingRequests}
+            disabled={loading}
+            className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 disabled:opacity-50"
+          >
+            {loading ? 'Đang tải...' : 'Làm mới'}
+          </button>
+        )}
       </div>
 
       <table className="min-w-full border-separate border-spacing-0">

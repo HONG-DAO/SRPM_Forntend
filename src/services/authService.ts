@@ -126,25 +126,6 @@ export const authService = {
     }
   },
 
-  // // Đăng xuất
-  // async logout(): Promise<void> {
-  //   try {
-  //     await api.post(`${this.AUTH_PATH}/logout`);
-  //     sessionStorage.clear();
-  //     document.cookie = 'refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-  //     userState.profile = null;
-  //   } catch (error: unknown) {
-  //     if ((error as { response?: { status?: number } })?.response?.status === 401) {
-  //       console.warn('Unauthorized during logout. Clearing session anyway.');
-  //     } else {
-  //       console.error('Logout error:', error);
-  //       throw error;
-  //     }
-  //   } finally {
-  //     window.location.replace('/signin');
-  //   }
-  // },
-
   // Kiểm tra email đã tồn tại
   async checkExistingUser(email: string): Promise<boolean> {
     try {

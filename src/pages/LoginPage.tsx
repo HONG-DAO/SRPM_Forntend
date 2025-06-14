@@ -2,13 +2,44 @@
 import * as React from "react";
 import { LoginForm } from "@cnpm/components/Sign In/LoginForm";
 import { useNavigate } from 'react-router-dom';
-import { authService } from "@cnpm/services/authService"; // 🔁 Đảm bảo import đúng
+import { authService } from "@cnpm/services/authService";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = React.useState('');
   const [successMessage, setSuccessMessage] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+
+  // Hàm xác định trang chuyển hướng dựa trên roles
+  const getRedirectPath = (roles: string[], email: string) => {
+    // Kiểm tra role cụ thể (ưu tiên role cao nhất)
+    if (roles.includes('Admin')) {
+      return '/quantrivien';
+    }
+    if (roles.includes('Staff')) {
+      return '/admin';
+    }
+    if (roles.includes('AppraisalCouncil')) {
+      return '/hoidongthamdinh';
+    }
+    if (roles.includes('HostInstitution')) {
+      return '/profile2'; // hoặc trang dành cho HostInstitution
+    }
+    if (roles.includes('Researcher') || roles.includes('PrincipalInvestigator')) {
+      return '/thanhviennghiencuu';
+    }
+
+    // Fallback: nếu không có role nào, xác định theo email
+    const lowerEmail = email.toLowerCase();
+    if (lowerEmail === "admin@ut.edu.vn") return '/admin';
+    if (lowerEmail === "staff@ut.edu.vn") return '/quantrivien';
+    if (lowerEmail === "hdtd@ut.edu.vn") return '/hoidongthamdinh';
+    if (lowerEmail.endsWith("@gv.edu.vn")) return '/quantrivien1';
+    if (lowerEmail.endsWith("@ut.edu.vn")) return '/thanhviennghiencuu';
+
+    // Default fallback
+    return '/thanhviennghiencuu';
+  };
 
   // Đăng nhập bằng email + password
   const handleLogin = async (email: string, password: string, rememberMe: boolean) => {
@@ -30,21 +61,35 @@ export default function LoginPage() {
         const data = await response.json();
 
         const token = data.token;
-        if (token) {
+        const user = data.user;
+
+        if (token && user) {
+          // Lưu token
           sessionStorage.setItem('accessToken', token);
 
           try {
+            // Tải profile người dùng
             await authService.fetchAndStoreUserProfile();
+            
+            // Xác định trang chuyển hướng dựa trên roles
+            const redirectPath = getRedirectPath(user.roles || [], email);
+            
             setSuccessMessage('Đăng nhập thành công!');
-            console.log('Đăng nhập thành công → chuyển trang');
-            navigate('/thanhviennghiencuu');
+            console.log(`Đăng nhập thành công → chuyển trang: ${redirectPath}`);
+            console.log('User roles:', user.roles);
+            
+            // Chuyển hướng với delay nhỏ để người dùng thấy thông báo thành công
+            setTimeout(() => {
+              navigate(redirectPath);
+            }, 500);
+            
           } catch (profileError) {
             console.error('Lỗi khi tải profile:', profileError);
             setErrorMessage('Đăng nhập thành công nhưng lỗi khi tải hồ sơ người dùng');
           }
         } else {
-          console.error('Không có token trong phản hồi');
-          setErrorMessage('Đăng nhập thất bại: không nhận được token');
+          console.error('Không có token hoặc user trong phản hồi');
+          setErrorMessage('Đăng nhập thất bại: không nhận được thông tin đầy đủ');
         }
       } else {
         const errorData = await response.json();

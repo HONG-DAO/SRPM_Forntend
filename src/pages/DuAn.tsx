@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { useState, useEffect } from "react";
-import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
+import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { ProjectCard } from "@cnpm/components/Du An/ProjectCard";
 import { SearchInput } from "@cnpm/components/Du An/SearchInput";
@@ -48,7 +48,7 @@ export default function DuAn() {
         }
 
         // Determine user role - you may need to adjust this logic based on your role system
-        const role = profile?.roles?.[0] || "researcher-member"; // Default to researcher-member
+        const role = profile?.roles?.[0] || "Researcher"; // Default to researcher-member
         setUserRole(role);
         
         await fetchUserProjects(profile);
@@ -74,7 +74,7 @@ export default function DuAn() {
       let userProjects: Project[] = [];
 
       // Check if user is Principal Investigator or Researcher Member
-      const isPrincipalInvestigator = profile.roles?.includes("principal-investigator") || 
+      const isPrincipalInvestigator = profile.roles?.includes("PrincipalInvestigator") || 
                                      profile.roles?.includes("nghien-cuu-chinh");
 
       if (isPrincipalInvestigator) {
@@ -95,10 +95,10 @@ export default function DuAn() {
   };
 
   const handleProjectClick = (project: Project) => {
-    const isPrincipalInvestigator = userProfile?.roles?.includes("principal-investigator") || 
+    const isPrincipalInvestigator = userProfile?.roles?.includes("PrincipalInvestigator") || 
                                    userProfile?.roles?.includes("nghien-cuu-chinh");
 
-    if (isPrincipalInvestigator) {
+    if (!isPrincipalInvestigator) {
       navigate("/chitietduan", {
         state: {
           id: project.id,
@@ -110,7 +110,8 @@ export default function DuAn() {
           endDate: project.endDate,
           status: project.status,
           ownerId: project.ownerId,
-          researchTopicId: project.researchTopicId
+          researchTopicId: project.researchTopicId,
+          project: project
         },
       });
     } else {

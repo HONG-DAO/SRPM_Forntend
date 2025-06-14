@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, useRef } from "react";
-import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
+import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { UserDetails } from "@cnpm/components/Profile/UserDetails";
 

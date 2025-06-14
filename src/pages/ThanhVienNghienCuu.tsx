@@ -1,10 +1,9 @@
+// src/pages/ThanhVienNghienCuu.tsx
 "use client";
 import React from "react";
-import Sidebar from "@cnpm/components/sidebar/TVNN_Sidebar";
+import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { ProjectsTable } from "@cnpm/components/TrangChuThanhVienNghienCuu/ProjectsTable";
-import { Icons } from "@cnpm/components/TrangChuThanhVienNghienCuu/Icons";
-import { StatsCard } from "@cnpm/components/TrangChuThanhVienNghienCuu/StatsCard";
 import { TaskList } from "@cnpm/components/TrangChuThanhVienNghienCuu/TaskList";
 
 const recentProjects = [
@@ -44,57 +43,69 @@ const thongBaoChung = [
 
 export const ThanhVienNghienCuu = () => {
 	return (
-		<main className="bg-slate-50 min-h-screen w-full">
+		<main className="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full">
 			<div className="flex flex-row min-h-screen">
 				{/* Sidebar */}
-				<div className="w-[18%] border-r border-slate-200 bg-gray">
+				<div className="w-[18%] border-r border-slate-200 bg-gray-50">
 					<Sidebar />
 				</div>
+				
 				{/* Main content */}
 				<div className="w-[110%] flex flex-col">
 					<Header />
-					<section className="flex flex-col items-center pb-20 w-full max-w-full">
-						<div className="flex flex-col gap-6 p-6 w-full max-w-[1136px] max-md:p-4 max-md:w-full">
-							<h1 className="mb-6 text-3xl text-black max-sm:text-2xl">
-								Xin chào, tên !
-							</h1>
-							<section className="w-full max-w-[1136px] max-md:max-w-full">
-								<h2 className="text-xl font-semibold text-gray-700 mb-4"></h2>
-								<div className="flex gap-6 max-md:flex-col max-md:gap-4" style={{ height: 340 }}>
-									<div className="flex-1 h-full">
-										<div className="h-full overflow-y-auto pr-2">
-											<TaskList />
+					
+					<section className="flex-1 overflow-y-auto">
+						<div className="max-w-7xl mx-auto px-6 py-8">
+							{/* Welcome Section */}
+							<div className="mb-8">
+								<h1 className="text-4xl font-bold text-gray-800 mb-2">
+									Xin chào, tên !
+								</h1>
+								<p className="text-lg text-gray-600">
+									Chúc bạn một ngày làm việc hiệu quả
+								</p>
+							</div>
+
+							{/* Tasks and Notifications Section */}
+							<div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+								<div className="xl:col-span-2">
+									<TaskList />
+								</div>
+								
+								<div className="xl:col-span-1">
+									<div className="bg-white rounded-2xl border border-slate-200 shadow-sm h-full">
+										<div className="p-6 border-b border-slate-100">
+											<h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+												<div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+												Thông báo chung
+											</h2>
 										</div>
-									</div>
-									<aside className="px-6 py-4 bg-white rounded-xl border border-solid shadow-sm border-slate-200 w-[400px] max-md:w-full flex flex-col h-full">
-										<h2 className="pt-0.5 h-4 text-base leading-4 text-slate-500 mb-4 font-semibold">
-											Thông báo chung
-										</h2>
-										<div className="flex flex-col gap-3 h-full overflow-y-auto pr-2">
+										
+										<div className="p-6 space-y-4 max-h-80 overflow-y-auto">
 											{thongBaoChung.map((tb, idx) => (
 												<div
 													key={idx}
-													className="flex items-start gap-2 px-3 py-2 bg-slate-50 rounded-lg border border-slate-100"
+													className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 hover:shadow-md transition-all duration-200"
 												>
-													<span className="mt-0.5 text-sky-500">
-														{/* Icon thông báo */}
-														<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-															<circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
-															<path stroke="currentColor" strokeWidth="2" d="M12 8v4m0 4h.01"/>
+													<div className="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+														<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 														</svg>
-													</span>
-													<span className="text-sm text-slate-700">{tb.message}</span>
+													</div>
+													<p className="text-sm text-gray-700 leading-relaxed flex-1">
+														{tb.message}
+													</p>
 												</div>
 											))}
 										</div>
-									</aside>
+									</div>
 								</div>
-							</section>
-							<section className="w-full max-w-[1136px] max-md:max-w-full mt-8">
-								<div className="flex gap-6 max-md:flex-col max-md:gap-4">
-									<ProjectsTable projects={recentProjects} />
-								</div>
-							</section>
+							</div>
+
+							{/* Projects Section */}
+							<div className="mb-8">
+								<ProjectsTable projects={recentProjects} />
+							</div>
 						</div>
 					</section>
 				</div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, useRef } from "react";
-import Sidebar from "@cnpm/components/sidebar/HD_Sidebar";
+import Sidebar from "@cnpm/components/HoiDongThamDinh/Sidebar";
 import Header from "@cnpm/components/Header";
 import { UserDetails } from "@cnpm/components/Profile/UserDetails";
 // import { ResearchInfo } from "@cnpm/components/Profile/ResearchInfo";
@@ -54,7 +54,7 @@ const ThongTinCaNhanThanhVienNghienCuu = () => {
           <Sidebar />
         </div>
         {/* Main content */}
-        <div className="w-[82%] flex flex-col">
+        <div className="w-[110%] flex flex-col">
           {/* Header */}
           <Header />
           {/* Content */}
