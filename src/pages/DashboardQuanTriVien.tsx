@@ -17,7 +17,6 @@ export default function DashboardQuanTriVien() {
           {/* Main content */}
           <div className="w-[110%] flex flex-col">
             <Header />
-            {/* Frame chứa card, không dính header, sidebar */}
             <div className="flex-1 flex justify-center items-center">
               {/* Frame: căn giữa mọi thứ */}
               <div className="w-[1000px] h-[500px] ">

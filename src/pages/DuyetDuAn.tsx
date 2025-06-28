@@ -13,7 +13,7 @@ export default function DuyetDuAn() {
           <Sidebar />
         </div>
         {/* Main content */}
-        <div className="flex-1 flex flex-col">
+        <div className="w-[110%] flex flex-col">
           {/* Header */}
           <Header />
           {/* Content */}

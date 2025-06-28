@@ -1,9 +1,10 @@
 import api from './apiService';
 import { AxiosResponse } from 'axios';
 
-interface Project {
+export interface Project {
   id: number;
   title: string;
+  proposerName?: string;
   description: string;
   objectives: string;
   expectedOutcomes: string;
@@ -134,8 +135,10 @@ export const getProjectsByMember = async (memberId: number): Promise<Project[]> 
 // lấy trạng thái Pj
 export const getProjectsByStatus = async (status: string): Promise<Project[]> => {
   try {
-    const response: AxiosResponse<Project[]> = await api.get(`/Projects/status/${status}`);
-    return response.data;
+    const response: AxiosResponse<Project[] | { data: Project[] }> = await api.get(`/Projects/status/${status}`);
+    if (Array.isArray(response.data)) return response.data;
+    if (response.data && Array.isArray((response.data as any).data)) return (response.data as any).data;
+    return [];
   } catch (error) {
     handleError(error, 'Get projects by status');
     throw error;
@@ -181,6 +184,16 @@ export const removeMemberFromProject = async (projectId: number, memberId: numbe
     await api.delete(`/api/Projects/${projectId}/members/${memberId}`);
   } catch (error) {
     handleError(error, 'Remove member from project');
+    throw error;
+  }
+};
+
+// PATCH /Projects/{id}/status - cập nhật trạng thái dự án
+export const updateProjectStatus = async (id: number, status: string): Promise<void> => {
+  try {
+    await api.patch(`/api/Projects/${id}/status`, { status });
+  } catch (error) {
+    handleError(error, 'Update project status');
     throw error;
   }
 };

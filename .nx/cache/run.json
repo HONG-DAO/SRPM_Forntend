@@ -1,9 +1,21 @@
 {
   "run": {
     "command": "nx serve",
-    "startTime": "2025-06-14T14:10:14.978Z",
-    "endTime": "2025-06-14T14:13:56.694Z",
+    "startTime": "2025-06-28T04:35:02.627Z",
+    "endTime": "2025-06-28T04:40:30.419Z",
     "inner": false
   },
-  "tasks": []
+  "tasks": [
+    {
+      "taskId": "cnpm:serve",
+      "target": "serve",
+      "projectName": "cnpm",
+      "hash": "7225095053244598248",
+      "startTime": "2025-06-28T04:35:02.646Z",
+      "endTime": "2025-06-28T04:40:30.406Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
 }

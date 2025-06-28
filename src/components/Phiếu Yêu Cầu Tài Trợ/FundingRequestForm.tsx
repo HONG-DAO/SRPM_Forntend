@@ -269,14 +269,6 @@ export const FundingRequestForm: React.FC<FundingRequestFormProps> = ({
               />
             </FormField>
 
-            <FormField
-              label="File sao kê :"
-              className="mt-2.5 text-sm max-md:max-w-full"
-            >
-              <FileUpload 
-                onFileChange={handleFileChange}
-              />
-            </FormField>
 
             <FormField label="Trình bày :" className="mt-2.5 max-md:max-w-full">
               <textarea

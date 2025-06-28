@@ -1,23 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "@cnpm/components/Admin/Sidebar1";
 import Header from "@cnpm/components/Header";
-import { ApprovalSection, UserTable, User, ApprovalRequest } from "@cnpm/components/Admin/AddUserForm";
-
-const mockUsers: User[] = [
-  { name: "Nguyễn Văn A", email: "fe@ut.edu.vn", phone: "0000000001", role: "Sinh viên", status: "Hoạt động" },
-  { name: "Trần Thị B", email: "b@gv.ut.edu.vn", phone: "0000000002", role: "Giảng viên", status: "Hoạt động" },
-  { name: "Lê Văn C", email: "c@st.ut.edu.vn", phone: "0000000003", role: "Nhân viên", status: "Hoạt động" },
-  { name: "Bùi Bảo D", email: "d@it.ut.edu.vn", phone: "0000000004", role: "Quản trị viên", status: "Hoạt động" },
-];
-
-const mockRequests: ApprovalRequest[] = [
-  { sender: "Nguyên Văn A", requestType: "Đăng ký đề tài", date: "12/05/2025", status: "Chờ duyệt" },
-  { sender: "Trần Thị B", requestType: "Cập nhật hồ sơ", date: "13/05/2025", status: "Chờ duyệt" },
-];
+import { UserTable, User } from "@cnpm/components/Admin/AddUserForm";
+import usersService from "../services/usersService";
 
 const InputDesign: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const usersData = await usersService.getAllUsers();
+        setUsers(usersData.map(u => ({
+          name: u.name || "",
+          email: u.email || "",
+          phone: "",
+          role: Array.isArray(u.roles) ? u.roles.join(", ") : "",
+          status: ""
+        })));
+      } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu người dùng:", error);
+        setUsers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Đang tải dữ liệu...</div>;
+
   return (
     <main className="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full">
       <div className="flex flex-row min-h-screen">
@@ -51,12 +67,12 @@ const InputDesign: React.FC = () => {
             </div>
 
             {/* User table */}
-            <UserTable users={mockUsers} />
+            <UserTable users={users} />
 
             {/* Forms */}
-            <div className="flex gap-6 mt-6 flex-wrap max-md:flex-col">
-              <ApprovalSection requests={mockRequests} />
-            </div>
+            {/* <div className="flex gap-6 mt-6 flex-wrap max-md:flex-col">
+              <ApprovalSection requests={requests} />
+            </div> */}
           </main>
         </div>
       </div>

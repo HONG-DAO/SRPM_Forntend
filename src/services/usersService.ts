@@ -8,6 +8,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
+    'ngrok-skip-browser-warning': 'true', // Bỏ qua cảnh báo ngrok
   },
 });
 
@@ -51,7 +52,11 @@ const usersService = {
   getAllUsers: async (): Promise<User[]> => {
     try {
       const response = await api.get(`/Users`);
-      return response.data;
+      // Đảm bảo luôn trả về mảng
+      if (Array.isArray(response.data)) return response.data;
+      if (response.data && Array.isArray(response.data.users)) return response.data.users;
+      if (response.data && Array.isArray(response.data.data)) return response.data.data;
+      return [];
     } catch (error) {
       console.error('Error fetching all users:', error);
       throw error;

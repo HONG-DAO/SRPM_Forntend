@@ -6,6 +6,7 @@ import Header from "@cnpm/components/Header";
 import { UserRoleFilter, UserList } from "@cnpm/components/QuanTriVien/QuanTriVien1/UserRoleFilter";
 
 export const DashboardLayout = () => {
+  const [selectedRole, setSelectedRole] = React.useState<string>("all");
   return (
     <MainLayout>
       <div className="min-h-screen w-screen bg-gray-50 flex">
@@ -22,9 +23,9 @@ export const DashboardLayout = () => {
           <main className="flex-1 p-6 overflow-y-auto bg-gray-50">
             <div className="w-full max-w-[1280px] mx-auto px-6">
               <div className="w-[750px] mb-4">
-                <UserRoleFilter />
+                <UserRoleFilter onRoleChange={setSelectedRole} />
               </div>
-              <UserList />
+              <UserList selectedRole={selectedRole} />
             </div>
           </main>
         </section>

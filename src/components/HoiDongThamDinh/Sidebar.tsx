@@ -20,14 +20,14 @@ const Sidebar: React.FC = () => {
   // Danh sách navigation items
   const navigationItems = [
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/c2254af2fb19b76bb45058bb3dd09a66ce195e39?placeholderIfAbsent=true",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/ae10dc620c8906cfd90d03e5e71cfd48ef8aa9d3?placeholderIfAbsent=true&apiKey=2e3ce05d0ae44b27a762aa356ea6be1a",
       label: "Trang chủ",
       path: "/hoidongthamdinh",
     },
     {
       icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/f3e88bfa9ae998efe3390d97326af3323f959e8e?placeholderIfAbsent=true",
       label: "Thông tin cá nhân",
-      path: "/profile3", // Sửa từ /profile3 thành /profile (route có sẵn)
+      path: "/profile", // Sửa từ /profile3 thành /profile (route có sẵn)
     },
     {
       icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/08232af02813e185a2f8fc37b028087b250d5b28?placeholderIfAbsent=true",

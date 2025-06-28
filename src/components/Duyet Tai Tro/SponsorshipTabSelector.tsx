@@ -167,7 +167,7 @@ export const TabSelector = () => {
       <div className="flex flex-wrap gap-1 items-center justify-center px-1 py-1 mt-10 text-sm font-bold text-teal-500 bg-gray-50 rounded-lg max-md:max-w-full">
         <button 
           onClick={() => handleTabClick("pending")}
-          className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[271px] max-md:px-5 ${
+          className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[270px] max-md:px-5 ${
             activeTab === "pending" 
               ? "text-white bg-teal-500" 
               : "bg-teal-100"
@@ -177,7 +177,7 @@ export const TabSelector = () => {
         </button>
         <button 
           onClick={() => handleTabClick("approved")}
-          className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[271px] max-md:px-5 ${
+          className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[270px] max-md:px-5 ${
             activeTab === "approved" 
               ? "text-white bg-teal-500" 
               : "bg-teal-100"
@@ -187,7 +187,7 @@ export const TabSelector = () => {
         </button>
         <button 
           onClick={() => handleTabClick("rejected")}
-          className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[271px] max-md:px-5 ${
+          className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[270px] max-md:px-5 ${
             activeTab === "rejected" 
               ? "text-white bg-teal-500" 
               : "bg-teal-100"

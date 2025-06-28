@@ -17,7 +17,7 @@ export const getNotificationDetails = async (
   id: string
 ): Promise<Notification> => {
   try {
-    const response = await ApiService.get<Notification>(`/notifications/${id}`);
+    const response = await ApiService.get<Notification>(`/Notifications/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching notification with id ${id}:`, error);
@@ -28,7 +28,7 @@ export const getNotificationDetails = async (
 // Lấy danh sách thông báo
 export const getNotifications = async (): Promise<Notification[]> => {
   try {
-    const response = await ApiService.get<Notification[]>('/notifications');
+    const response = await ApiService.get<Notification[]>('/Notifications');
     return response.data;
   } catch (error) {
     console.error('Error fetching notifications:', error);
@@ -39,7 +39,7 @@ export const getNotifications = async (): Promise<Notification[]> => {
 // Lấy các thông báo chưa đọc
 export const getUnreadNotifications = async (): Promise<Notification[]> => {
   try {
-    const response = await ApiService.get<Notification[]>('/notifications/unread');
+    const response = await ApiService.get<Notification[]>('/Notifications/unread');
     return response.data;
   } catch (error) {
     console.error('Error fetching unread notifications:', error);
@@ -50,7 +50,7 @@ export const getUnreadNotifications = async (): Promise<Notification[]> => {
 // Đánh dấu thông báo là đã đọc
 export const markAsRead = async (id: string): Promise<AxiosResponse> => {
   try {
-    const response = await ApiService.patch<void>(`/notifications/${id}/mark-as-read`);
+    const response = await ApiService.patch<void>(`/Notifications/${id}/mark-as-read`);
     return response;
   } catch (error) {
     console.error(`Error marking notification ${id} as read:`, error);
@@ -61,7 +61,7 @@ export const markAsRead = async (id: string): Promise<AxiosResponse> => {
 // Đánh dấu tất cả thông báo là đã đọc
 export const markAllAsRead = async (): Promise<AxiosResponse> => {
   try {
-    const response = await ApiService.patch<void>('/notifications/mark-all-as-read');
+    const response = await ApiService.patch<void>('/Notifications/mark-all-as-read');
     return response;
   } catch (error) {
     console.error('Error marking all notifications as read:', error);
@@ -72,7 +72,7 @@ export const markAllAsRead = async (): Promise<AxiosResponse> => {
 // Xóa thông báo theo ID
 export const deleteNotification = async (id: string): Promise<AxiosResponse> => {
   try {
-    const response = await ApiService.delete(`/notifications/${id}`);
+    const response = await ApiService.delete(`/Notifications/${id}`);
     return response;
   } catch (error) {
     console.error(`Error deleting notification with id ${id}:`, error);

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import usersService from "../../services/usersService";
 
 // Types
 export interface User {
@@ -60,49 +61,7 @@ export const AddUserForm: React.FC = () => {
   );
 };
 
-// ApprovalSection Component
-interface ApprovalSectionProps {
-  requests: ApprovalRequest[];
-}
 
-export const ApprovalSection: React.FC<ApprovalSectionProps> = ({ requests }) => {
-  return (
-    <div className="flex-1 p-6 rounded-xl border border-gray-200 bg-white shadow-sm max-sm:w-full">
-      <h2 className="mb-6 text-lg font-semibold text-gray-800">
-        Phê duyệt giao dịch & hoạt động
-      </h2>
-
-      {/* Header Row */}
-      <div className="grid grid-cols-5 gap-4 py-3 text-sm font-medium text-gray-500 border-b border-gray-300">
-        <span>Người gửi</span>
-        <span>Loại yêu cầu</span>
-        <span>Ngày gửi</span>
-        <span>Trạng thái</span>
-        <span className="text-center">Hành động</span>
-      </div>
-
-      {/* Request Rows */}
-      <div className="divide-y divide-gray-200">
-        {requests.map((request, index) => (
-          <div key={index} className="grid grid-cols-5 gap-4 py-4 text-sm text-gray-700 items-center">
-            <span>{request.sender}</span>
-            <span>{request.requestType}</span>
-            <span>{request.date}</span>
-            <span>{request.status}</span>
-            <div className="flex justify-center gap-2">
-              <button className="px-3 py-1 text-xs font-medium text-white bg-green-500 rounded-md hover:bg-green-600 transition">
-                Duyệt
-              </button>
-              <button className="px-3 py-1 text-xs font-medium text-white bg-rose-500 rounded-md hover:bg-rose-600 transition">
-                Từ chối
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 // UserTable Component
 interface UserTableProps {
@@ -163,45 +122,32 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
 
 // Main Dashboard Component with demo data
 export default function UserManagementDashboard() {
-  // Sample data
-  const sampleUsers: User[] = [
-    {
-      name: "Nguyễn Văn A",
-      email: "nguyenvana@example.com",
-      phone: "0123456789",
-      role: "Sinh viên",
-      status: "Hoạt động"
-    },
-    {
-      name: "Trần Thị B",
-      email: "tranthib@example.com",
-      phone: "0987654321",
-      role: "Giảng viên",
-      status: "Hoạt động"
-    },
-    {
-      name: "Lê Văn C",
-      email: "levanc@example.com",
-      phone: "0111222333",
-      role: "Nhân viên",
-      status: "Tạm khóa"
-    }
-  ];
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const sampleRequests: ApprovalRequest[] = [
-    {
-      sender: "Phạm Văn D",
-      requestType: "Cấp tài khoản",
-      date: "15/12/2024",
-      status: "Chờ duyệt"
-    },
-    {
-      sender: "Hoàng Thị E",
-      requestType: "Khôi phục tài khoản",
-      date: "14/12/2024",
-      status: "Chờ duyệt"
-    }
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const usersData = await usersService.getAllUsers();
+        setUsers(usersData.map(u => ({
+          name: u.name || "",
+          email: u.email || "",
+          phone: "",
+          role: Array.isArray(u.roles) ? u.roles.join(", ") : "",
+          status: ""
+        })));
+      } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu người dùng:", error);
+        setUsers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Đang tải dữ liệu...</div>;
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -210,15 +156,8 @@ export default function UserManagementDashboard() {
         <h1 className="text-2xl font-bold text-gray-800 mb-6">
           Quản lý người dùng
         </h1>
-
-        {/* Top Section */}
-        <div className="flex gap-6 flex-col lg:flex-row">
-       
-          <ApprovalSection requests={sampleRequests} />
-        </div>
-
         {/* User Table */}
-        <UserTable users={sampleUsers} />
+        <UserTable users={users} />
       </div>
     </div>
   );

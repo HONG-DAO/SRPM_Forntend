@@ -20,7 +20,7 @@ const Sidebar: React.FC = () => {
   // Danh sách navigation items
   const navigationItems = [
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/05adf550ab44c7ac281beec46de5aa8966845517?placeholderIfAbsent=true&apiKey=348dfa5857644c228c3e6010a2ab82ee",
+      icon: "https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/f3e88bfa9ae998efe3390d97326af3323f959e8e?placeholderIfAbsent=true",
       label: "Quản lý người dùng",
       path: "/admin"
     },
