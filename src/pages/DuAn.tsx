@@ -117,8 +117,11 @@ export default function DuAn() {
     const isPrincipalInvestigator = profile?.roles?.some(
       (r) => r.toLowerCase() === "principalinvestigator"
     );
+    // const isPrincipalInvestigator = profile?.roles?.some(
+    //   (r) => ["principalinvestigator", "researcher"].includes(r.toLowerCase())
+    // );
 
-    if (!isPrincipalInvestigator) {
+    if (isPrincipalInvestigator) {
       navigate("/chitietduan", {
         state: {
           id: project.id,

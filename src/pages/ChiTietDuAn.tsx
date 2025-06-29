@@ -317,8 +317,8 @@ export const ChiTietDuAn: React.FC = () => {
     if (!userProfile || !project) return false;
     
     const isPrincipalInvestigator = userProfile.roles?.includes("Researcher") || 
-                                   userProfile.roles?.includes("nghien-cuu-chinh") ||
-                                   userProfile.roles?.includes("principal-investigator");
+                                   userProfile.roles?.includes("principalinvestigator") ||
+                                   userProfile.roles?.includes("PrincipalInvestigator");
     
     const isOwner = project.ownerId === userProfile.id;
     

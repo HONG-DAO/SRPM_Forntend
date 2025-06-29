@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import usersService from '@cnpm/services/usersService';// Import service
-import { updateUserRoles  } from '@cnpm/services/userService'; // Import update user roles function
+import usersService from '@cnpm/services/usersService';
+import { updateUserRoles } from '@cnpm/services/userService';
 
 // Interface definitions
 interface RoleActionButtonProps {
   type: "assign" | "revoke";
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-// Updated User interface to handle multiple roles
 interface User {
   id: number;
   email: string;
   name: string;
   avatar?: string;
   address?: string;
-  roles: string[]; // Changed back to array to handle multiple roles
+  roles: string[];
   status: string;
   createdAt?: string;
 }
@@ -27,40 +27,50 @@ const mapApiUserToUser = (apiUser: any): User => ({
   name: apiUser.name,
   avatar: apiUser.avatar,
   address: apiUser.address,
-  roles: apiUser.roles || [apiUser.role], // Handle both single role and multiple roles
+  roles: apiUser.roles || [apiUser.role],
   status: apiUser.status,
   createdAt: apiUser.createdAt,
 });
 
-// RoleActionButton Component
-const RoleActionButton: React.FC<RoleActionButtonProps> = ({ type, onClick }) => {
+// Enhanced RoleActionButton Component
+const RoleActionButton: React.FC<RoleActionButtonProps> = ({ type, onClick, disabled = false }) => {
   const buttonStyles = {
-    assign: "px-4 py-1 text-cyan-800 bg-blue-300 rounded-xl hover:bg-blue-400 transition-colors",
-    revoke: "px-7 py-1 text-red-800 bg-rose-400 rounded-xl max-md:px-5 hover:bg-rose-500 transition-colors",
+    assign: `
+      px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 
+      rounded-lg shadow-md hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 
+      transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    `,
+    revoke: `
+      px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-red-600 
+      rounded-lg shadow-md hover:from-red-600 hover:to-red-700 transform hover:scale-105 
+      transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+    `,
   };
 
   const buttonText = {
-    assign: "Sửa vai trò",
+    assign: "Gán vai trò",
     revoke: "Thu hồi",
   };
+
+  const disabledStyles = "opacity-50 cursor-not-allowed transform-none hover:scale-100";
 
   return (
     <button
       onClick={onClick}
-      className={`text-sm font-medium leading-none ${buttonStyles[type]}`}
+      disabled={disabled}
+      className={`${buttonStyles[type]} ${disabled ? disabledStyles : ''}`}
     >
       {buttonText[type]}
     </button>
   );
 };
 
-// UserRoleFilter Component với API integration
+// Enhanced UserRoleFilter Component
 const UserRoleFilter: React.FC<{ onRoleChange: (role: string) => void }> = ({ onRoleChange }) => {
   const [selectedRole, setSelectedRole] = useState<string>("Tất cả");
   const [availableRoles, setAvailableRoles] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Danh sách vai trò cố định - có thể mở rộng từ API
   const defaultRoles = [
     "Tất cả",
     "Sinh viên", 
@@ -69,16 +79,13 @@ const UserRoleFilter: React.FC<{ onRoleChange: (role: string) => void }> = ({ on
     "Quản trị viên",
   ];
 
-  // Effect để lấy danh sách vai trò từ API (tùy chọn)
   useEffect(() => {
     const fetchAvailableRoles = async () => {
       try {
         setLoading(true);
-        // Lấy tất cả users để extract unique roles
         const apiUsers = await usersService.getAllUsers();
         const users = apiUsers.map(mapApiUserToUser);
         
-        // Extract unique roles từ tất cả users
         const uniqueRoles = new Set<string>();
         users.forEach(user => {
           user.roles.forEach(role => {
@@ -86,13 +93,11 @@ const UserRoleFilter: React.FC<{ onRoleChange: (role: string) => void }> = ({ on
           });
         });
         
-        // Combine với default roles và loại bỏ duplicates
         const allRoles = ["Tất cả", ...Array.from(uniqueRoles)];
         setAvailableRoles(allRoles);
         
       } catch (error) {
         console.error('Error fetching roles:', error);
-        // Fallback to default roles nếu API fail
         setAvailableRoles(defaultRoles);
       } finally {
         setLoading(false);
@@ -102,31 +107,39 @@ const UserRoleFilter: React.FC<{ onRoleChange: (role: string) => void }> = ({ on
     fetchAvailableRoles();
   }, []);
 
-  // Handle role selection
   const handleRoleSelect = (role: string) => {
     setSelectedRole(role);
-    onRoleChange(role); // Callback để parent component biết role đã thay đổi
+    onRoleChange(role);
   };
 
   return (
-    <div className="mx-auto w-full px-5 py-3 rounded-2xl border bg-white shadow flex flex-col items-center">
-      <div className="flex items-center justify-center gap-1 mb-2">
-        <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A2 2 0 0013 14.414V19a1 1 0 01-1.447.894l-2-1A1 1 0 019 18v-3.586a2 2 0 00-.293-1.121L2.293 6.707A1 1 0 012 6V4z" />
-        </svg>
-        <span className="text-slate-600 font-semibold text-lg">Lọc theo vai trò {loading && <span className="text-blue-400">(Đang tải...)</span>}</span>
+    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 backdrop-blur-sm">
+      <div className="flex items-center justify-center gap-2 mb-6">
+        <div className="p-2 bg-blue-100 rounded-full">
+          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A2 2 0 0013 14.414V19a1 1 0 01-1.447.894l-2-1A1 1 0 019 18v-3.586a2 2 0 00-.293-1.121L2.293 6.707A1 1 0 012 6V4z" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-bold text-gray-800">
+          Lọc theo vai trò 
+          {loading && <span className="text-blue-500 text-sm ml-2">(Đang tải...)</span>}
+        </h3>
       </div>
-      <div className="flex flex-row flex-wrap justify-center gap-4 w-full">
+      
+      <div className="flex flex-wrap justify-center gap-3">
         {(availableRoles.length > 0 ? availableRoles : defaultRoles).map((role, index) => (
           <button
             key={index}
             onClick={() => handleRoleSelect(role)}
-            className={`px-2 py-1 rounded-full text-base font-semibold border transition
-              ${selectedRole === role
-                ? 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white border-blue-400 shadow'
-                : 'bg-white text-blue-500 border-blue-200 hover:bg-blue-50 hover:text-blue-600'}
-            `}
             disabled={loading}
+            className={`
+              px-6 py-3 rounded-full text-sm font-semibold border-2 transition-all duration-300
+              transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2
+              ${selectedRole === role
+                ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-transparent shadow-lg focus:ring-blue-500'
+                : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-blue-300 hover:text-blue-600 focus:ring-gray-300'}
+              ${loading ? 'opacity-50 cursor-not-allowed' : ''}
+            `}
           >
             {role}
           </button>
@@ -136,14 +149,14 @@ const UserRoleFilter: React.FC<{ onRoleChange: (role: string) => void }> = ({ on
   );
 };
 
-// UserList Component với API integration
+// Enhanced UserList Component
 const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [actionLoading, setActionLoading] = useState<number | null>(null);
   
-  // Fetch users từ API
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -163,7 +176,6 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
     fetchUsers();
   }, []);
 
-  // Filter users based on selected role
   useEffect(() => {
     if (selectedRole === "Tất cả") {
       setFilteredUsers(users);
@@ -175,37 +187,31 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
     }
   }, [users, selectedRole]);
 
-  // Handle role assignment - REPLACE instead of ADD
   const handleAssignRole = async (userId: number, newRole: string) => {
     try {
+      setActionLoading(userId);
       const user = users.find(u => u.id === userId);
       if (!user) {
         alert('Không tìm thấy người dùng');
         return;
       }
 
-      // Check if user already has this role
       if (user.roles.includes(newRole)) {
         alert('Người dùng đã có vai trò này');
         return;
       }
 
-      // REPLACE the current roles with the new role (not append)
-      // If you want to keep existing roles, use: [...user.roles, newRole]
-      // If you want to replace with single role, use: [newRole]
       const shouldReplaceRole = confirm(`Bạn muốn thay thế vai trò hiện tại bằng "${newRole}"?\n\nChọn OK để thay thế, Cancel để thêm vai trò mới.`);
       
       let updatedRoles: string[];
       if (shouldReplaceRole) {
-        updatedRoles = [newRole]; // Replace with single role
+        updatedRoles = [newRole];
       } else {
-        updatedRoles = [...user.roles, newRole]; // Add to existing roles
+        updatedRoles = [...user.roles, newRole];
       }
 
-      // Use updateUserRoles API
       await updateUserRoles(userId, updatedRoles);
       
-      // Refresh user list
       const apiUsers = await usersService.getAllUsers();
       const updatedUsers = apiUsers.map(mapApiUserToUser);
       setUsers(updatedUsers);
@@ -214,36 +220,33 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
     } catch (error) {
       console.error('Error assigning role:', error);
       alert('Không thể gán vai trò');
+    } finally {
+      setActionLoading(null);
     }
   };
 
-  // Handle role revocation
   const handleRevokeRole = async (userId: number, roleToRemove: string) => {
     try {
+      setActionLoading(userId);
       const user = users.find(u => u.id === userId);
       if (!user) {
         alert('Không tìm thấy người dùng');
         return;
       }
 
-      // Check if user has this role
       if (!user.roles.includes(roleToRemove)) {
         alert('Người dùng không có vai trò này');
         return;
       }
 
-      // Remove the specific role
       const updatedRoles = user.roles.filter(role => role !== roleToRemove);
       
-      // If no roles left, set default role
       if (updatedRoles.length === 0) {
         updatedRoles.push('USER');
       }
 
-      // Use updateUserRoles API
       await updateUserRoles(userId, updatedRoles);
       
-      // Refresh user list
       const apiUsers = await usersService.getAllUsers();
       const updatedUsers = apiUsers.map(mapApiUserToUser);
       setUsers(updatedUsers);
@@ -252,82 +255,131 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
     } catch (error) {
       console.error('Error revoking role:', error);
       alert('Không thể thu hồi vai trò');
+    } finally {
+      setActionLoading(null);
     }
   };
 
   if (loading) {
     return (
-      <section className="pt-6 mt-6 w-full max-w-5xl mx-auto rounded-xl border border-slate-200 shadow-sm bg-white">
-        <div className="flex justify-center items-center h-64">
-          <div className="text-gray-500">Đang tải danh sách người dùng...</div>
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+        <div className="flex flex-col items-center justify-center h-64 space-y-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          <div className="text-gray-600 font-medium">Đang tải danh sách người dùng...</div>
         </div>
-      </section>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section className="pt-6 mt-6 w-full max-w-5xl mx-auto rounded-xl border border-slate-200 shadow-sm bg-white">
-        <div className="flex justify-center items-center h-64">
-          <div className="text-red-500">{error}</div>
+      <div className="bg-white rounded-2xl shadow-lg border border-red-200 p-8">
+        <div className="flex flex-col items-center justify-center h-64 space-y-4">
+          <div className="p-3 bg-red-100 rounded-full">
+            <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div className="text-red-600 font-medium text-center">{error}</div>
         </div>
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="pt-6 mt-6 w-full max-w-5xl mx-auto rounded-xl border border-slate-200 shadow-sm bg-white">
-      <h2 className="text-lg font-semibold px-6 pb-4">
-        Danh sách ({filteredUsers.length} người dùng)
-      </h2>
+    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+      <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-gray-800">
+            Danh sách người dùng
+          </h2>
+          <div className="flex items-center space-x-2">
+            <div className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+              {filteredUsers.length} người dùng
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border-t border-gray-200">
-          <thead>
-            <tr className="text-left text-base text-gray-500 bg-gray-50">
-              <th className="px-8 py-5">Họ tên</th>
-              <th className="px-8 py-5">Email</th>
-              <th className="px-8 py-5">Vai trò</th>
-              <th className="px-8 py-5">Thao tác</th>
+        <table className="min-w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                Thông tin
+              </th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                Email
+              </th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                Vai trò
+              </th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                Thao tác
+              </th>
             </tr>
           </thead>
-          <tbody className="text-base text-gray-800">
+          <tbody className="divide-y divide-gray-200">
             {filteredUsers.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-8 py-10 text-center text-gray-500">
-                  Không có người dùng nào
+                <td colSpan={4} className="px-6 py-12 text-center">
+                  <div className="flex flex-col items-center space-y-3">
+                    <div className="p-3 bg-gray-100 rounded-full">
+                      <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                      </svg>
+                    </div>
+                    <div className="text-gray-500 font-medium">Không có người dùng nào</div>
+                  </div>
                 </td>
               </tr>
             ) : (
               filteredUsers.map(user => (
-                <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50 h-16">
-                  <td className="px-8 py-5 flex items-center gap-4">
-                    {user.avatar && (
-                      <img 
-                        src={user.avatar} 
-                        alt={user.name}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                    )}
-                    <span className="font-medium">{user.name}</span>
+                <tr key={user.id} className="hover:bg-gray-50 transition-colors duration-200">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-shrink-0">
+                        {user.avatar ? (
+                          <img 
+                            src={user.avatar} 
+                            alt={user.name}
+                            className="w-12 h-12 rounded-full object-cover border-2 border-gray-200 shadow-sm"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            {user.name.charAt(0).toUpperCase()}
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                        <div className="text-sm text-gray-500">ID: {user.id}</div>
+                      </div>
+                    </div>
                   </td>
-                  <td className="px-8 py-5 text-gray-600">{user.email}</td>
-                  <td className="px-8 py-5">
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-900">{user.email}</div>
+                    <div className="text-sm text-gray-500">
+                      Trạng thái: <span className="capitalize">{user.status}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
                     <div className="flex flex-wrap gap-2">
                       {user.roles.map((role, index) => (
                         <span 
                           key={`${role}-${index}`}
-                          className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full"
+                          className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border border-blue-200"
                         >
                           {role}
                         </span>
                       ))}
                     </div>
                   </td>
-                  <td className="px-8 py-5">
-                    <div className="flex gap-3">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center space-x-3">
                       <RoleActionButton 
                         type="assign"
+                        disabled={actionLoading === user.id}
                         onClick={() => {
                           const role = prompt('Nhập tên vai trò muốn gán:');
                           if (role) {
@@ -338,15 +390,14 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
                       {user.roles.length > 0 && (
                         <RoleActionButton 
                           type="revoke"
+                          disabled={actionLoading === user.id}
                           onClick={() => {
                             if (user.roles.length === 1) {
-                              // Only one role, confirm direct revocation
                               const confirmRevoke = confirm(`Bạn có chắc muốn thu hồi vai trò "${user.roles[0]}" của ${user.name}?`);
                               if (confirmRevoke) {
                                 handleRevokeRole(user.id, user.roles[0]);
                               }
                             } else {
-                              // Multiple roles, let user choose
                               const role = prompt(`Chọn vai trò muốn thu hồi:\n${user.roles.map((r, i) => `${i + 1}. ${r}`).join('\n')}\n\nNhập tên vai trò:`);
                               if (role && user.roles.includes(role)) {
                                 handleRevokeRole(user.id, role);
@@ -354,6 +405,9 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
                             }
                           }}
                         />
+                      )}
+                      {actionLoading === user.id && (
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
                       )}
                     </div>
                   </td>
@@ -363,11 +417,11 @@ const UserList: React.FC<{ selectedRole: string }> = ({ selectedRole }) => {
           </tbody>
         </table>
       </div>
-    </section>
+    </div>
   );
 };
 
-// Main component
+// Enhanced Main component
 const UserManagement = () => {
   const [selectedRole, setSelectedRole] = useState<string>("Tất cả");
 
@@ -376,9 +430,20 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="space-y-4">
-      <UserRoleFilter onRoleChange={handleRoleChange} />
-      <UserList selectedRole={selectedRole} />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
+      <div className="max-w-7xl mx-auto space-y-6">
+        <div className="text-center py-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">
+            Quản lý người dùng
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Gán và quản lý vai trò cho người dùng trong hệ thống
+          </p>
+        </div>
+        
+        <UserRoleFilter onRoleChange={handleRoleChange} />
+        <UserList selectedRole={selectedRole} />
+      </div>
     </div>
   );
 };

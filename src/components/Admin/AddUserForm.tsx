@@ -10,7 +10,6 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  phone: string;
   role: string;
   status: string;
 }
@@ -41,7 +40,6 @@ const UserTable: React.FC<{
             <tr key={user.id} className="text-gray-800 border-b hover:bg-gray-50 transition">
               <td className="px-4 py-3">{user.name}</td>
               <td className="px-4 py-3">{user.email}</td>
-              <td className="px-4 py-3">{user.phone}</td>
               <td className="px-4 py-3">{user.role}</td>
               <td className="px-4 py-3">{user.status}</td>
               <td className="px-4 py-3">

@@ -361,7 +361,7 @@
         },
         {
           "file": "src/components/Admin/AddUserForm.tsx",
-          "hash": "13055891990907780023",
+          "hash": "16006614517901595382",
           "deps": [
             "npm:react"
           ]
@@ -454,14 +454,15 @@
         },
         {
           "file": "src/components/Du An/Tao Du An/ProjectForm.tsx",
-          "hash": "3784279529854700623",
+          "hash": "10764814776517138476",
           "deps": [
-            "npm:react"
+            "npm:react",
+            "npm:react-router-dom"
           ]
         },
         {
           "file": "src/components/Du An/Tao Du An/ProjectFormSections.tsx",
-          "hash": "17525410907153237735",
+          "hash": "13813179128407142461",
           "deps": [
             "npm:react"
           ]
@@ -636,7 +637,7 @@
         },
         {
           "file": "src/components/QuanTriVien/QuanTriVien1/UserRoleFilter.tsx",
-          "hash": "11400707007402688484",
+          "hash": "6188268188319962606",
           "deps": [
             "npm:react"
           ]
@@ -863,14 +864,14 @@
         },
         {
           "file": "src/pages/AdminDashboard.tsx",
-          "hash": "2503928233197690270",
+          "hash": "5257810881997273202",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/ChiTietDuAn.tsx",
-          "hash": "11120446398097257913",
+          "hash": "10607358891185852839",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
@@ -914,7 +915,7 @@
         },
         {
           "file": "src/pages/DashboardQuanTriVien1.tsx",
-          "hash": "2162838099470938539",
+          "hash": "16420662822673230193",
           "deps": [
             "npm:react"
           ]
@@ -935,7 +936,7 @@
         },
         {
           "file": "src/pages/DuAn.tsx",
-          "hash": "9215239210625740068",
+          "hash": "6429259868706016794",
           "deps": [
             "npm:react",
             "npm:react-router-dom"
@@ -988,28 +989,28 @@
         },
         {
           "file": "src/pages/Profile.tsx",
-          "hash": "18315378986167588186",
+          "hash": "17466657432505360112",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/Profile1.tsx",
-          "hash": "6720638134184913798",
+          "hash": "8959862478983207470",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/Profile2.tsx",
-          "hash": "15603655997743508774",
+          "hash": "8090391615265901931",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "src/pages/Profile3.tsx",
-          "hash": "11532388652603065758",
+          "hash": "14517053334404362934",
           "deps": [
             "npm:react"
           ]
@@ -1062,6 +1063,13 @@
         {
           "file": "src/pages/TrangChiTietNhiemVuThanhVienNgienCuu.tsx",
           "hash": "6168489551971199817",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/pages/profile4.tsx",
+          "hash": "14517053334404362934",
           "deps": [
             "npm:react"
           ]

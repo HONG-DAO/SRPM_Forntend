@@ -13,38 +13,34 @@ interface Member {
   role: string;
 }
 
-export const ProjectTypeSection = ({ formData, setFormData }: Props) => {
-  const handleToggle = () => {
-    setFormData((prev: any) => ({ 
-      ...prev, 
-      isBusinessSponsored: !prev.isBusinessSponsored 
-    }));
-  };
+const RESEARCH_TOPICS = [
+  { id: 1, title: "AI in Healthcare" },
+  { id: 2, title: "Climate Change Research" },
+  { id: 3, title: "Space Exploration" },
+];
 
+export const ProjectTypeSection: React.FC<Props> = ({ formData, setFormData }) => {
   return (
-    <section className="flex flex-wrap gap-5 justify-between px-7 py-4 mt-6 w-full rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:px-5">
-      <div className="text-xl font-bold leading-5 text-slate-600">
-        <span className="text-gray-700">Dự án do doanh nghiệp tài trợ</span>
-        <br />
-        <span className="font-normal text-xs text-gray-700">
-          Chọn nếu dự án của bạn được tài trợ bởi doanh nghiệp
-        </span>
-      </div>
-      <button
-        type="button"
-        aria-pressed={formData.isBusinessSponsored}
-        onClick={handleToggle}
-        className={`relative w-16 h-10 rounded-full transition-colors duration-300 ${
-          formData.isBusinessSponsored ? "bg-sky-200" : "bg-gray-200"
-        }`}
+    <div className="mb-6">
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        Chủ đề nghiên cứu *
+      </label>
+      <select
+        className="w-full px-4 py-2 border rounded-lg"
+        value={formData.researchTopicId}
+        onChange={(e) =>
+          setFormData({ ...formData, researchTopicId: parseInt(e.target.value) })
+        }
+        required
       >
-        <span
-          className={`absolute top-1 left-1 w-8 h-8 rounded-full bg-teal-500 transition-all duration-300 ${
-            formData.isBusinessSponsored ? "translate-x-6" : ""
-          }`}
-        />
-      </button>
-    </section>
+        <option value="">-- Chọn chủ đề --</option>
+        {RESEARCH_TOPICS.map((topic) => (
+          <option key={topic.id} value={topic.id}>
+            {topic.title}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 
@@ -152,24 +148,6 @@ export const ProjectDetailsSection: React.FC<Props> = ({ formData, setFormData }
             />
           </div>
         </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Chủ đề nghiên cứu *
-          </label>
-          <select
-            value={formData.researchTopicId}
-            onChange={(e) => setFormData((prev: any) => ({ ...prev, researchTopicId: parseInt(e.target.value) }))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-            required
-          >
-            <option value={1}>Công nghệ thông tin</option>
-            <option value={2}>Trí tuệ nhân tạo</option>
-            <option value={3}>Khoa học dữ liệu</option>
-            <option value={4}>An ninh mạng</option>
-            <option value={5}>Phát triển phần mềm</option>
-          </select>
-        </div>
       </div>
     </section>
   );
@@ -216,14 +194,13 @@ export const TeamMembersSection: React.FC<Props> = ({ formData, setFormData }) =
         Thành viên dự án
       </h2>
       
-      <div className="mb-4 p-4 bg-blue-50 rounded-lg">
+      {/* <div className="mb-4 p-4 bg-blue-50 rounded-lg">
         <p className="text-sm text-blue-800">
           <strong>Lưu ý:</strong> Thành viên sẽ được thêm vào dự án sau khi tạo dự án thành công. 
           Hiện tại chỉ lưu thông tin để tham khảo.
         </p>
-      </div>
+      </div> */}
 
-      {/* Add new member */}
       <div className="mb-6 p-4 bg-gray-50 rounded-lg">
         <h3 className="text-lg font-semibold text-gray-700 mb-3">Thêm thành viên</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
@@ -260,7 +237,6 @@ export const TeamMembersSection: React.FC<Props> = ({ formData, setFormData }) =
         </div>
       </div>
 
-      {/* Members list */}
       <div>
         <h3 className="text-lg font-semibold text-gray-700 mb-3">
           Danh sách thành viên ({(formData.members || []).length})

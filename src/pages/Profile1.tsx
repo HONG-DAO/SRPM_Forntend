@@ -61,7 +61,7 @@ const ThongTinCaNhanThanhVienNghienCuu = () => {
           </div>
 
           {/* Content */}
-          <section className="flex flex-col items-center justify-center pb-60 w-full mt-16">
+          <section className="flex flex-col items-center justify-center pt-32 pb-60 w-full">
             {/* Container cho avatar và UserDetails */}
             <div className="flex flex-col items-center w-full">
               {/* Ảnh đại diện với overlay hover */}
