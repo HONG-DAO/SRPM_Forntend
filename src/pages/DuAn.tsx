@@ -92,9 +92,9 @@ export default function DuAn() {
       let userProjects: Project[] = [];
 
       // Check if user is Principal Investigator or Researcher Member
-      const isPrincipalInvestigator = profile.roles?.includes("PrincipalInvestigator") || 
-                                     profile.roles?.includes("nghien-cuu-chinh");
-
+      const isPrincipalInvestigator = userProfile?.roles?.some(
+        r => r.toLowerCase() === "principalinvestigator"
+      );
       if (isPrincipalInvestigator) {
         // Get projects owned by this user
         userProjects = await getProjectsByOwner(profile.id);
@@ -113,8 +113,10 @@ export default function DuAn() {
   };
 
   const handleProjectClick = (project: Project) => {
-    const isPrincipalInvestigator = userProfile?.roles?.includes("PrincipalInvestigator") || 
-                                   userProfile?.roles?.includes("nghien-cuu-chinh");
+    const profile = authService.getCurrentProfile();
+    const isPrincipalInvestigator = profile?.roles?.some(
+      (r) => r.toLowerCase() === "principalinvestigator"
+    );
 
     if (!isPrincipalInvestigator) {
       navigate("/chitietduan", {
@@ -138,8 +140,10 @@ export default function DuAn() {
   };
 
   const handleCreateProject = () => {
-    const isPrincipalInvestigator = userProfile?.roles?.includes("principal-investigator") || 
-                                   userProfile?.roles?.includes("reseacher-member");
+    const profile = authService.getCurrentProfile();
+    const isPrincipalInvestigator = profile?.roles?.some(
+      (r) => r.toLowerCase() === "principalinvestigator"
+    );
 
     if (isPrincipalInvestigator) {
       navigate("/taoduannghiencuuchinh");
@@ -147,7 +151,7 @@ export default function DuAn() {
       alert("Chỉ nhà nghiên cứu chính mới có quyền tạo dự án.");
     }
   };
-
+  console.log("UserProfile roles:", userProfile?.roles);
   const handleSearch = (searchValue: string) => {
     setSearchTerm(searchValue);
   };
@@ -158,14 +162,19 @@ export default function DuAn() {
 
   if (loading) {
     return (
-      <main className="bg-slate-50 min-h-screen w-full">
-        <div className="flex flex-row min-h-screen">
-          <div className="w-[18%] border-r border-slate-200 bg-gray">
+      <main className="bg-white min-h-screen w-full border border-gray-200">
+        <div className="flex min-h-screen w-screen">
+          {/* Sidebar */}
+          <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
             <Sidebar />
-          </div>
-          <div className="w-[110%] flex flex-col">
-            <Header />
-            <section className="flex flex-col items-center pb-60 w-full max-w-full">
+          </aside>
+          {/* Main content */}
+          <div className="flex-1 flex flex-col ml-64">
+            {/* Header */}
+            <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+              <Header />
+            </div>
+            <section className="flex flex-col items-center pb-60 w-full max-w-screen-lg mx-auto mt-16 pt-16">
               <h1 className="mt-8 text-3xl font-bold text-gray-700">
                 Dự án của tôi
               </h1>
@@ -182,14 +191,19 @@ export default function DuAn() {
 
   if (error) {
     return (
-      <main className="bg-slate-50 min-h-screen w-full">
-        <div className="flex flex-row min-h-screen">
-          <div className="w-[18%] border-r border-slate-200 bg-gray">
+      <main className="bg-white min-h-screen w-full border border-gray-200">
+        <div className="flex min-h-screen w-screen">
+          {/* Sidebar */}
+          <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
             <Sidebar />
-          </div>
-          <div className="w-[110%] flex flex-col">
-            <Header />
-            <section className="flex flex-col items-center pb-60 w-full max-w-full">
+          </aside>
+          {/* Main content */}
+          <div className="flex-1 flex flex-col ml-64">
+            {/* Header */}
+            <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+              <Header />
+            </div>
+            <section className="flex flex-col items-center pb-60 w-full max-w-screen-lg mx-auto mt-16 pt-16">
               <h1 className="mt-8 text-3xl font-bold text-gray-700">
                 Dự án của tôi
               </h1>
@@ -212,18 +226,19 @@ export default function DuAn() {
   }
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full">
-      <div className="flex flex-row min-h-screen">
+    <main className="bg-white min-h-screen w-full border border-gray-200">
+      <div className="flex min-h-screen w-screen">
         {/* Sidebar */}
-        <div className="w-[18%] border-r border-slate-200 bg-gray">
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
           <Sidebar />
-        </div>
+        </aside>
         {/* Main content */}
-        <div className="w-[110%] flex flex-col">
+        <div className="flex-1 flex flex-col ml-64">
           {/* Header */}
-          <Header />
-          {/* Content */}
-          <section className="flex flex-col items-center pb-60 w-full max-w-full">
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+            <Header />
+          </div>
+          <section className="flex flex-col items-center pb-60 w-full max-w-screen-lg mx-auto mt-16 pt-16">
             <h1 className="mt-8 text-3xl font-bold text-gray-700">
               Dự án của tôi
             </h1>
@@ -316,12 +331,8 @@ export default function DuAn() {
                     >
                       <ProjectCard
                         title={project.title}
-                        // group={`ID: ${project.id}`} // You may want to replace this with actual group data
-                        supervisor={`${project.description}`} // You may want to fetch actual owner name
-                        // description={project.description}
-                        // status={project.status}
-                        // startDate={project.startDate}
-                        // endDate={project.endDate}
+                        group={`ID: ${project.id}`}
+                        supervisor={`${project.description}`}
                       />
                     </div>
                   ))}

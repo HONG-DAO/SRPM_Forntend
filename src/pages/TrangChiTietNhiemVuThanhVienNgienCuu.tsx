@@ -24,25 +24,26 @@ function TrangChiTietNhiemVu({
   };
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full">
-      <div className="flex flex-row min-h-screen">
+    <main className="bg-white min-h-screen w-full border border-gray-200">
+      <div className="flex min-h-screen w-screen">
         {/* Sidebar */}
-        <div className="w-64 border-r border-slate-200 bg-gray fixed h-full">
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
           <Sidebar />
-        </div>
+        </aside>
         {/* Main content */}
         <div className="flex-1 flex flex-col ml-64">
-          <div className="fixed w-full z-10">
+          {/* Header */}
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
             <Header />
           </div>
-          <div className="flex flex-col items-center pb-12 mx-auto w-full max-w-[1000px] max-md:max-w-full mt-16">
+          <section className="flex flex-col items-center pb-60 w-full max-w-screen-lg mx-auto mt-16 pt-16">
             {/* You might pass taskId down to these components */}
             <TaskHeader />
             <TaskDetails />
             <PresentationForm />
             <FileUpload />
             <SubmitButton onSubmit={handleSubmit} />
-          </div>
+          </section>
         </div>
       </div>
     </main>

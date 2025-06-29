@@ -233,10 +233,10 @@ export const UserDetails = () => {
               </h3>
               
               <div className="space-y-4">
-                <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                {/* <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
                   <span className="text-sm font-medium text-gray-500 min-w-[80px]">ID:</span>
                   <span className="text-gray-800 font-mono">{userProfile.id || "N/A"}</span>
-                </div>
+                </div> */}
 
                 <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
                   <span className="text-sm font-medium text-gray-500 min-w-[80px]">Tên:</span>

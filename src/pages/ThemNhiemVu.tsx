@@ -176,103 +176,110 @@ const ThemNhiemVu: React.FC = () => {
   // Nếu có lỗi về thông tin dự án
   if (error && !projectInfo) {
     return (
-      <main className="bg-slate-50 min-h-screen w-full flex flex-row">
-        <div className="w-64 border-r border-slate-200 bg-gray fixed h-full">
-          <Sidebar />
-        </div>
-        
-        <div className="flex-1 flex flex-col ml-64">
-          <div className="fixed top-0 left-64 w-[calc(100%-16rem)] z-10">
-            <Header />
-          </div>
-
-          <section className="flex flex-col items-center justify-center w-full max-w-screen-lg mx-auto mt-16 pt-16 min-h-[calc(100vh-8rem)]">
-            <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg max-w-md text-center">
-              <h2 className="text-lg font-semibold mb-2">Lỗi</h2>
-              <p className="mb-4">{error}</p>
-              <div className="flex gap-2 justify-center">
-                <button
-                  onClick={() => navigate("/duan")}
-                  className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600"
-                >
-                  Quay lại danh sách dự án
-                </button>
-              </div>
+      <main className="bg-white min-h-screen w-full border border-gray-200">
+        <div className="flex min-h-screen w-screen">
+          {/* Sidebar */}
+          <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
+            <Sidebar />
+          </aside>
+          
+          <div className="flex-1 flex flex-col ml-64">
+            {/* Header */}
+            <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+              <Header />
             </div>
-          </section>
+
+            <section className="flex flex-col items-center justify-center w-full max-w-screen-lg mx-auto mt-16 pt-16 min-h-[calc(100vh-8rem)]">
+              <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg max-w-md text-center">
+                <h2 className="text-lg font-semibold mb-2">Lỗi</h2>
+                <p className="mb-4">{error}</p>
+                <div className="flex gap-2 justify-center">
+                  <button
+                    onClick={() => navigate("/duan")}
+                    className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600"
+                  >
+                    Quay lại danh sách dự án
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full flex flex-row">
-      {/* Sidebar */}
-      <div className="w-64 border-r border-slate-200 bg-gray fixed h-full">
-        <Sidebar />
-      </div>
-
-      <div className="flex-1 flex flex-col ml-64">
-        <div className="fixed top-0 left-64 w-[calc(100%-16rem)] z-10">
-          <Header />
-        </div>
-
-        <section className="flex flex-col items-center pb-60 w-full max-w-screen-lg mx-auto mt-16 pt-16">
-          {/* Breadcrumb và nút quay lại */}
-          {projectInfo && (
-            <div className="w-full max-w-2xl mb-6">
-              
-              <div className="text-sm text-gray-800">
-                Dự án: <span className="font-semibold">{projectInfo.title}</span>
-              </div>
-            </div>
-          )}
-
-          <h1 className="text-3xl font-bold text-gray-700">
-            Tạo nhiệm vụ
-          </h1>
-
-          <p className="mt-1.5 text-xs text-gray-400 max-md:max-w-full text-center">
-            Vui lòng điền đầy đủ thông tin để tạo nhiệm vụ mới cho dự án.
-          </p>
-
-          {/* Hiển thị lỗi nếu có */}
-          {error && projectInfo && (
-            <div className="w-full max-w-2xl mt-4">
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded flex justify-between items-start">
-                <span>{error}</span>
-                <button 
-                  onClick={() => setError(null)}
-                  className="ml-2 text-red-500 hover:text-red-700"
-                >
-                  ×
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Form tạo nhiệm vụ */}
-          <div className="w-full max-w-2xl" onClick={handleErrorClear}>
-            <TaskForm 
-              onSubmit={handleTaskSubmit} 
-              members={members}
-              isSubmitting={isSubmitting}
-              // projectId={projectInfo?.id}
-            />
+    <main className="bg-white min-h-screen w-full border border-gray-200">
+      <div className="flex min-h-screen w-screen">
+        {/* Sidebar */}
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
+          <Sidebar />
+        </aside>
+        
+        <div className="flex-1 flex flex-col ml-64">
+          {/* Header */}
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+            <Header />
           </div>
 
-          {/* Loading overlay */}
-          {isSubmitting && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-lg p-6 max-w-sm mx-4">
-                <div className="flex items-center gap-3">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-teal-500"></div>
-                  <span className="text-gray-700">Đang tạo nhiệm vụ...</span>
+          <section className="flex flex-col items-center pb-16 w-full max-w-full mt-16">
+            {/* Breadcrumb và nút quay lại */}
+            {projectInfo && (
+              <div className="w-full max-w-2xl mb-6">
+                
+                <div className="text-sm text-gray-800">
+                  Dự án: <span className="font-semibold">{projectInfo.title}</span>
                 </div>
               </div>
+            )}
+
+            <h1 className="text-3xl font-bold text-gray-700">
+              Tạo nhiệm vụ
+            </h1>
+
+            <p className="mt-1.5 text-xs text-gray-400 max-md:max-w-full text-center">
+              Vui lòng điền đầy đủ thông tin để tạo nhiệm vụ mới cho dự án.
+            </p>
+
+            {/* Hiển thị lỗi nếu có */}
+            {error && projectInfo && (
+              <div className="w-full max-w-2xl mt-4">
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded flex justify-between items-start">
+                  <span>{error}</span>
+                  <button 
+                    onClick={() => setError(null)}
+                    className="ml-2 text-red-500 hover:text-red-700"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Form tạo nhiệm vụ */}
+            <div className="w-full max-w-2xl" onClick={handleErrorClear}>
+              <TaskForm 
+                onSubmit={handleTaskSubmit} 
+                members={members}
+                isSubmitting={isSubmitting}
+                // projectId={projectInfo?.id}
+              />
             </div>
-          )}
-        </section>
+
+            {/* Loading overlay */}
+            {isSubmitting && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-white rounded-lg p-6 max-w-sm mx-4">
+                  <div className="flex items-center gap-3">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-teal-500"></div>
+                    <span className="text-gray-700">Đang tạo nhiệm vụ...</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </main>
   );

@@ -46,22 +46,22 @@ const ThongTinCaNhanThanhVienNghienCuu = () => {
   };
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full">
-      <div className="flex flex-row min-h-screen">
+    <main className="bg-white min-h-screen w-full border border-gray-200">
+      <div className="flex min-h-screen w-screen">
         {/* Sidebar */}
-        <div className="w-[18%] border-r border-slate-200 bg-gray">
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
           <Sidebar />
-        </div>
+        </aside>
 
         {/* Main content */}
-        <div className="w-[110%] flex flex-col items-center">
+        <div className="flex-1 flex flex-col ml-64">
           {/* Header */}
-          <div className="w-full h-[100px]">
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
             <Header />
           </div>
 
           {/* Content */}
-          <section className="flex flex-col items-center justify-center pb-60 w-full">
+          <section className="flex flex-col items-center justify-center pb-60 w-full mt-16">
             {/* Container cho avatar và UserDetails */}
             <div className="flex flex-col items-center w-full">
               {/* Ảnh đại diện với overlay hover */}

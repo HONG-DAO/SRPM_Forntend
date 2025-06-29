@@ -1,7 +1,25 @@
+"use client";
 import React, { useState } from "react";
 
-export const ProjectTypeSection = () => {
-  const [isChecked, setIsChecked] = useState(false);
+interface Props {
+  formData: any;
+  setFormData: React.Dispatch<React.SetStateAction<any>>;
+}
+
+interface Member {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export const ProjectTypeSection = ({ formData, setFormData }: Props) => {
+  const handleToggle = () => {
+    setFormData((prev: any) => ({ 
+      ...prev, 
+      isBusinessSponsored: !prev.isBusinessSponsored 
+    }));
+  };
 
   return (
     <section className="flex flex-wrap gap-5 justify-between px-7 py-4 mt-6 w-full rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:px-5">
@@ -12,18 +30,17 @@ export const ProjectTypeSection = () => {
           Chọn nếu dự án của bạn được tài trợ bởi doanh nghiệp
         </span>
       </div>
-      {/* Toggle Switch */}
       <button
         type="button"
-        aria-pressed={isChecked}
-        onClick={() => setIsChecked((v) => !v)}
+        aria-pressed={formData.isBusinessSponsored}
+        onClick={handleToggle}
         className={`relative w-16 h-10 rounded-full transition-colors duration-300 ${
-          isChecked ? "bg-sky-200" : "bg-gray-200"
+          formData.isBusinessSponsored ? "bg-sky-200" : "bg-gray-200"
         }`}
       >
         <span
           className={`absolute top-1 left-1 w-8 h-8 rounded-full bg-teal-500 transition-all duration-300 ${
-            isChecked ? "translate-x-6" : ""
+            formData.isBusinessSponsored ? "translate-x-6" : ""
           }`}
         />
       </button>
@@ -37,82 +54,243 @@ export const UserInfoSection = () => {
       <h2 className="text-xl font-bold leading-5 text-gray-700">
         Thông tin người đăng ký
       </h2>
-      <div className="mt-4 px-4 py-3 text-xs leading-loose text-red-900 bg-rose-200 rounded-lg text-center max-w-[1000px] mx-auto">
-        Vui lòng cập nhật thông tin cá nhân và thông tin nghiên cứu của bạn rồi hãy tiếp tục
+      <div className="mt-4 px-4 py-3 text-xs leading-loose text-green-800 bg-green-100 rounded-lg text-center max-w-[1000px] mx-auto">
+        Bạn sẽ được tự động đặt làm chủ dự án khi tạo dự án thành công
       </div>
     </section>
   );
 };
 
-export const ProjectDetailsSection = () => {
+export const ProjectDetailsSection: React.FC<Props> = ({ formData, setFormData }) => {
   return (
-    <section className="flex flex-col px-7 py-6 mt-3 w-full rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:px-5 max-md:mr-0.5 max-md:max-w-full">
-      <h2 className="self-start text-xl font-bold leading-none text-gray-700">
-        Chi tiết dự án
+    <section className="px-6 py-5 mt-3 rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:px-5">
+      <h2 className="text-xl font-bold leading-5 text-gray-700 mb-4">
+        Thông tin dự án
       </h2>
-      <div className="flex flex-wrap gap-2.5 mt-5 w-full text-base leading-6 text-gray-700 max-md:max-w-full">
-        <input
-          type="text"
-          placeholder="Tên dự án"
-          className="overflow-hidden flex-auto gap-2.5 self-stretch px-4 bg-white rounded-lg border border-gray-300 border-solid min-h-[50px] w-[448px] max-md:max-w-full text-gray-700 placeholder-gray-500"
-        />
-        <input
-          type="text"
-          placeholder="Viết tắt"
-          className="overflow-hidden flex-auto gap-2.5 self-stretch px-4 bg-white rounded-lg border border-gray-300 border-solid min-h-[50px] w-[222px] text-gray-700 placeholder-gray-500"
-        />
-      </div>
-      <div className="mt-1.5 bg-black bg-opacity-0 max-md:max-w-full">
-        <label className="py-1.5 text-sm font-bold bg-black bg-opacity-0 text-slate-600 max-md:pr-5 max-md:max-w-full">
-          Ghi chú:
-        </label>
-        <textarea
-          placeholder="Ghi tối đa 10 ký tự"
-          className="overflow-hidden px-3.5 pt-4 pb-12 mt-2 text-base text-gray-700 bg-white rounded-md border border-gray-300 border-solid w-full max-md:pr-5 max-md:max-w-full placeholder-gray-500"
-        />
-      </div>
-    </section>
-  );
-};
-
-export const TeamAndDocumentsSection = () => {
-  return (
-    <section className="flex flex-col px-7 py-7 mt-3 text-sm rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:px-5 max-md:mr-0.5 max-md:max-w-full">
-      <h2 className="self-start text-xl font-bold leading-none text-gray-700">
-        Thành viên và tài liệu
-      </h2>
-      <div className="mt-3.5 w-full">
-        <label className="font-bold text-gray-700 max-md:max-w-full">
-          Số lượng thành viên :
-        </label>
-        <div className="flex flex-wrap items-center mt-2 w-full border-solid bg-white border border-gray-300 gap-2 min-h-10 min-w-60 p-3 rounded-lg text-gray-700">
-          <span className="flex-1 shrink self-stretch my-auto basis-0 max-md:max-w-full">
-            Thành viên (Bao gồm cả bạn)
-          </span>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/d0e980bbfa3fd613fdaa0fbc8027968755d13692?placeholderIfAbsent=true"
-            alt=""
-            className="object-contain shrink-0 self-stretch my-auto w-4 aspect-square"
+      
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Tên dự án *
+          </label>
+          <input
+            type="text"
+            value={formData.title}
+            onChange={(e) => setFormData((prev: any) => ({ ...prev, title: e.target.value }))}
+            placeholder="Nhập tên dự án"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+            required
           />
         </div>
-      </div>
-      <label className="self-start mt-3 font-bold text-slate-600">
-        Tài liệu dự án
-      </label>
-      <div className="flex flex-col justify-center items-center px-20 py-7 mt-3 text-center text-gray-600 bg-white rounded-lg border-2 border-gray-300 border-dashed max-md:px-5 max-md:mr-1 max-md:max-w-full">
-        <div className="flex flex-col max-w-full w-[198px]">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/823bf4beb2774bc99c68daa06d856dec/4af6dbef6e38eaeb4a4d23ec77babee875c63e76?placeholderIfAbsent=true"
-            alt=""
-            className="object-contain self-center aspect-[1.27] w-[38px]"
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Mô tả dự án *
+          </label>
+          <textarea
+            value={formData.description}
+            onChange={(e) => setFormData((prev: any) => ({ ...prev, description: e.target.value }))}
+            placeholder="Mô tả chi tiết về dự án"
+            rows={4}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
+            required
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Mục tiêu *
+          </label>
+          <textarea
+            value={formData.objectives}
+            onChange={(e) => setFormData((prev: any) => ({ ...prev, objectives: e.target.value }))}
+            placeholder="Mục tiêu cần đạt được"
+            rows={3}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Kết quả mong đợi *
+          </label>
+          <textarea
+            value={formData.expectedOutcomes}
+            onChange={(e) => setFormData((prev: any) => ({ ...prev, expectedOutcomes: e.target.value }))}
+            placeholder="Kết quả dự kiến sau khi hoàn thành"
+            rows={3}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
+            required
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Ngày bắt đầu *
+            </label>
+            <input
+              type="date"
+              value={formData.startDate}
+              onChange={(e) => setFormData((prev: any) => ({ ...prev, startDate: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Ngày kết thúc *
+            </label>
+            <input
+              type="date"
+              value={formData.endDate}
+              onChange={(e) => setFormData((prev: any) => ({ ...prev, endDate: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Chủ đề nghiên cứu *
+          </label>
+          <select
+            value={formData.researchTopicId}
+            onChange={(e) => setFormData((prev: any) => ({ ...prev, researchTopicId: parseInt(e.target.value) }))}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+            required
+          >
+            <option value={1}>Công nghệ thông tin</option>
+            <option value={2}>Trí tuệ nhân tạo</option>
+            <option value={3}>Khoa học dữ liệu</option>
+            <option value={4}>An ninh mạng</option>
+            <option value={5}>Phát triển phần mềm</option>
+          </select>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const TeamMembersSection: React.FC<Props> = ({ formData, setFormData }) => {
+  const [newMember, setNewMember] = useState({
+    name: "",
+    email: "",
+    role: "member"
+  });
+
+  const addMember = () => {
+    if (!newMember.name.trim() || !newMember.email.trim()) {
+      alert("Vui lòng nhập đầy đủ tên và email thành viên");
+      return;
+    }
+
+    const member: Member = {
+      id: Date.now().toString(),
+      name: newMember.name.trim(),
+      email: newMember.email.trim(),
+      role: newMember.role
+    };
+
+    setFormData((prev: any) => ({
+      ...prev,
+      members: [...(prev.members || []), member]
+    }));
+
+    setNewMember({ name: "", email: "", role: "member" });
+  };
+
+  const removeMember = (id: string) => {
+    setFormData((prev: any) => ({
+      ...prev,
+      members: (prev.members || []).filter((member: Member) => member.id !== id)
+    }));
+  };
+
+  return (
+    <section className="px-6 py-5 mt-3 rounded-xl border border-solid border-slate-200 shadow-[0px_1px_2px_rgba(0,0,0,0.05)] max-md:px-5">
+      <h2 className="text-xl font-bold leading-5 text-gray-700 mb-4">
+        Thành viên dự án
+      </h2>
+      
+      <div className="mb-4 p-4 bg-blue-50 rounded-lg">
+        <p className="text-sm text-blue-800">
+          <strong>Lưu ý:</strong> Thành viên sẽ được thêm vào dự án sau khi tạo dự án thành công. 
+          Hiện tại chỉ lưu thông tin để tham khảo.
+        </p>
+      </div>
+
+      {/* Add new member */}
+      <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+        <h3 className="text-lg font-semibold text-gray-700 mb-3">Thêm thành viên</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <input
+            type="text"
+            placeholder="Tên thành viên"
+            value={newMember.name}
+            onChange={(e) => setNewMember(prev => ({ ...prev, name: e.target.value }))}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={newMember.email}
+            onChange={(e) => setNewMember(prev => ({ ...prev, email: e.target.value }))}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
+          <select
+            value={newMember.role}
+            onChange={(e) => setNewMember(prev => ({ ...prev, role: e.target.value }))}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+          >
+            <option value="member">Thành viên</option>
+            <option value="leader">Trưởng nhóm</option>
+            <option value="researcher">Nghiên cứu viên</option>
+          </select>
           <button
             type="button"
-            className="px-5 py-1 mt-2 text-base font-medium text-teal-700 bg-teal-100 rounded hover:bg-teal-200 transition"
+            onClick={addMember}
+            className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors"
           >
-            Tải file
+            Thêm
           </button>
         </div>
+      </div>
+
+      {/* Members list */}
+      <div>
+        <h3 className="text-lg font-semibold text-gray-700 mb-3">
+          Danh sách thành viên ({(formData.members || []).length})
+        </h3>
+        
+        {(!formData.members || formData.members.length === 0) ? (
+          <div className="text-center py-8 text-gray-500">
+            <p>Chưa có thành viên nào được thêm</p>
+            <p className="text-sm">Thêm thành viên để cùng thực hiện dự án</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {formData.members.map((member: Member) => (
+              <div key={member.id} className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg">
+                <div className="flex-1">
+                  <div className="font-medium text-gray-900">{member.name}</div>
+                  <div className="text-sm text-gray-600">{member.email}</div>
+                  <div className="text-xs text-teal-600 font-medium">{member.role}</div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeMember(member.id)}
+                  className="ml-4 px-3 py-1 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded"
+                >
+                  Xóa
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

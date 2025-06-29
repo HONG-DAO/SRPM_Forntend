@@ -106,7 +106,7 @@ const TabSelector: React.FC<TabSelectorProps> = ({ onApprove, onReject, onView }
 
   return (
     <div className="w-full max-w-[992px] mx-auto">
-      <div className="flex flex-wrap gap-1 items-center justify-center px-1 py-1 mt-10 text-sm font-bold text-teal-500 bg-gray-50 rounded-lg max-md:max-w-full">
+      <div className="flex flex-wrap gap-1 items-center justify-center px-1 py-1 mt-10 text-sm font-bold text-teal-500 bg-white rounded-lg max-md:max-w-full">
         <button
           onClick={() => handleTabClick("pending")}
           className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[271px] max-md:px-5 ${

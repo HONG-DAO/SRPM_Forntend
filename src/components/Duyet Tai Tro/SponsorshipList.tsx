@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { 
-  getFundingRequests, 
-  approveFundingRequest, 
+import {
+  getFundingRequests,
+  approveFundingRequest,
   rejectFundingRequest,
-  getFundingRequestById 
+  getFundingRequestById,
+  getFundingRequestsByStatus
 } from "@cnpm/services/fundingService";
 
 export interface Sponsorship {
@@ -15,12 +16,13 @@ export interface Sponsorship {
 }
 
 interface SponsorshipListProps {
-  projects?: Sponsorship[]; // Làm cho projects optional
+  projects?: Sponsorship[];
   actionType?: "approve" | "reject" | "both";
   onApprove?: (id: string) => void;
   onReject?: (id: string) => void;
   onView?: (id: string) => void;
-  autoFetch?: boolean; // Tự động fetch data hay không
+  autoFetch?: boolean;
+  statusFilter?: "Pending" | "Approved" | "Rejected"; // status đúng với DB
 }
 
 export const SponsorshipList: React.FC<SponsorshipListProps> = ({
@@ -29,123 +31,117 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
   onApprove,
   onReject,
   onView,
-  autoFetch = true
+  autoFetch = true,
+  statusFilter
 }) => {
   const [projects, setProjects] = useState<Sponsorship[]>(initialProjects || []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch danh sách yêu cầu cấp vốn
   const fetchFundingRequests = async () => {
     if (!autoFetch) return;
-    
+
     setLoading(true);
     setError(null);
+
     try {
-      const response = await getFundingRequests();
-      // Giả sử API trả về dữ liệu có cấu trúc khác, bạn cần map về đúng interface
-      const mappedData: Sponsorship[] = response.data?.map((item: any) => ({
-        id: item.id.toString(),
-        name: item.title || item.projectTitle || item.name || '',
-        proposer: item.requestedByName || item.proposer || '',
-        date: new Date(item.createdAt || item.date).toLocaleDateString('vi-VN'),
-        amount: item.amount || 0
-      })) || [];
-      
+      let response;
+
+      if (statusFilter) {
+        response = await getFundingRequestsByStatus(statusFilter);
+      } else {
+        response = await getFundingRequests();
+      }
+
+      const data = response.data || response;
+
+      const mappedData: Sponsorship[] = Array.isArray(data)
+        ? data.map((item: any) => ({
+            id: item.id.toString(),
+            name: item.title || item.projectTitle || item.name || "",
+            proposer: item.requestedByName || item.proposer || "",
+            date: new Date(item.createdAt || item.date).toLocaleDateString("vi-VN"),
+            amount: item.amount || 0
+          }))
+        : [];
+
       setProjects(mappedData);
     } catch (err) {
-      setError('Không thể tải danh sách yêu cầu cấp vốn');
-      console.error('Error fetching funding requests:', err);
+      setError("Không thể tải danh sách yêu cầu cấp vốn");
+      console.error("Error fetching funding requests:", err);
     } finally {
       setLoading(false);
     }
   };
 
-  // Xử lý duyệt yêu cầu
   const handleApprove = async (id: string) => {
     if (onApprove) {
-      // Nếu có custom handler từ parent, sử dụng nó
       onApprove(id);
       return;
     }
 
-    // Fallback logic nếu không có custom handler
     try {
       setLoading(true);
       await approveFundingRequest(Number(id));
-      
-      // Cập nhật lại danh sách sau khi duyệt thành công
       await fetchFundingRequests();
-      
-      alert('Duyệt yêu cầu thành công!');
+      alert("Duyệt yêu cầu thành công!");
     } catch (err) {
-      console.error('Error approving request:', err);
-      alert('Có lỗi xảy ra khi duyệt yêu cầu');
+      console.error("Error approving request:", err);
+      alert("Có lỗi xảy ra khi duyệt yêu cầu");
     } finally {
       setLoading(false);
     }
   };
 
-  // Xử lý từ chối yêu cầu
   const handleReject = async (id: string) => {
     if (onReject) {
-      // Nếu có custom handler từ parent, sử dụng nó
       onReject(id);
       return;
     }
 
-    // Fallback logic nếu không có custom handler
     try {
       setLoading(true);
       await rejectFundingRequest(Number(id), "không duyệt");
-      
-      // Cập nhật lại danh sách sau khi từ chối thành công
       await fetchFundingRequests();
-      
-      alert('Từ chối yêu cầu thành công!');
+      alert("Từ chối yêu cầu thành công!");
     } catch (err) {
-      console.error('Error rejecting request:', err);
-      alert('Có lỗi xảy ra khi từ chối yêu cầu');
+      console.error("Error rejecting request:", err);
+      alert("Có lỗi xảy ra khi từ chối yêu cầu");
     } finally {
       setLoading(false);
     }
   };
 
-  // Xử lý xem chi tiết
   const handleView = async (id: string) => {
     if (onView) {
-      // Nếu có custom handler từ parent, sử dụng nó
       onView(id);
       return;
     }
 
-    // Fallback logic nếu không có custom handler
     try {
       const detail = await getFundingRequestById(Number(id));
-      console.log('Funding request detail:', detail);
-      // Bạn có thể mở modal hoặc navigate đến trang chi tiết
+      console.log("Funding request detail:", detail);
       alert(`Chi tiết yêu cầu ID: ${id}\n${JSON.stringify(detail, null, 2)}`);
     } catch (err) {
-      console.error('Error fetching request detail:', err);
-      alert('Không thể tải chi tiết yêu cầu');
+      console.error("Error fetching request detail:", err);
+      alert("Không thể tải chi tiết yêu cầu");
     }
   };
 
-  // Cập nhật projects khi initialProjects thay đổi
+  // Cập nhật nếu initialProjects thay đổi
   useEffect(() => {
     if (initialProjects) {
       setProjects(initialProjects);
     }
   }, [initialProjects]);
 
-  // Fetch data khi component mount (chỉ khi autoFetch = true)
+  // Fetch tự động khi component mount hoặc statusFilter thay đổi
   useEffect(() => {
     if (autoFetch) {
       fetchFundingRequests();
     }
-  }, [autoFetch]);
+  }, [autoFetch, statusFilter]);
 
-  // Hiển thị loading
   if (loading && projects.length === 0) {
     return (
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 mt-6 text-center">
@@ -155,12 +151,11 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
     );
   }
 
-  // Hiển thị lỗi
   if (error) {
     return (
       <div className="bg-white rounded-2xl border border-red-200 shadow-sm p-8 mt-6 text-center">
         <p className="text-red-600">{error}</p>
-        <button 
+        <button
           onClick={fetchFundingRequests}
           className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
@@ -172,7 +167,6 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-2 mt-6">
-      {/* Header */}
       <div className="flex justify-between items-center px-4 py-2">
         <h3 className="font-semibold text-gray-800">Danh sách yêu cầu cấp vốn</h3>
         {autoFetch && (
@@ -181,7 +175,7 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
             disabled={loading}
             className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 disabled:opacity-50"
           >
-            {loading ? 'Đang tải...' : 'Làm mới'}
+            {loading ? "Đang tải..." : "Làm mới"}
           </button>
         )}
       </div>
@@ -189,13 +183,13 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
       <table className="min-w-full border-separate border-spacing-0">
         <thead>
           <tr>
-            <th className="px-4 py-3 font-semibold text-gray-700 bg-white text-center">Mã</th>
-            <th className="px-6 py-3 font-semibold text-gray-700 bg-white text-left">Tên dự án</th>
-            <th className="px-6 py-3 font-semibold text-gray-700 bg-white text-left">Tên người yêu cầu</th>
-            <th className="px-6 py-3 font-semibold text-gray-700 bg-white text-right">Số tiền</th>
-            <th className="px-6 py-3 font-semibold text-gray-700 bg-white text-center">Ngày</th>
-            <th className="px-6 py-3 font-semibold text-gray-700 bg-white text-center">Xem chi tiết</th>
-            <th className="px-6 py-3 font-semibold text-gray-700 bg-white text-center">Hành động</th>
+            <th className="px-4 py-3 text-center text-gray-700 font-semibold">Mã</th>
+            <th className="px-6 py-3 text-left text-gray-700 font-semibold">Tên dự án</th>
+            <th className="px-6 py-3 text-left text-gray-700 font-semibold">Người yêu cầu</th>
+            <th className="px-6 py-3 text-right text-gray-700 font-semibold">Số tiền</th>
+            <th className="px-6 py-3 text-center text-gray-700 font-semibold">Ngày</th>
+            <th className="px-6 py-3 text-center text-gray-700 font-semibold">Xem</th>
+            <th className="px-6 py-3 text-center text-gray-700 font-semibold">Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -207,38 +201,41 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
             </tr>
           ) : (
             projects.map((project) => (
-              <tr key={project.id} className="bg-white hover:bg-gray-50 transition border-b border-gray-200 last:border-b-0">
-                <td className="px-4 py-3 text-center align-middle">{project.id}</td>
-                <td className="px-6 py-3 text-left align-middle">{project.name}</td>
-                <td className="px-6 py-3 text-left align-middle">{project.proposer}</td>
-                <td className="px-6 py-3 text-right align-middle">
-                  {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(project.amount)}
+              <tr key={project.id} className="border-b hover:bg-gray-50 transition">
+                <td className="px-4 py-3 text-center">{project.id}</td>
+                <td className="px-6 py-3">{project.name}</td>
+                <td className="px-6 py-3">{project.proposer}</td>
+                <td className="px-6 py-3 text-right">
+                  {new Intl.NumberFormat("vi-VN", {
+                    style: "currency",
+                    currency: "VND"
+                  }).format(project.amount)}
                 </td>
-                <td className="px-6 py-3 text-center align-middle">{project.date}</td>
-                <td className="px-6 py-3 text-center align-middle">
-                  <button 
-                    className="text-blue-600 underline hover:text-blue-800" 
+                <td className="px-6 py-3 text-center">{project.date}</td>
+                <td className="px-6 py-3 text-center">
+                  <button
                     onClick={() => handleView(project.id)}
+                    className="text-blue-600 underline hover:text-blue-800"
                   >
                     Xem
                   </button>
                 </td>
-                <td className="px-6 py-3 text-center align-middle">
-                  <div className="flex flex-row items-center justify-center gap-2">
+                <td className="px-6 py-3 text-center">
+                  <div className="flex justify-center gap-2">
                     {(actionType === "approve" || actionType === "both") && (
                       <button
-                        className="px-4 py-1 text-teal-700 bg-sky-100 rounded-xl min-h-[21px] w-20 hover:bg-sky-200 disabled:opacity-50"
                         onClick={() => handleApprove(project.id)}
                         disabled={loading}
+                        className="px-4 py-1 text-teal-700 bg-sky-100 rounded-xl hover:bg-sky-200 disabled:opacity-50 w-20"
                       >
                         Duyệt
                       </button>
                     )}
                     {(actionType === "reject" || actionType === "both") && (
                       <button
-                        className="px-4 py-1 text-red-700 bg-rose-100 rounded-xl min-h-[21px] w-24 whitespace-nowrap hover:bg-rose-200 disabled:opacity-50"
                         onClick={() => handleReject(project.id)}
                         disabled={loading}
+                        className="px-4 py-1 text-red-700 bg-rose-100 rounded-xl hover:bg-rose-200 disabled:opacity-50 w-24"
                       >
                         Từ chối
                       </button>

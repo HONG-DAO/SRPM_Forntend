@@ -22,6 +22,7 @@ interface ProjectListProps {
   onApprove?: (project: Project) => void;
   onReject?: (project: Project) => void;
   onView?: (project: Project) => void;
+  showStatus?: boolean;
 }
 
 export const ProjectList: React.FC<ProjectListProps> = ({ 
@@ -29,7 +30,8 @@ export const ProjectList: React.FC<ProjectListProps> = ({
   actionType = "both",
   onApprove,
   onReject,
-  onView 
+  onView,
+  showStatus = false
 }) => {
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-2 mt-6">
@@ -41,6 +43,9 @@ export const ProjectList: React.FC<ProjectListProps> = ({
               <th className="px-6 py-3 w-[280px] text-left font-semibold text-gray-700 bg-white">Tên dự án</th>
               <th className="px-6 py-3 w-[179px] text-left font-semibold text-gray-700 bg-white">Tên người đề xuất</th>
               <th className="px-6 py-3 w-[119px] text-center font-semibold text-gray-700 bg-white">Ngày</th>
+              {showStatus && (
+                <th className="px-6 py-3 w-[120px] text-center font-semibold text-gray-700 bg-white">Trạng thái</th>
+              )}
               <th className="px-6 py-3 text-center font-semibold text-gray-700 bg-white whitespace-nowrap">Xem chi tiết</th>
               <th className="px-6 py-3 w-[184px] text-center font-semibold text-gray-700 bg-white">Hành động</th>
             </tr>
@@ -52,6 +57,9 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                 <td className="px-6 py-3 text-left align-middle">{project.title}</td>
                 <td className="px-6 py-3 text-left align-middle">{project.proposerName || 'N/A'}</td>
                 <td className="px-6 py-3 text-center align-middle">{new Date(project.createdAt || '').toLocaleDateString()}</td>
+                {showStatus && (
+                  <td className="px-6 py-3 text-center align-middle">{project.status || '-'}</td>
+                )}
                 <td className="px-6 py-3 text-center align-middle">
                   <button className="text-blue-600 underline" onClick={() => onView?.(project)}>Xem</button>
                 </td>

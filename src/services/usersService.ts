@@ -53,7 +53,7 @@ const usersService = {
       throw error;
     }
   },
-
+  
   // Lấy tất cả người dùng
   getAllUsers: async (): Promise<User[]> => {
     try {
@@ -102,14 +102,16 @@ const usersService = {
   },
 
   // Xóa vai trò của người dùng
-  deleteRoleFromUser: async (userId: string, roleName: string): Promise<void> => {
+  // ✅ Xóa người dùng (đúng theo swagger)
+  deleteUser: async (userId: string): Promise<void> => {
     try {
-      await api.delete(`/Users/${userId}/roles/${roleName}`);
+      await api.delete(`/Users/${userId}`);
     } catch (error) {
-      console.error('Error deleting role from user:', error);
+      console.error('Error deleting user:', error);
       throw error;
     }
-  },
+  }
+
 };
 
 export default usersService;

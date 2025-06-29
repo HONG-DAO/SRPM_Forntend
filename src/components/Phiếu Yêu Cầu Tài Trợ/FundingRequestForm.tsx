@@ -281,7 +281,7 @@ export const FundingRequestForm: React.FC<FundingRequestFormProps> = ({
             <FormField label="Trình bày :" className="mt-2.5 max-md:max-w-full">
               <textarea
                 className="overflow-hidden px-4 pt-2 pb-24 w-full text-base text-gray-700 bg-white rounded-md border border-gray-300 border-solid max-md:pr-5 max-md:pb-28 max-md:max-w-full resize-none outline-none placeholder-gray-500"
-                placeholder="Provide a clear explanation of why the funding is necessary"
+
                 value={formData.presentation}
                 onChange={(e) =>
                   handleInputChange("presentation", e.target.value)

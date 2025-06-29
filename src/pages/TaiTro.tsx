@@ -104,7 +104,7 @@ const SponsorshipTable: React.FC<{
     <section className="w-full mx-auto overflow-x-auto">
       <table className="min-w-full text-left">
         <thead>
-          <tr className="bg-gray-50 border-b-2 border-gray-200 text-gray-700 font-semibold text-lg">
+          <tr className="bg-white border-b-2 border-gray-300 text-gray-700 font-semibold text-lg">
             <th className="min-w-[250px] px-3 py-3">Tiêu đề</th>
             <th className="min-w-[120px] px-3 py-3">Số Tiền</th>
             <th className="min-w-[200px] px-3 py-3">Mục đích</th>
@@ -114,7 +114,7 @@ const SponsorshipTable: React.FC<{
         </thead>
         <tbody>
           {sortedRequests.map((item, index) => (
-            <tr key={item.id} className={index % 2 === 1 ? "bg-slate-50" : "bg-white"}>
+            <tr key={item.id} className={index % 2 === 1 ? "bg-gray-50" : "bg-white"}>
               <td className="align-middle px-3 py-4">
                 <div className="font-semibold" title={item.title}>{item.projectTitle}</div>
                 <div className="text-xs text-gray-500">{new Date(item.createdAt).toLocaleDateString('vi-VN')}</div>
@@ -281,18 +281,19 @@ function TaiTroThanhVienNghienCuu() {
   };
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full">
-      <div className="flex flex-row min-h-screen">
+    <main className="bg-white min-h-screen w-full border border-gray-200">
+      <div className="flex min-h-screen w-screen">
         {/* Sidebar */}
-        <div className="w-[18%] border-r border-slate-200 bg-gray-50">
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
           <Sidebar />
-        </div>
-
+        </aside>
         {/* Main content */}
-        <div className="w-[110%] flex flex-col">
-          <Header />
-
-          <div className="flex-1 px-6 py-8">
+        <div className="flex-1 flex flex-col ml-64">
+          {/* Header */}
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+            <Header />
+          </div>
+          <div className="flex-1 px-6 py-8 mt-16">
             <div className="max-w-7xl mx-auto">
               <h1 className="text-3xl font-bold text-gray-700 text-center mb-8">
                 Yêu cầu tài trợ
@@ -362,7 +363,7 @@ function TaiTroThanhVienNghienCuu() {
                 </button>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-sm p-6">
+              <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-300">
                 <div className="flex justify-between items-center mb-6">
                   <div>
                     <h2 className="text-xl font-bold text-gray-700">

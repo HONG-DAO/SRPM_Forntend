@@ -19,7 +19,7 @@ import Profile1 from '@cnpm/pages/Profile1';
 import Profile2 from '@cnpm/pages/Profile2';
 import Profile3 from '@cnpm/pages/Profile3';
 import TaiTro from '@cnpm/pages/TaiTro';
-import nhanvien from '@cnpm/pages/DashboradStaff';
+import nhanvien from '@cnpm/pages/DashboardStaff';
 import Chutri from '@cnpm/pages/DashboardHost';
 import ChiTietDuAnHost from '@cnpm/pages/ChiTietDuanHost';
 import ThanhVienNghienCuu from '@cnpm/pages/ThanhVienNghienCuu';
@@ -33,7 +33,7 @@ import ThemTaiLieuNghienCuuChinh from '@cnpm/pages/ThemTaiLieuNghienCuuChinh';
 import ThemNhiemVu from '@cnpm/pages/ThemNhiemVu';
 import ChiTietDuAn from '@cnpm/pages/ChiTietDuAn';
 import { useParams } from 'react-router-dom';
-import DashboradStaff from '@cnpm/pages/DashboradStaff';
+import DashboardStaff from '@cnpm/pages/DashboardStaff';
 import { Import } from 'lucide-react';
 
 function TrangChiTietNhiemVuWrapper() {
@@ -72,7 +72,7 @@ export function App() {
                 
                 {/* User & Profile Routes */}
                 <Route path="/DashboardHDTD" element={<HDTD />} />
-                <Route path="/DashboradStaff" element={<DashboradStaff />} />
+                <Route path="/DashboardStaff" element={<DashboardStaff />} />
                 <Route path="/dashboardhost" element={<Chutri />} />
                 <Route path="/thanhviennghiencuu" element={<ThanhVienNghienCuu />} />
                 <Route path="/profile" element={<Profile />} />
@@ -88,7 +88,7 @@ export function App() {
                 <Route path="/duyetduan" element={<DuyetDuAn />} />
                 <Route path="/duyettaitro" element={< DuyetTaiTro/>} />
                 {/* Task Routes */}
-                <Route path="/themnhiemvu" element={<ThemNhiemVu availableMembers={[]} />} />
+                <Route path="/themnhiemvu" element={<ThemNhiemVu />} />
                 <Route
                   path="/trangchitietnhiemvu/:taskId"
                   element={

@@ -309,42 +309,46 @@ function ThemTaiLieuNghienCuuChinh({
   }
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full flex flex-row">
-      <div className="w-64 border-r border-slate-200 bg-gray fixed h-full">
-        <Sidebar />
-      </div>
+    <main className="bg-slate-50 min-h-screen w-full">
+      <div className="flex min-h-screen w-screen">
+        {/* Sidebar */}
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
+          <Sidebar />
+        </aside>
 
-      <div className="flex-1 flex flex-col ml-64">
-        <div className="w-full z-10">
-          <Header />
-        </div>
+        <div className="flex-1 flex flex-col ml-64">
+          {/* Header */}
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-200">
+            <Header />
+          </div>
 
-        <section className="flex flex-col pb-60 w-full items-center">
-          {/* Debug Panel - Remove this in production */}
-          
+          <section className="flex flex-col pb-60 w-full items-center mt-16">
+            {/* Debug Panel - Remove this in production */}
+            
 
-          <DocumentUpload
-            userId={userId}
-            projectId={projectId}
-            projectTitle={projectTitle}
-            onUploadSuccess={onUploadSuccess}
-            onSubmit={handleSubmit}
-          />
-          
-          {/* Loading overlay */}
-          {isUploading && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-lg p-6 flex flex-col items-center">
-                <svg className="animate-spin h-8 w-8 text-teal-500 mb-4" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <p className="text-lg font-medium text-gray-700">Đang tải lên tài liệu...</p>
-                <p className="text-sm text-gray-500 mt-1">Vui lòng không đóng trang này</p>
+            <DocumentUpload
+              userId={userId}
+              projectId={projectId}
+              projectTitle={projectTitle}
+              onUploadSuccess={onUploadSuccess}
+              onSubmit={handleSubmit}
+            />
+            
+            {/* Loading overlay */}
+            {isUploading && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-white rounded-lg p-6 flex flex-col items-center">
+                  <svg className="animate-spin h-8 w-8 text-teal-500 mb-4" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p className="text-lg font-medium text-gray-700">Đang tải lên tài liệu...</p>
+                  <p className="text-sm text-gray-500 mt-1">Vui lòng không đóng trang này</p>
+                </div>
               </div>
-            </div>
-          )}
-        </section>
+            )}
+          </section>
+        </div>
       </div>
     </main>
   );

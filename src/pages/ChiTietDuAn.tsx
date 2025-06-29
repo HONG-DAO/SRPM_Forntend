@@ -563,14 +563,18 @@ export const ChiTietDuAn: React.FC = () => {
 
   if (loading) {
     return (
-      <main className="bg-slate-50 min-h-screen w-full">
-        <div className="flex flex-row min-h-screen">
-          <div className="w-[18%] border-r border-slate-200 bg-gray">
+      <main className="bg-white min-h-screen w-full border border-gray-200">
+        <div className="flex min-h-screen w-screen">
+          {/* Sidebar */}
+          <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
             <Sidebar />
-          </div>
-          <div className="flex-1 flex flex-col">
-            <Header />
-            <section className="flex flex-col items-center pb-16 w-full max-w-full">
+          </aside>
+          <div className="flex-1 flex flex-col ml-64">
+            {/* Header */}
+            <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+              <Header />
+            </div>
+            <section className="flex flex-col items-center pb-16 w-full max-w-full mt-16">
               <div className="mt-8 text-center">
                 <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500"></div>
                 <p className="mt-2 text-gray-600">Đang tải thông tin dự án...</p>
@@ -584,14 +588,18 @@ export const ChiTietDuAn: React.FC = () => {
 
   if (error || !project) {
     return (
-      <main className="bg-slate-50 min-h-screen w-full">
-        <div className="flex flex-row min-h-screen">
-          <div className="w-[18%] border-r border-slate-200 bg-gray">
+      <main className="bg-white min-h-screen w-full border border-gray-200">
+        <div className="flex min-h-screen w-screen">
+          {/* Sidebar */}
+          <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
             <Sidebar />
-          </div>
-          <div className="flex-1 flex flex-col">
-            <Header />
-            <section className="flex flex-col items-center pb-16 w-full max-w-full">
+          </aside>
+          <div className="flex-1 flex flex-col ml-64">
+            {/* Header */}
+            <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+              <Header />
+            </div>
+            <section className="flex flex-col items-center pb-16 w-full max-w-full mt-16">
               <div className="mt-8 text-center">
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md">
                   <p className="mb-3">{error || "Không tìm thấy thông tin dự án"}</p>
@@ -619,14 +627,18 @@ export const ChiTietDuAn: React.FC = () => {
   }
 
   return (
-    <main className="bg-slate-50 min-h-screen w-full">
-      <div className="flex flex-row min-h-screen">
-        <div className="w-[18%] border-r border-slate-200 bg-gray">
+    <main className="bg-white min-h-screen w-full border border-gray-200">
+      <div className="flex min-h-screen w-screen">
+        {/* Sidebar */}
+        <aside className="fixed top-0 left-0 bottom-0 w-64 h-full bg-white border-r border-gray-200 z-40">
           <Sidebar />
-        </div>
-        <div className="flex-1 flex flex-col">
-          <Header />
-          <section className="flex flex-col items-center pb-16 w-full max-w-full">
+        </aside>
+        <div className="flex-1 flex flex-col ml-64">
+          {/* Header */}
+          <div className="fixed top-0 left-64 right-0 h-16 z-30 bg-white border-b border-gray-300">
+            <Header />
+          </div>
+          <section className="flex flex-col items-center pb-16 w-full max-w-full mt-16">
             {/* Breadcrumb and back button */}
             <div className="w-full max-w-[800px] mt-4">
               <button

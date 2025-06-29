@@ -14,10 +14,10 @@ export interface Project {
   date: string;
 }
 
-type TabType = "pending" | "approved" | "denied";
+type TabType = "Pending" | "Approved" | "Rejected";
 
 export const TabSelector = () => {
-  const [activeTab, setActiveTab] = useState<TabType>("pending");
+  const [activeTab, setActiveTab] = useState<TabType>("Pending");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [pendingSponsorships, setPendingSponsorships] = useState<Sponsorship[]>([]);
   const [approvedSponsorships, setApprovedSponsorships] = useState<Sponsorship[]>([]);
@@ -66,19 +66,20 @@ export const TabSelector = () => {
       
       const mappedData = mapApiDataToSponsorship(dataArray);
       
-      switch (status.toLowerCase()) {
-        case 'pending':
+      switch (status) {
+        case 'Pending':
           setPendingSponsorships(mappedData);
           break;
-        case 'approved':
+        case 'Approved':
           setApprovedSponsorships(mappedData);
           break;
-        case 'denied':
+        case 'Rejected':
           setDeniedSponsorships(mappedData);
           break;
         default:
           console.warn(`Unknown status: ${status}`);
       }
+
     } catch (err: any) {
       const errorMessage = `Không thể tải danh sách ${status}: ${err.message || 'Lỗi không xác định'}`;
       setError(errorMessage);
@@ -95,9 +96,9 @@ export const TabSelector = () => {
     
     try {
       // Fetch theo thứ tự để tránh race condition
-      await fetchDataByStatus('pending');
-      await fetchDataByStatus('approved');
-      await fetchDataByStatus('denied');
+      await fetchDataByStatus('Pending');
+      await fetchDataByStatus('Approved');
+      await fetchDataByStatus('Rejected');
     } catch (err) {
       console.error('Error fetching all data:', err);
       setError('Có lỗi xảy ra khi tải dữ liệu');
@@ -114,13 +115,13 @@ export const TabSelector = () => {
   // Get current projects based on active tab
   let projects: Sponsorship[] = [];
   switch (activeTab) {
-    case "pending":
+    case "Pending":
       projects = pendingSponsorships;
       break;
-    case "approved":
+    case "Approved":
       projects = approvedSponsorships;
       break;
-    case "denied":
+    case "Rejected":
       projects = deniedSponsorships;
       break;
     default:
@@ -224,12 +225,12 @@ export const TabSelector = () => {
       )}
 
       {/* Tab buttons */}
-      <div className="flex flex-wrap gap-1 items-center justify-center px-1 py-1 mt-10 text-sm font-bold text-teal-500 bg-gray-50 rounded-lg max-md:max-w-full">
+      <div className="flex flex-wrap gap-1 items-center justify-center px-1 py-1 mt-10 text-sm font-bold text-teal-500 bg-white rounded-lg max-md:max-w-full">
         <button 
-          onClick={() => handleTabClick("pending")}
+          onClick={() => handleTabClick("Pending")}
           disabled={loading}
           className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[300px] max-md:px-5 transition-colors ${
-            activeTab === "pending" 
+            activeTab === "Pending" 
               ? "text-white bg-teal-500" 
               : "bg-teal-100 hover:bg-teal-200"
           } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -237,10 +238,10 @@ export const TabSelector = () => {
           Chờ duyệt ({pendingSponsorships.length})
         </button>
         <button 
-          onClick={() => handleTabClick("approved")}
+          onClick={() => handleTabClick("Approved")}
           disabled={loading}
           className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[300px] max-md:px-5 transition-colors ${
-            activeTab === "approved" 
+            activeTab === "Approved" 
               ? "text-white bg-teal-500" 
               : "bg-teal-100 hover:bg-teal-200"
           } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -248,10 +249,10 @@ export const TabSelector = () => {
           Đã duyệt ({approvedSponsorships.length})
         </button>
         <button 
-          onClick={() => handleTabClick("denied")}
+          onClick={() => handleTabClick("Rejected")}
           disabled={loading}
           className={`self-stretch px-24 py-1.5 my-auto rounded-lg min-h-[27px] min-w-60 w-[300px] max-md:px-5 transition-colors ${
-            activeTab === "denied" 
+            activeTab === "Rejected" 
               ? "text-white bg-teal-500" 
               : "bg-teal-100 hover:bg-teal-200"
           } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -321,8 +322,8 @@ export const TabSelector = () => {
       <SponsorshipList 
         projects={filteredProjects} 
         actionType={
-          activeTab === "pending" ? "both" :
-          activeTab === "approved" ? "reject" :
+          activeTab === "Pending" ? "both" :
+          activeTab === "Approved" ? "reject" :
           "approve"
         }
         onApprove={handleApprove}
