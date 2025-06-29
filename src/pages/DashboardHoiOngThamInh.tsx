@@ -6,7 +6,7 @@ import Sidebar from "../components/HoiDongThamDinh/Sidebar";
 import DashboardHeader from "../components/Header";
 import { ProjectEvaluation, PhaseProgress } from "../components/HoiDongThamDinh/StatusIndicator";
 import { TabSelector } from "../components/Duyet Du An/TabSelector";
-import { Project } from "../components/Duyet Du An/ProjectList";
+import { Project } from "@cnpm/components/HoiDongThamDinh/danhgiasuan";
 import { getProjects, updateProject, updateProjectStatus } from "../services/projectService";
 
 

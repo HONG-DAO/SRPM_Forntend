@@ -79,13 +79,16 @@ export const UserDetails = () => {
         name: userInfo.name,
         avatarUrl: userProfile.avatarUrl || "",
         backgroundUrl: userProfile.backgroundUrl || "",
-        socialLinks: userInfo.socialLinks.split(",").map(link => link.trim()).join(","),
+        socialLinks: userInfo.socialLinks
+          .split(",")
+          .map(link => link.trim()) // ✅ Tách thành mảng
+          .filter(link => link !== ""), // bỏ trống
       };
 
       const response = await authService.updateUserProfile(updatePayload);
 
       // Kiểm tra nếu có lỗi trong response từ API
-      if (response.status !== 200) {
+      if (![200, 204].includes(response.status)) {
         throw new Error("Không thể cập nhật thông tin");
       }
 

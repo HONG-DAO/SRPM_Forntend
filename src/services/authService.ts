@@ -36,7 +36,7 @@ interface UpdateProfilePayload {
   name: string;
   avatarUrl: string;
   backgroundUrl: string;
-  socialLinks: string;
+  socialLinks: string[];
 }
 
 interface UserState {
@@ -112,7 +112,7 @@ export const authService = {
           name: payload.name,
           avatarUrl: payload.avatarUrl || null,
           backgroundUrl: payload.backgroundUrl || null,
-          socialLinks: payload.socialLinks ? payload.socialLinks.split(',').map(s => s.trim()) : [],
+          socialLinks: payload.socialLinks,
         };
         
         userState.profile = updatedProfile;
@@ -136,23 +136,28 @@ export const authService = {
     }
   },
 
-  // Google Login
-  async googleLogin(code: string): Promise<AxiosResponse<AuthResponse>> {
-    try {
-      const response = await api.get<AuthResponse>(
-        `/auth/google/signin/callback?code=${code}`
-      );
-
-      if (response.data?.token) {
-        sessionStorage.setItem('accessToken', response.data.token);
-        await this.fetchAndStoreUserProfile();
+// Google Login
+async googleLogin(code: string): Promise<AxiosResponse<AuthResponse>> {
+  try {
+    const response = await api.get<AuthResponse>(
+      `/auth/google/signin/callback?code=${code}`,
+      {
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+        },
       }
+    );
 
-      return response;
-    } catch (error) {
-      throw this.handleError(error);
+    if (response.data?.token) {
+      sessionStorage.setItem('accessToken', response.data.token);
+      await this.fetchAndStoreUserProfile();
     }
-  },
+
+    return response;
+  } catch (error) {
+    throw this.handleError(error);
+  }
+},
 
   // Helper
   handleError(error: any): Error {

@@ -1,16 +1,29 @@
 "use client";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { FundingRequestForm } from "@cnpm/components/Phiếu Yêu Cầu Tài Trợ/FundingRequestForm";
 
 interface PhieuYeuCauTaiTroNghienCuuChinhProps {
-  onSubmit: (formData: any) => void;
+  onSubmit?: (formData: any) => void;
 }
 
 function PhieuYeuCauTaiTro({
   onSubmit,
 }: PhieuYeuCauTaiTroNghienCuuChinhProps) {
+  const navigate = useNavigate();
+
+  const handleSuccess = () => {
+    // Navigate back to tai-tro page after successful submission
+    navigate('/tai-tro');
+  };
+
+  const handleError = (error: any) => {
+    console.error('Error submitting funding request:', error);
+    // You can add additional error handling here if needed
+  };
+
   return (
     <main className="bg-slate-50 min-h-screen w-full">
       <div className="flex flex-row min-h-screen">
@@ -25,7 +38,11 @@ function PhieuYeuCauTaiTro({
             <h1 className="mt-8 text-2xl font-bold text-gray-700">
               Phiếu yêu cầu tài trợ
             </h1>
-            <FundingRequestForm onSubmit={onSubmit} />
+            <FundingRequestForm 
+              onSubmit={onSubmit}
+              onSuccess={handleSuccess}
+              onError={handleError}
+            />
           </section>
         </div>
       </div>

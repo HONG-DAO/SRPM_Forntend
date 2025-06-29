@@ -122,7 +122,15 @@ export const getFundingRequestsByStatus = async (status: string): Promise<any> =
 // Duyệt yêu cầu (approve)
 export const approveFundingRequest = async (id: number): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.post(`/FundingRequests/${id}/approve`);
+    const response: AxiosResponse<any> = await api.post(
+      `/FundingRequests/${id}/approve`,
+      {}, // body rỗng
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi duyệt yêu cầu ID ${id}:`, error);
@@ -131,12 +139,18 @@ export const approveFundingRequest = async (id: number): Promise<any> => {
 };
 
 // Từ chối yêu cầu (reject)
-export const rejectFundingRequest = async (id: number): Promise<any> => {
+export const rejectFundingRequest = async (id: number, reason: string): Promise<any> => {
   try {
-    const response: AxiosResponse<any> = await api.post(`/FundingRequests/${id}/reject`);
+    const response: AxiosResponse<any> = await api.post(
+      `/FundingRequests/${id}/reject`,
+      { reason }, // gửi lý do từ chối
+    );
     return response.data;
   } catch (error) {
     console.error(`Lỗi khi từ chối yêu cầu ID ${id}:`, error);
     throw error;
   }
 };
+
+
+

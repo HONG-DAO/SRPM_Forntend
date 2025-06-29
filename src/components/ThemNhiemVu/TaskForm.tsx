@@ -12,7 +12,7 @@ export interface NewTaskData {
 
 interface TaskFormProps {
   onSubmit: (data: NewTaskData) => void;
-  members: string[];
+  members: { id: number; name: string }[];
   isSubmitting?: boolean;
 }
 
@@ -266,25 +266,15 @@ export const TaskForm: React.FC<TaskFormProps> = ({
           id="assignedTo"
           value={formData.assignedToId}
           onChange={(e) => handleInputChange('assignedToId', parseInt(e.target.value))}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 ${
-            errors.assignedToId ? 'border-red-500' : 'border-gray-300'
-          }`}
+          className={`...`}
           disabled={isSubmitting}
         >
-          <option value={0}>Tên thành viên</option>
-          {members.map((member, index) => (
-            <option key={index} value={index + 1}>
-              {member}
+          <option value={0}>Chọn thành viên</option>
+          {members.map((member) => (
+            <option key={member.id} value={member.id}>
+              {member.name}
             </option>
           ))}
-          {/* Thêm một số thành viên mẫu nếu không có data */}
-          {members.length === 0 && (
-            <>
-              <option value={1}>Nguyễn Văn A</option>
-              <option value={2}>Trần Thị B</option>
-              <option value={3}>Lê Văn C</option>
-            </>
-          )}
         </select>
         {errors.assignedToId && (
           <p className="mt-1 text-sm text-red-600">{errors.assignedToId}</p>

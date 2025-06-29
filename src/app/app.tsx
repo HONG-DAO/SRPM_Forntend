@@ -6,17 +6,22 @@ import SignInPage from '@cnpm/pages/LoginPage';
 import SignUpPage from '@cnpm/pages/SignUp';
 import LoginError from '@cnpm/pages/LoginError';
 import DashboardHoiOngThamInh from '@cnpm/pages/DashboardHoiOngThamInh';
+import HDTD from '@cnpm/pages/DashboardHDTD'; 
 import DashboardQuanTriVien from '@cnpm/pages/DashboardQuanTriVien';
 import DashboardQuanTriVien1 from '@cnpm/pages/DashboardQuanTriVien1';
 import DashboardQuanTriVien2 from '@cnpm/pages/DashboardQuanTriVien2';
 import AdminDashboard from '@cnpm/pages/AdminDashboard';
 import { PublicRoute, ProtectedRoute } from '@cnpm/components/Protect/PublicRoute';
 import DuAn from '@cnpm/pages/DuAn';
+import Duanhost from '@cnpm/pages/Duanhost';
 import Profile from '@cnpm/pages/Profile';
 import Profile1 from '@cnpm/pages/Profile1';
 import Profile2 from '@cnpm/pages/Profile2';
 import Profile3 from '@cnpm/pages/Profile3';
 import TaiTro from '@cnpm/pages/TaiTro';
+import nhanvien from '@cnpm/pages/DashboradStaff';
+import Chutri from '@cnpm/pages/DashboardHost';
+import ChiTietDuAnHost from '@cnpm/pages/ChiTietDuanHost';
 import ThanhVienNghienCuu from '@cnpm/pages/ThanhVienNghienCuu';
 import TaoDuAnNghienCuuChinh from '@cnpm/pages/TaoDuAnNghienCuuChinh';
 import DuyetDuAn from '@cnpm/pages/DuyetDuAn';
@@ -28,6 +33,8 @@ import ThemTaiLieuNghienCuuChinh from '@cnpm/pages/ThemTaiLieuNghienCuuChinh';
 import ThemNhiemVu from '@cnpm/pages/ThemNhiemVu';
 import ChiTietDuAn from '@cnpm/pages/ChiTietDuAn';
 import { useParams } from 'react-router-dom';
+import DashboradStaff from '@cnpm/pages/DashboradStaff';
+import { Import } from 'lucide-react';
 
 function TrangChiTietNhiemVuWrapper() {
   const { taskId = '' } = useParams<{ taskId: string }>();
@@ -64,13 +71,18 @@ export function App() {
                 <Route path="/admin" element={<AdminDashboard />} />
                 
                 {/* User & Profile Routes */}
+                <Route path="/DashboardHDTD" element={<HDTD />} />
+                <Route path="/DashboradStaff" element={<DashboradStaff />} />
+                <Route path="/dashboardhost" element={<Chutri />} />
                 <Route path="/thanhviennghiencuu" element={<ThanhVienNghienCuu />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile1" element={<Profile1 />} />
                 <Route path="/profile2" element={<Profile2 />} />
                 <Route path="/profile3" element={<Profile3 />} />
                 {/* Project Routes */}
+                <Route path="/duanhost" element={<Duanhost />} />
                 <Route path="/duan" element={<DuAn />} />
+                <Route path="/chitietduanhost" element={<ChiTietDuAnHost />} />
                 <Route path="/chitietduan" element={<ChiTietDuAn />} />
                 <Route path="/taoduannghiencuuchinh" element={<TaoDuAnNghienCuuChinh />} />
                 <Route path="/duyetduan" element={<DuyetDuAn />} />

@@ -8,7 +8,6 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
-  group,
   supervisor,
 }) => {
   return (
@@ -30,12 +29,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </div>
             
             <div className="flex flex-col sm:flex-row sm:items-start gap-1">
-              <span className="font-semibold text-slate-700 whitespace-nowrap">Nhóm:</span>
-              <span className="text-slate-600">{group}</span>
+              {/* <span className="font-semibold text-slate-700 whitespace-nowrap">Nhóm:</span> */}
+              {/* <span className="text-slate-600">{group}</span> */}
             </div>
             
             <div className="flex flex-col sm:flex-row sm:items-start gap-1">
-              <span className="font-semibold text-slate-700 whitespace-nowrap">Người hướng dẫn:</span>
+              <span className="font-semibold text-slate-700 whitespace-nowrap">Mô tả:</span>
               <span className="text-slate-600">{supervisor}</span>
             </div>
           </div>

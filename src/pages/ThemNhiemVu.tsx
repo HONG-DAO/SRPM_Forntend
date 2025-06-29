@@ -4,7 +4,7 @@ import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { TaskForm, NewTaskData } from "@cnpm/components/ThemNhiemVu/TaskForm";
 import { taskService, TaskCreateRequest } from "../services/taskService";
-
+import usersService from "../services/usersService";
 interface LocationState {
   projectId?: number;
   projectTitle?: string;
@@ -15,11 +15,9 @@ interface LocationState {
   };
 }
 
-interface ThemNhiemVuProps {
-  availableMembers?: string[];
-}
 
-const ThemNhiemVu: React.FC<ThemNhiemVuProps> = ({ availableMembers = [] }) => {
+
+const ThemNhiemVu: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationState;
@@ -30,7 +28,24 @@ const ThemNhiemVu: React.FC<ThemNhiemVuProps> = ({ availableMembers = [] }) => {
     id: number;
     title: string;
   } | null>(null);
+  const [members, setMembers] = useState<{ id: number; name: string }[]>([]);
 
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const users = await usersService.getUsersByRole("Researcher");
+        setMembers(users.map((u) => ({
+          id: parseInt(u.id), // ép từ string sang number nếu cần
+          name: u.name
+        })));
+      } catch (err) {
+        console.error("Failed to fetch members:", err);
+        setError("Không thể tải danh sách thành viên.");
+      }
+    };
+
+    fetchMembers();
+  }, []);
   useEffect(() => {
     // Kiểm tra xem có thông tin dự án từ navigation state không
     if (state?.projectId && state?.projectTitle) {
@@ -67,86 +82,75 @@ const ThemNhiemVu: React.FC<ThemNhiemVuProps> = ({ availableMembers = [] }) => {
   };
 
   const handleTaskSubmit = async (taskData: NewTaskData) => {
-    if (!projectInfo) {
-      setError("Không tìm thấy thông tin dự án");
-      return;
-    }
+  if (!projectInfo) {
+    setError("Không tìm thấy thông tin dự án");
+    return;
+  }
 
-    // Validate dữ liệu trước khi gửi
-    const validationError = validateTaskData(taskData);
-    if (validationError) {
-      setError(validationError);
-      return;
-    }
+  const validationError = validateTaskData(taskData);
+  if (validationError) {
+    setError(validationError);
+    return;
+  }
 
-    setIsSubmitting(true);
-    setError(null);
+  setIsSubmitting(true);
+  setError(null);
 
-    try {
-      // Chuẩn bị dữ liệu để gửi API với validation
-      const taskCreateRequest: TaskCreateRequest = {
-        title: taskData.title.trim(),
-        description: taskData.description.trim(),
-        startDate: taskData.startDate,
-        dueDate: taskData.dueDate,
-        projectId: projectInfo.id,
-        assignedToId: taskData.assignedToId || 0, 
-        isMilestone: taskData.isMilestone || false,
-        attachmentUrls: taskData.attachmentUrls?.trim() || ""
-      };
+  try {
+    // Debug: Log raw taskData first
+    console.log("Raw taskData from TaskForm:", taskData);
 
-      console.log("Submitting task data:", taskCreateRequest);
+    // Prepare data with proper null handling and date format
+    const taskCreateRequest: TaskCreateRequest = {
+      title: taskData.title.trim(),
+      description: taskData.description.trim(),
+      // Fix date format - ensure ISO format
+      startDate: new Date(taskData.startDate + 'T00:00:00.000Z').toISOString(),
+      dueDate: new Date(taskData.dueDate + 'T23:59:59.999Z').toISOString(),
+      projectId: projectInfo.id,
+      // Fix assignedToId - MUST be null if no assignment, not -1 or 0
+      assignedToId: (taskData.assignedToId && taskData.assignedToId > 0) ? taskData.assignedToId : null,
+      isMilestone: taskData.isMilestone || false,
+      attachmentUrls: taskData.attachmentUrls?.trim() || ""
+    };
 
-      // Gọi API để tạo nhiệm vụ
-      const createdTask = await taskService.create(taskCreateRequest);
+    console.log("Final request data being sent:", taskCreateRequest);
+
+    const createdTask = await taskService.create(taskCreateRequest);
+    
+    console.log("Task created successfully:", createdTask);
+    alert(`Nhiệm vụ "${createdTask.title}" đã được tạo thành công!`);
+
+    navigate(`/chitietduan/${projectInfo.id}`, {
+      state: {
+        id: projectInfo.id,
+        title: projectInfo.title,
+        project: state?.project,
+        taskCreated: true
+      },
+      replace: true
+    });
+
+  } catch (error: any) {
+    console.error("Full error object:", error);
+    console.error("Error response:", error.response);
+    console.error("Error request config:", error.config);
+    
+    if (error.response?.status === 400) {
+      // Log the exact request that was sent
+      console.log("400 Error - Request payload:", JSON.parse(error.config?.data || '{}'));
+      console.log("400 Error - Response data:", error.response?.data);
       
-      console.log("Task created successfully:", createdTask);
-
-      // Hiển thị thông báo thành công
-      alert(`Nhiệm vụ "${createdTask.title}" đã được tạo thành công!`);
-
-      // Quay lại trang chi tiết dự án với thông tin đã có
-      navigate(`/chitietduan/${projectInfo.id}`, {
-        state: {
-          id: projectInfo.id,
-          title: projectInfo.title,
-          project: state?.project,
-          // Thêm flag để báo hiệu rằng cần reload tasks
-          taskCreated: true
-        },
-        replace: true // Thay thế history entry hiện tại
-      });
-
-    } catch (error: any) {
-      console.error("Error creating task:", error);
-      console.error("Error details:", error.response?.data);
-      
-      // Xử lý các loại lỗi khác nhau
-      if (error.response?.status === 400) {
-        // Chi tiết hóa lỗi 400
-        const errorMessage = error.response?.data?.message || error.response?.data?.error;
-        if (errorMessage) {
-          setError(`Dữ liệu không hợp lệ: ${errorMessage}`);
-        } else {
-          setError("Dữ liệu nhiệm vụ không hợp lệ. Vui lòng kiểm tra lại thông tin.");
-        }
-      } else if (error.response?.status === 404) {
-        setError("Không tìm thấy dự án hoặc thành viên. Vui lòng thử lại.");
-      } else if (error.response?.status === 401) {
-        setError("Bạn không có quyền tạo nhiệm vụ cho dự án này.");
-      } else if (error.response?.status === 403) {
-        setError("Bạn không có quyền truy cập vào tính năng này.");
-      } else if (error.response?.status === 422) {
-        setError("Dữ liệu không đúng định dạng yêu cầu. Vui lòng kiểm tra lại.");
-      } else if (error.response?.status >= 500) {
-        setError("Lỗi server. Vui lòng thử lại sau ít phút.");
-      } else {
-        setError(`Có lỗi xảy ra khi tạo nhiệm vụ: ${error.message || 'Vui lòng thử lại.'}`);
-      }
-    } finally {
-      setIsSubmitting(false);
+      const errorMessage = error.response?.data?.title || error.response?.data?.message || error.response?.data?.error;
+      setError(`Validation Error: ${errorMessage || 'Invalid data format'}`);
+    } else {
+      setError(`Error creating task: ${error.message}`);
     }
-  };
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+  
 
   const handleBackToProject = () => {
     if (projectInfo) {
@@ -251,7 +255,7 @@ const ThemNhiemVu: React.FC<ThemNhiemVuProps> = ({ availableMembers = [] }) => {
           <div className="w-full max-w-2xl" onClick={handleErrorClear}>
             <TaskForm 
               onSubmit={handleTaskSubmit} 
-              members={availableMembers}
+              members={members}
               isSubmitting={isSubmitting}
               // projectId={projectInfo?.id}
             />

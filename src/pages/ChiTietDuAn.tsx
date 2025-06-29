@@ -1,3 +1,5 @@
+// Fixed ChiTietDuAn component with proper document loading
+
 import React, { useState, useEffect } from "react";
 import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
@@ -6,6 +8,8 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { getProject } from "../services/projectService";
 import { taskService } from "../services/taskService";
 import { authService, UserProfile } from "../services/authService";
+// Import the document service
+import { getDocumentsByProjectId, deleteDocument } from "../services/documentService";
 
 // Define interfaces
 interface Project {
@@ -45,6 +49,11 @@ interface Document {
   type: string;
   projectId: number;
   uploadedBy: number;
+  category?: string;
+  fileName?: string;
+  filePath?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface LocationState {
@@ -60,7 +69,10 @@ interface LocationState {
   researchTopicId?: number;
   project?: Project;
   taskCreated?: boolean;
-  documentCreated?: boolean; // New flag for document creation
+  documentCreated?: boolean;
+  documentUploaded?: boolean; // New flag from upload page
+  message?: string; // Success message
+  uploadedFiles?: string[]; // List of uploaded file names
 }
 
 export const ChiTietDuAn: React.FC = () => {
@@ -75,6 +87,7 @@ export const ChiTietDuAn: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [documentsLoading, setDocumentsLoading] = useState(false);
 
   useEffect(() => {
     const initializeComponent = async () => {
@@ -100,10 +113,25 @@ export const ChiTietDuAn: React.FC = () => {
           );
         }
 
-        if (location.state?.documentCreated) {
-          console.log("New document was created, documents should be reloaded");
+        if (location.state?.documentCreated || location.state?.documentUploaded) {
+          console.log("New document was created/uploaded, documents should be reloaded");
+          
+          // Show success message if available
+          if (location.state?.message) {
+            // You can replace this with a toast notification or better UI
+            setTimeout(() => {
+              alert(location.state.message);
+            }, 500);
+          }
+          
           window.history.replaceState(
-            { ...location.state, documentCreated: undefined }, 
+            { 
+              ...location.state, 
+              documentCreated: undefined, 
+              documentUploaded: undefined,
+              message: undefined,
+              uploadedFiles: undefined
+            }, 
             document.title
           );
         }
@@ -116,7 +144,7 @@ export const ChiTietDuAn: React.FC = () => {
     };
 
     initializeComponent();
-  }, [id, title, location.state?.taskCreated, location.state?.documentCreated]); 
+  }, [id, title, location.state?.taskCreated, location.state?.documentCreated, location.state?.documentUploaded]); 
 
   const loadProjectData = async () => {
     try {
@@ -185,29 +213,50 @@ export const ChiTietDuAn: React.FC = () => {
     }
   };
 
-  // New function to load project documents
+  // Fixed function to load project documents using the actual API
   const loadProjectDocuments = async (projectId: number) => {
     try {
-      // Replace with your actual document service
-      // const projectDocuments = await documentService.getByProject(projectId);
-      // setDocuments(projectDocuments);
+      setDocumentsLoading(true);
+      console.log(`Loading documents for project ${projectId}`);
       
-      // Mock data for now - replace with actual API call
-      const mockDocuments: Document[] = [
-        {
-          id: 1,
-          name: "Research Proposal.pdf",
-          url: "/documents/research-proposal.pdf",
-          uploadDate: "2024-01-15",
-          size: 2048576,
-          type: "application/pdf",
-          projectId: projectId,
-          uploadedBy: 1
-        }
-      ];
-      setDocuments(mockDocuments);
+      // Use the actual document service to fetch documents
+      const projectDocuments = await getDocumentsByProjectId(projectId);
+      
+      console.log("Loaded documents:", projectDocuments);
+      
+      // Handle different response structures
+      let documentsArray: Document[] = [];
+      
+      if (Array.isArray(projectDocuments)) {
+        documentsArray = projectDocuments;
+      } else if (projectDocuments?.data && Array.isArray(projectDocuments.data)) {
+        documentsArray = projectDocuments.data;
+      } else if (projectDocuments?.documents && Array.isArray(projectDocuments.documents)) {
+        documentsArray = projectDocuments.documents;
+      }
+      
+      // Transform the documents to match our interface if needed
+      const transformedDocuments = documentsArray.map((doc: any) => ({
+        id: doc.id,
+        name: doc.name || doc.fileName || doc.originalName || `Document ${doc.id}`,
+        url: doc.url || doc.filePath || doc.downloadUrl || '',
+        uploadDate: doc.uploadDate || doc.createdAt || new Date().toISOString(),
+        size: doc.size || doc.fileSize || 0,
+        type: doc.type || doc.mimeType || doc.contentType || 'application/octet-stream',
+        projectId: doc.projectId || projectId,
+        uploadedBy: doc.uploadedBy || doc.userId || 0,
+        category: doc.category || 'Tài liệu dự án'
+      }));
+      
+      setDocuments(transformedDocuments);
+      console.log(`Loaded ${transformedDocuments.length} documents for project ${projectId}`);
+      
     } catch (err) {
       console.error("Error loading project documents:", err);
+      // Don't show error to user, just log it
+      setDocuments([]); // Set empty array as fallback
+    } finally {
+      setDocumentsLoading(false);
     }
   };
 
@@ -253,7 +302,7 @@ export const ChiTietDuAn: React.FC = () => {
     }
   };
 
-  // New function to handle document operations
+  // Updated function to handle document operations
   const handleDocumentCreated = async () => {
     if (project) {
       await loadProjectDocuments(project.id);
@@ -398,7 +447,16 @@ export const ChiTietDuAn: React.FC = () => {
             </div>
             {task.attachmentUrls && (
               <div className="text-xs text-gray-500">
-                <span className="font-medium">Tài liệu đính kèm:</span> {task.attachmentUrls}
+                <span className="font-medium">Tài liệu đính kèm:</span>{" "}
+                <a
+                  href={task.attachmentUrls}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  {task.attachmentUrls.split("/").pop()}
+                </a>
               </div>
             )}
           </div>
@@ -407,13 +465,12 @@ export const ChiTietDuAn: React.FC = () => {
     );
   };
 
-  // New DocumentDisplay component for showing documents
+  // Updated DocumentDisplay component with proper delete functionality
   const DocumentDisplay: React.FC<{ documents: Document[]; onDocumentUpdate: () => void }> = ({ documents, onDocumentUpdate }) => {
     const handleDeleteDocument = async (documentId: number) => {
       if (window.confirm("Bạn có chắc chắn muốn xóa tài liệu này?")) {
         try {
-          // Replace with your actual document service
-          // await documentService.delete(documentId);
+          await deleteDocument(documentId);
           onDocumentUpdate();
           alert("Đã xóa tài liệu thành công");
         } catch (error) {
@@ -423,15 +480,29 @@ export const ChiTietDuAn: React.FC = () => {
       }
     };
 
-    const handleDownloadDocument = (document: Document) => {
-      // Create a temporary link to download the file
-      const link = document.createElement('a');
-      link.href = document.url;
-      link.download = document.name;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    const handleDownloadDocument = (doc: Document) => {
+      if (doc.url) {
+        // Create a temporary link to download the file
+        const link = document.createElement('a');
+        link.href = doc.url;
+        link.download = doc.name;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        alert("Không thể tải xuống tài liệu này");
+      }
     };
+
+    if (documentsLoading) {
+      return (
+        <div className="text-center py-8">
+          <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-teal-500 mb-3"></div>
+          <p className="text-gray-500">Đang tải tài liệu...</p>
+        </div>
+      );
+    }
 
     if (documents.length === 0) {
       return (
@@ -459,6 +530,11 @@ export const ChiTietDuAn: React.FC = () => {
                   <div className="flex items-center gap-4 text-xs text-gray-500">
                     <span>Kích thước: {formatFileSize(doc.size)}</span>
                     <span>Tải lên: {new Date(doc.uploadDate).toLocaleDateString('vi-VN')}</span>
+                    {doc.category && (
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                        {doc.category}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -600,10 +676,6 @@ export const ChiTietDuAn: React.FC = () => {
                   }`}>
                     {project.status || 'Đang thực hiện'}
                   </span>
-                </div>
-                <div>
-                  <span className="font-semibold text-gray-600">ID dự án:</span>
-                  <span className="ml-2 text-gray-700">{project.id}</span>
                 </div>
               </div>
             </div>

@@ -26,7 +26,11 @@ export const googleAuthService = {
   // Bắt đầu quá trình đăng ký với Google
   initiateGoogleSignUp: async (): Promise<void> => {
     try {
-      const response = await api.get('/v1/Auth/google/signup');
+      const response = await api.get('/v1/Auth/google/signup', {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       // Redirect trực tiếp đến Google
       window.location.href = response.data.redirectUrl;
     } catch (error) {
@@ -38,7 +42,11 @@ export const googleAuthService = {
   // Bắt đầu quá trình đăng nhập với Google
   initiateGoogleSignIn: async (): Promise<void> => {
     try {
-      const response = await api.get('/v1/Auth/google/signin');
+      const response = await api.get('/v1/Auth/google/signin', {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       // Redirect trực tiếp đến Google
       window.location.href = response.data.redirectUrl;
     } catch (error) {
@@ -50,7 +58,11 @@ export const googleAuthService = {
   // Xử lý callback từ Google sau khi đăng ký (chỉ dùng khi cần)
   handleGoogleSignUpCallback: async (code: string): Promise<any> => {
     try {
-      const response = await api.get(`/v1/Auth/google/signup/callback?code=${code}`);
+      const response = await api.get(`/v1/Auth/google/signup/callback?code=${code}`, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       return response.data;
     } catch (error) {
       console.error('Error handling Google sign up callback:', error);
@@ -61,7 +73,11 @@ export const googleAuthService = {
   // Xử lý callback từ Google sau khi đăng nhập (chỉ dùng khi cần)
   handleGoogleSignInCallback: async (code: string): Promise<any> => {
     try {
-      const response = await api.get(`/v1/Auth/google/signin/callback?code=${code}`);
+      const response = await api.get(`/v1/Auth/google/signin/callback?code=${code}`, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       return response.data;
     } catch (error) {
       console.error('Error handling Google sign in callback:', error);

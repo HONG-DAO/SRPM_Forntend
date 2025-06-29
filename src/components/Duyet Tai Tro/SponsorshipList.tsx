@@ -97,7 +97,7 @@ export const SponsorshipList: React.FC<SponsorshipListProps> = ({
     // Fallback logic nếu không có custom handler
     try {
       setLoading(true);
-      await rejectFundingRequest(Number(id));
+      await rejectFundingRequest(Number(id), "không duyệt");
       
       // Cập nhật lại danh sách sau khi từ chối thành công
       await fetchFundingRequests();

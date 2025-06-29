@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
@@ -102,70 +102,50 @@ const SponsorshipTable: React.FC<{
 
   return (
     <section className="w-full mx-auto overflow-x-auto">
-      {/* Header */}
-      <div className="hidden md:flex items-center text-gray-700 font-semibold text-lg px-3 py-3 border-b-2 border-gray-200 bg-gray-50">
-        <div className="min-w-[250px] px-3">Tiêu đề</div>
-        <div className="min-w-[120px] px-3">Số Tiền</div>
-        <div className="min-w-[200px] px-3">Mục đích</div>
-        <div className="min-w-[150px] px-3">Dự án</div>
-        <div className="min-w-[150px] px-3">Trạng thái</div>
-      </div>
-
-      {/* Rows */}
-      <div className="min-h-[400px]">
-        {sortedRequests.map((item, index) => (
-          <div
-            key={item.id}
-            className={`flex flex-wrap md:flex-nowrap items-center px-3 py-4 ${
-              index % 2 === 1 ? "bg-slate-50" : "bg-white"
-            } border-b border-gray-100 hover:bg-slate-100 transition-colors`}
-          >
-            <div className="w-full md:min-w-[250px] text-sm font-medium text-neutral-800 px-3 mb-2 md:mb-0">
-              <div className="font-semibold" title={item.title}>
-                {item.title}
-              </div>
-              <div className="text-xs text-gray-500 mt-1">
-                ID: {item.id} • {new Date(item.createdAt).toLocaleDateString('vi-VN')}
-              </div>
-            </div>
-            
-            <div className="w-full md:min-w-[120px] text-sm text-neutral-700 px-3 mb-2 md:mb-0">
-              <div className="font-semibold text-green-600">
-                {formatAmount(item.amount)}
-              </div>
-            </div>
-            
-            <div className="w-full md:min-w-[200px] text-sm font-medium text-neutral-800 px-3 mb-2 md:mb-0">
-              <div title={item.purpose}>
-                {item.purpose.length > 30 ? `${item.purpose.substring(0, 30)}...` : item.purpose}
-              </div>
-            </div>
-            
-            <div className="w-full md:min-w-[150px] text-sm text-neutral-700 px-3 mb-2 md:mb-0">
-              <div title={item.projectTitle}>
-                {item.projectTitle ? (
-                  item.projectTitle.length > 20 ? `${item.projectTitle.substring(0, 20)}...` : item.projectTitle
-                ) : 'Chưa có dự án'}
-              </div>
-            </div>
-            
-            <div className="w-full md:min-w-[150px] px-3">
-              <span
-                className={`inline-block px-3 py-2 rounded-full text-sm font-medium min-w-[100px] text-center ${getStatusColor(
-                  item.status
-                )}`}
-              >
-                {getStatusText(item.status)}
-              </span>
-              {item.approvedAt && (
-                <div className="text-xs text-gray-500 mt-1 text-center">
-                  {new Date(item.approvedAt).toLocaleDateString('vi-VN')}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+      <table className="min-w-full text-left">
+        <thead>
+          <tr className="bg-gray-50 border-b-2 border-gray-200 text-gray-700 font-semibold text-lg">
+            <th className="min-w-[250px] px-3 py-3">Tiêu đề</th>
+            <th className="min-w-[120px] px-3 py-3">Số Tiền</th>
+            <th className="min-w-[200px] px-3 py-3">Mục đích</th>
+            <th className="min-w-[150px] px-3 py-3">Dự án</th>
+            <th className="min-w-[150px] px-3 py-3">Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedRequests.map((item, index) => (
+            <tr key={item.id} className={index % 2 === 1 ? "bg-slate-50" : "bg-white"}>
+              <td className="align-middle px-3 py-4">
+                <div className="font-semibold" title={item.title}>{item.projectTitle}</div>
+                <div className="text-xs text-gray-500">{new Date(item.createdAt).toLocaleDateString('vi-VN')}</div>
+              </td>
+              <td className="align-middle px-3 py-4">
+                <span className="font-semibold text-green-600">{formatAmount(item.amount)}</span>
+              </td>
+              <td className="align-middle px-3 py-4">
+                <span title={item.purpose}>{item.purpose.length > 30 ? `${item.purpose.substring(0, 30)}...` : item.purpose}</span>
+              </td>
+              <td className="align-middle px-3 py-4">
+                <span title={item.projectTitle}>
+                  {item.projectTitle ? (
+                    item.projectTitle.length > 20 ? `${item.projectTitle.substring(0, 20)}...` : item.projectTitle
+                  ) : 'Chưa có dự án'}
+                </span>
+              </td>
+              <td className="align-middle px-3 py-4">
+                <span className={`inline-block px-3 py-2 rounded-full text-sm font-medium min-w-[100px] text-center ${getStatusColor(item.status)}`}>
+                  {getStatusText(item.status)}
+                </span>
+                {item.approvedAt && (
+                  <div className="text-xs text-gray-500 text-center">
+                    {new Date(item.approvedAt).toLocaleDateString('vi-VN')}
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </section>
   );
 };
@@ -175,11 +155,30 @@ function TaiTroThanhVienNghienCuu() {
   const [fundingRequests, setFundingRequests] = useState<FundingRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   const toggleSortOrder = () => {
     setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
   };
+
+  // Lọc danh sách yêu cầu tài trợ dựa trên từ khóa tìm kiếm
+  const filteredFundingRequests = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return fundingRequests;
+    }
+
+    const searchLower = searchTerm.toLowerCase().trim();
+    return fundingRequests.filter((request) => {
+      return (
+        request.title.toLowerCase().includes(searchLower) ||
+        request.purpose.toLowerCase().includes(searchLower) ||
+        (request.projectTitle && request.projectTitle.toLowerCase().includes(searchLower)) ||
+        request.description.toLowerCase().includes(searchLower) ||
+        request.id.toString().includes(searchLower)
+      );
+    });
+  }, [fundingRequests, searchTerm]);
 
   const fetchFundingRequests = async () => {
     try {
@@ -273,91 +272,132 @@ function TaiTroThanhVienNghienCuu() {
     }
   };
 
-return (
-  <main className="bg-slate-50 min-h-screen w-full">
-    <div className="flex flex-row min-h-screen">
-      {/* Sidebar */}
-      <div className="w-[18%] border-r border-slate-200 bg-gray-50">
-        <Sidebar />
-      </div>
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+  };
 
-      {/* Main content */}
-      <div className="w-[110%] flex flex-col">
-        <Header />
+  const handleClearSearch = () => {
+    setSearchTerm("");
+  };
 
-        <div className="flex-1 px-6 py-8">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-700 text-center mb-8">
-              Yêu cầu tài trợ
-            </h1>
+  return (
+    <main className="bg-slate-50 min-h-screen w-full">
+      <div className="flex flex-row min-h-screen">
+        {/* Sidebar */}
+        <div className="w-[18%] border-r border-slate-200 bg-gray-50">
+          <Sidebar />
+        </div>
 
-            {error && (
-              <div className="mb-6">
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="text-red-800">
-                      <strong>Lỗi:</strong> {error}
+        {/* Main content */}
+        <div className="w-[110%] flex flex-col">
+          <Header />
+
+          <div className="flex-1 px-6 py-8">
+            <div className="max-w-7xl mx-auto">
+              <h1 className="text-3xl font-bold text-gray-700 text-center mb-8">
+                Yêu cầu tài trợ
+              </h1>
+
+              {error && (
+                <div className="mb-6">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="text-red-800">
+                        <strong>Lỗi:</strong> {error}
+                      </div>
+                      <button
+                        onClick={fetchFundingRequests}
+                        className="text-red-600 hover:text-red-800 underline font-medium"
+                      >
+                        Thử lại
+                      </button>
                     </div>
-                    <button
-                      onClick={fetchFundingRequests}
-                      className="text-red-600 hover:text-red-800 underline font-medium"
-                    >
-                      Thử lại
-                    </button>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="flex justify-between items-center mb-6">
-              <SearchInput />
-              <button
-                onClick={() => navigate("/phieuyeucautaitro")}
-                className="flex items-center gap-2 px-5 py-3 text-base font-semibold text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-colors"
-              >
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/c624f3d174d140f745af36e9fec2135c9d3ae8fb"
-                  className="w-5 h-5"
-                  alt="Icon thêm yêu cầu"
-                />
-                <span>Tạo yêu cầu</span>
-              </button>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <div className="flex justify-between items-center mb-6">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-700">
-                    Danh sách yêu cầu tài trợ
-                  </h2>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Tổng cộng {fundingRequests.length} yêu cầu
-                  </p>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div className="w-full sm:w-auto">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Tìm kiếm "
+                      value={searchTerm}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      className="w-full sm:w-80 px-4 py-2 pl-10 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                    {searchTerm && (
+                      <button
+                        onClick={handleClearSearch}
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                      >
+                        <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  {searchTerm && (
+                    <div className="mt-2 text-sm text-gray-600">
+                      Tìm thấy {filteredFundingRequests.length} kết quả cho "{searchTerm}"
+                    </div>
+                  )}
                 </div>
+                
                 <button
-                  onClick={toggleSortOrder}
-                  className="px-4 py-2 bg-cyan-50 border rounded-full hover:bg-cyan-100 transition-colors"
+                  onClick={() => navigate("/phieuyeucautaitro")}
+                  className="flex items-center gap-2 px-5 py-3 text-base font-semibold text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-colors whitespace-nowrap"
                 >
-                  <span className="text-sm text-gray-500">
-                    Sắp xếp {sortOrder === "asc" ? "A → Z" : "Z → A"}
-                  </span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/c624f3d174d140f745af36e9fec2135c9d3ae8fb"
+                    className="w-5 h-5"
+                    alt="Icon thêm yêu cầu"
+                  />
+                  <span>Tạo yêu cầu</span>
                 </button>
               </div>
 
-              <SponsorshipTable
-                sortOrder={sortOrder}
-                fundingRequests={fundingRequests}
-                loading={loading}
-                onStatusChange={handleStatusChange}
-              />
+              <div className="bg-white rounded-2xl shadow-sm p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-700">
+                      Danh sách yêu cầu tài trợ
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {searchTerm 
+                        ? `Hiển thị ${filteredFundingRequests.length} / ${fundingRequests.length} yêu cầu`
+                        : `Tổng cộng ${fundingRequests.length} yêu cầu`
+                      }
+                    </p>
+                  </div>
+                  <button
+                    onClick={toggleSortOrder}
+                    className="px-4 py-2 bg-cyan-50 border rounded-full hover:bg-cyan-100 transition-colors"
+                  >
+                    <span className="text-sm text-gray-500">
+                      Sắp xếp {sortOrder === "asc" ? "A → Z" : "Z → A"}
+                    </span>
+                  </button>
+                </div>
+
+                <SponsorshipTable
+                  sortOrder={sortOrder}
+                  fundingRequests={filteredFundingRequests}
+                  loading={loading}
+                  onStatusChange={handleStatusChange}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
-);
-
+    </main>
+  );
 }
 
-export default TaiTroThanhVienNghienCuu;
+export default TaiTroThanhVienNghienCuu; 

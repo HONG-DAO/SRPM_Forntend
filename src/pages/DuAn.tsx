@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Sidebar from "@cnpm/components/TrangChuThanhVienNghienCuu/Sidebar";
 import Header from "@cnpm/components/Header";
 import { ProjectCard } from "@cnpm/components/Du An/ProjectCard";
@@ -32,6 +32,24 @@ export default function DuAn() {
   const [error, setError] = useState<string | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [userRole, setUserRole] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  // Filtered projects based on search term
+  const filteredProjects = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return projects;
+    }
+    
+    const searchLower = searchTerm.toLowerCase().trim();
+    return projects.filter(project => 
+      project.title.toLowerCase().includes(searchLower) ||
+      project.description.toLowerCase().includes(searchLower) ||
+      project.objectives.toLowerCase().includes(searchLower) ||
+      project.expectedOutcomes.toLowerCase().includes(searchLower) ||
+      project.status?.toLowerCase().includes(searchLower) ||
+      project.id.toString().includes(searchLower)
+    );
+  }, [projects, searchTerm]);
 
   useEffect(() => {
     const initializeComponent = async () => {
@@ -48,8 +66,8 @@ export default function DuAn() {
         }
 
         // Determine user role - you may need to adjust this logic based on your role system
-        const role = profile?.roles?.[0] || "Researcher"; // Default to researcher-member
-        setUserRole(role);
+        // const role = profile?.roles?.[0] || "Researcher"; // Default to researcher-member
+        // setUserRole(role);
         
         await fetchUserProjects(profile);
       } catch (err) {
@@ -121,13 +139,21 @@ export default function DuAn() {
 
   const handleCreateProject = () => {
     const isPrincipalInvestigator = userProfile?.roles?.includes("principal-investigator") || 
-                                   userProfile?.roles?.includes("nghien-cuu-chinh");
+                                   userProfile?.roles?.includes("reseacher-member");
 
     if (isPrincipalInvestigator) {
       navigate("/taoduannghiencuuchinh");
     } else {
       alert("Chỉ nhà nghiên cứu chính mới có quyền tạo dự án.");
     }
+  };
+
+  const handleSearch = (searchValue: string) => {
+    setSearchTerm(searchValue);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
   };
 
   if (loading) {
@@ -203,11 +229,15 @@ export default function DuAn() {
             </h1>
             <div className="flex flex-wrap gap-5 justify-between mt-7 w-full max-w-[1000px]">
               <div className="self-start mt-2">
-                <SearchInput />
+                <SearchInput 
+                  onSearch={handleSearch} 
+                  placeholder="Tìm kiếm"
+                  value={searchTerm}
+                />
               </div>
               {/* Only show create button for Principal Investigator */}
-              {(userProfile?.roles?.includes("principal-investigator") || 
-                userProfile?.roles?.includes("nghien-cuu-chinh")) && (
+              {/* {(userProfile?.roles?.includes("principal-investigator") || 
+                userProfile?.roles?.includes("nghien-cuu-chinh")) && ( */}
                 <button
                   type="button"
                   onClick={handleCreateProject}
@@ -222,40 +252,80 @@ export default function DuAn() {
                   />
                   <span>Tạo dự án</span>
                 </button>
-              )}
+              
             </div>
+            
+            {/* Search results info */}
+            {searchTerm.trim() && (
+              <div className="mt-4 w-full max-w-[992px] flex items-center justify-between bg-blue-50 border border-blue-200 rounded-lg px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-blue-600 font-medium">
+                    Tìm thấy {filteredProjects.length} dự án cho "{searchTerm}"
+                  </span>
+                </div>
+                <button
+                  onClick={handleClearSearch}
+                  className="text-blue-600 hover:text-blue-800 font-medium text-sm underline"
+                >
+                  Xóa bộ lọc
+                </button>
+              </div>
+            )}
+
             <div className="mt-3.5 w-full max-w-[992px]">
-              {projects.length === 0 ? (
+              {filteredProjects.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="text-gray-400 text-6xl mb-4">📋</div>
+                  <div className="text-gray-400 text-6xl mb-4">
+                    {searchTerm.trim() ? "🔍" : "📋"}
+                  </div>
                   <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                    Chưa có dự án nào
+                    {searchTerm.trim() 
+                      ? `Không tìm thấy dự án nào với từ khóa "${searchTerm}"`
+                      : "Chưa có dự án nào"
+                    }
                   </h3>
                   <p className="text-gray-500">
-                    {userProfile?.roles?.includes("principal-investigator") || 
-                     userProfile?.roles?.includes("nghien-cuu-chinh")
-                      ? "Hãy tạo dự án đầu tiên của bạn"
-                      : "Bạn chưa tham gia vào dự án nào"}
+                    {searchTerm.trim() 
+                      ? "Hãy thử tìm kiếm với từ khóa khác"
+                      : "Hãy tạo dự án đầu tiên của bạn"
+                    }
                   </p>
+                  {searchTerm.trim() && (
+                    <button
+                      onClick={handleClearSearch}
+                      className="mt-3 px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition duration-200"
+                    >
+                      Xem tất cả dự án
+                    </button>
+                  )}
                 </div>
               ) : (
-                projects.map((project) => (
-                  <div
-                    key={project.id}
-                    onClick={() => handleProjectClick(project)}
-                    className="cursor-pointer mb-4"
-                  >
-                    <ProjectCard
-                      title={project.title}
-                      group={`ID: ${project.id}`} // You may want to replace this with actual group data
-                      supervisor={`Owner ID: ${project.ownerId}`} // You may want to fetch actual owner name
-                      // description={project.description}
-                      // status={project.status}
-                      // startDate={project.startDate}
-                      // endDate={project.endDate}
-                    />
-                  </div>
-                ))
+                <>
+                  {/* Search results count */}
+                  {projects.length > 0 && (
+                    <div className="mb-4 text-sm text-gray-600">
+                      Hiển thị {filteredProjects.length} / {projects.length} dự án
+                    </div>
+                  )}
+                  
+                  {filteredProjects.map((project) => (
+                    <div
+                      key={project.id}
+                      onClick={() => handleProjectClick(project)}
+                      className="cursor-pointer mb-4"
+                    >
+                      <ProjectCard
+                        title={project.title}
+                        // group={`ID: ${project.id}`} // You may want to replace this with actual group data
+                        supervisor={`${project.description}`} // You may want to fetch actual owner name
+                        // description={project.description}
+                        // status={project.status}
+                        // startDate={project.startDate}
+                        // endDate={project.endDate}
+                      />
+                    </div>
+                  ))}
+                </>
               )}
             </div>
           </section>
